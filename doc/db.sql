@@ -1,0 +1,2 @@
+CREATE DATABASE KunMall;
+USE KunMall;
