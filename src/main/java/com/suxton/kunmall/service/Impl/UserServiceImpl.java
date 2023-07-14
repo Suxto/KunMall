@@ -17,9 +17,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean verifyUser(User user) {
+    public boolean verifyUser(String name, String password) {
         UserExample userExample = new UserExample();
-        userExample.or().andUsernameEqualTo(user.getUsername()).andPasswdEqualTo(user.getPasswd());
+        userExample.or().andUsernameEqualTo(name).andPasswdEqualTo(password);
         int num = (int) userMapper.countByExample(userExample);
         return num != 0;
     }
