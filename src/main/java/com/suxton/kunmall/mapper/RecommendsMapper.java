@@ -1,7 +1,7 @@
 package com.suxton.kunmall.mapper;
 
-import com.suxton.kunmall.entity.Recommends;
-import com.suxton.kunmall.entity.RecommendsExample;
+import com.suxton.kunmall.pojo.Recommends;
+import com.suxton.kunmall.pojo.RecommendsExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
