@@ -1,2 +1,9 @@
 # KunMall
-Group W0rk
+Group Work
+
+# Build With
++ Spring Boot
++ MyBatis
++ MySQL
++ Thymeleaf
++ Spring MVC
