@@ -1,0 +1,19 @@
+.money{
+    position: absolute;
+    right: 30%;
+    bottom: 20%;
+    transform: translateX(-50%);
+}
+
+.btn {
+    position: absolute;
+    right: 25%;
+    bottom: 20%;
+    transform: translateX(-50%);
+}
+.form-control{
+    width: 50%;
+}
+.remark{
+    resize:none;
+}
