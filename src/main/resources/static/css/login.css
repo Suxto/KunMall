@@ -1,0 +1,21 @@
+.login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form {
+    margin-top: 10%;
+    width: 30%;
+
+}
+
+.form h2 {
+    text-align: center;
+}
+
+.btn {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
