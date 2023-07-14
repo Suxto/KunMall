@@ -3,6 +3,13 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
     <context id="Mysql" targetRuntime="MyBatis3">
+        <property name="autoDelimitKeywords" value="true"/>
+        <!-- 生成的Java文件的编码 -->
+        <property name="javaFileEncoding" value="utf-8"/>
+        <!-- beginningDelimiter和endingDelimiter：指明数据库的用于标记数据库对象名的符号，MYSQL默认是`反引号； -->
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+
         <!-- 配置数据库连接信息 -->
         <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
                         connectionURL="jdbc:mysql://47.120.6.121:3306/KunMall"
@@ -25,7 +32,7 @@
         </sqlMapGenerator>
 
         <!-- 配置生成的Mapper接口 -->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.suxton.kunmall.mapper" targetProject="src/main/java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.suxton.kunmall.dao" targetProject="src/main/java">
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
 

@@ -2,10 +2,10 @@ CREATE DATABASE KunMall;
 USE KunMall;
 CREATE TABLE Users
 (
-    id      INT PRIMARY KEY AUTO_INCREMENT,
-    isAdmin BOOLEAN DEFAULT FALSE,
-    passwd  VARCHAR(40) NOT NULL
-
+    id       INT PRIMARY KEY AUTO_INCREMENT,
+    userName VARCHAR(30),
+    isAdmin  BOOLEAN DEFAULT FALSE,
+    passwd   VARCHAR(40) NOT NULL
 );
 
 CREATE TABLE Orders
@@ -30,7 +30,7 @@ CREATE TABLE Recommends
     GPUID    INT NOT NULL REFERENCES GPU (id),
     DriveID  INT NOT NULL REFERENCES Drive (id),
     MemoryID INT NOT NULL REFERENCES Memory (id),
-    comment   VARCHAR(70)
+    comment  VARCHAR(70)
 );
 
 CREATE TABLE CPU

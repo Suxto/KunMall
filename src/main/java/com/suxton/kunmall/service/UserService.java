@@ -1,17 +1,7 @@
 package com.suxton.kunmall.service;
 
-import com.suxton.kunmall.mapper.UserMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import com.suxton.kunmall.pojo.User;
 
-@Service
-public class UserService {
-    private final UserMapper userMapper;
-
-    @Autowired
-    public UserService(UserMapper userMapper) {
-        this.userMapper = userMapper;
-    }
-
-
+public interface UserService {
+    public void createUser(User user);
 }
