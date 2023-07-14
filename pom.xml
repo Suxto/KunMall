@@ -37,11 +37,6 @@
             <scope>test</scope>
         </dependency>
 
-        <dependency>
-            <groupId>org.mybatis.generator</groupId>
-            <artifactId>mybatis-generator-core</artifactId>
-            <version>1.4.2</version>
-        </dependency>
 
         <dependency>
             <groupId>mysql</groupId>
@@ -61,13 +56,14 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>3.1.1</version>
             </plugin>
             <!-- MyBatis Generator -->
             <plugin>
                 <groupId>org.mybatis.generator</groupId>
                 <artifactId>mybatis-generator-maven-plugin</artifactId>
                 <version>1.4.2</version>
-                 <dependencies>
+                <dependencies>
                     <dependency>
                         <groupId>mysql</groupId>
                         <artifactId>mysql-connector-java</artifactId>

@@ -1,7 +1,7 @@
 package com.suxton.kunmall.mapper;
 
-import com.suxton.kunmall.entity.GPU;
-import com.suxton.kunmall.entity.GPUExample;
+import com.suxton.kunmall.pojo.GPU;
+import com.suxton.kunmall.pojo.GPUExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 

@@ -1,7 +1,7 @@
 package com.suxton.kunmall.mapper;
 
-import com.suxton.kunmall.entity.Drive;
-import com.suxton.kunmall.entity.DriveExample;
+import com.suxton.kunmall.pojo.Drive;
+import com.suxton.kunmall.pojo.DriveExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 

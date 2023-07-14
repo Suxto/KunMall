@@ -14,17 +14,17 @@
         </javaTypeResolver>
 
         <!-- 配置生成的Java模型（实体类） -->
-        <javaModelGenerator targetPackage="com.suxton.kunmall.entity" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="com.suxton.kunmall.pojo" targetProject="src/main/java">
             <property name="enableSubPackages" value="false"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
-        <!-- 配置生成的Mapper接口 -->
+        <!-- 配置生成的Mapper XML文件 -->
         <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources">
             <property name="enableSubPackages" value="false"/>
         </sqlMapGenerator>
 
-        <!-- 配置生成的Mapper XML文件 -->
+        <!-- 配置生成的Mapper接口 -->
         <javaClientGenerator type="XMLMAPPER" targetPackage="com.suxton.kunmall.mapper" targetProject="src/main/java">
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>

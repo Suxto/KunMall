@@ -1,7 +1,7 @@
 package com.suxton.kunmall.mapper;
 
-import com.suxton.kunmall.entity.User;
-import com.suxton.kunmall.entity.UserExample;
+import com.suxton.kunmall.pojo.User;
+import com.suxton.kunmall.pojo.UserExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 

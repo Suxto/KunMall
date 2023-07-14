@@ -1,7 +1,7 @@
 package com.suxton.kunmall.mapper;
 
-import com.suxton.kunmall.entity.Orders;
-import com.suxton.kunmall.entity.OrdersExample;
+import com.suxton.kunmall.pojo.Orders;
+import com.suxton.kunmall.pojo.OrdersExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
