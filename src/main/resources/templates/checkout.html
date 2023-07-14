@@ -19,22 +19,80 @@
 </head>
 
 <body>
-    <!--导航栏-->
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-        <!-- Brand/logo -->
-        <a class="navbar-brand" href="#">Logo</a>
-        <!-- Links -->
-        <div class="collapse navbar-collapse" id="mynavbar">
-            <div class="container mt-3">
-                <h2 style="color: silver;">结账</h2>
-            </div>
-            <ul class="navbar-nav me-right">
-                <li class="nav-item">
-                    <a class="nav-link" href="javascript:history.go(-1)">返回</a>
-                </li>
-            </ul>
+<!--导航栏-->
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <!-- Brand/logo -->
+    <a class="navbar-brand" href="#">Logo</a>
+    <!-- Links -->
+    <div class="collapse navbar-collapse" id="mynavbar">
+        <div class="container mt-3">
+            <h2 style="color: silver;">结账</h2>
         </div>
-    </nav>
+        <ul class="navbar-nav me-right">
+            <li class="nav-item">
+                <a class="nav-link" href="ShopMall.html">返回</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<!---------------------------------------------->
+<div class="container mt-3">
+    <h2>鼠标悬停状态表格</h2>
+    <p>.table-hover 类可以为表格的每一行添加鼠标悬停效果（灰色背景）：</p>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>商品名称</th>
+            <th>商品数量</th>
+            <th>商品价格</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>John</td>
+            <td>Doe</td>
+            <td>john@example.com</td>
+        </tr>
+        <tr>
+            <td>Mary</td>
+            <td>Moe</td>
+            <td>mary@example.com</td>
+        </tr>
+        <tr>
+            <td>July</td>
+            <td>Dooley</td>
+            <td>july@example.com</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<!----------------------------------------------->
+<div class="container mt-3">
+    <h2>收货人信息：</h2>
+    <p>我们可以通过在 .form-control 输入框中使用 .form-control-lg 或 .form-control-sm 类来设置输入框的大小:</p>
+    <form>
+        <div class="mb-3 mt-3">
+            <h4>地址:</h4>
+            <input type="text" class="form-control form-control-lg" placeholder="大号输入框">
+        </div>
+        <div class="mb-3 mt-3">
+            <h4>电话:</h4>
+            <input type="text" class="form-control form-control-lg" placeholder="大号输入框">
+        </div>
+        <div class="mb-3 mt-3">
+            <h4>支付方式:</h4>
+            <input type="text" class="form-control form-control-lg" placeholder="大号输入框">
+        </div>
+        <div class="mb-3 mt-3">
+            <h4>备注:</h4>
+            <textarea class="form-control remark" rows="5" id="comment" name="text"></textarea>
+        </div>
+        <h4 class="money">合计:999999</h4>
+        <button type="button" class="btn btn-primary btn-lg">支付</button>
+    </form>
+</div>
+
 </body>
 
 </html>
