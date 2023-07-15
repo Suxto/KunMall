@@ -1,6 +1,7 @@
 package com.suxton.kunmall.controller;
 
 import com.suxton.kunmall.service.UserService;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,15 +30,6 @@ public class UserController {
         return "Login";
     }
 
-    @PostMapping("/login")
-    public String login(@RequestParam("username") String username, @RequestParam("password") String password) {
-        // 处理登录逻辑
-        if (userService.verifyUser(username, password)) {
-            return "redirect:/Home";
-        } else {
-            return "redirect:/Login?error";
-        }
-    }
 
     @GetMapping("/Order*")
     public String order() {

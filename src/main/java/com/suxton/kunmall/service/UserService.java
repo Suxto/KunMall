@@ -3,6 +3,10 @@ package com.suxton.kunmall.service;
 import com.suxton.kunmall.pojo.User;
 
 public interface UserService {
-    void createUser(User user);
+    void createUser(String name, String password);
+
     boolean verifyUser(String name, String password);
+
+    boolean hasUser(String name);
+    User getUserByName(String name);
 }
