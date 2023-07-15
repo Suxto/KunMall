@@ -70,6 +70,21 @@ public class UserController {
         return "user/Login";
     }
 
+    @GetMapping("/Register*")
+    public String registerForm() {
+        return "user/Register";
+    }
+
+    @PostMapping("/Register*")
+    public String register(@RequestParam(value = "username") String username, @RequestParam(value =
+            "password") String passwd) {
+        if (userService.hasUser(username)) {
+            return "redirect:/Register?error";
+        } else {
+            userService.createUser(username, passwd);
+            return "redirect:/Login";
+        }
+    }
 
     @GetMapping("/Order*")
     public String order() {
@@ -79,6 +94,10 @@ public class UserController {
     @GetMapping("/Customize*")
     public String customize(@RequestParam(defaultValue = "0", value = "recommend") String num, Model model) {
         userInfoSetter(model);
+
+        if ("0".equals(num)) {
+
+        }
         return "user/Customize";
     }
 

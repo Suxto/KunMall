@@ -4,8 +4,8 @@ import com.suxton.kunmall.dao.UserMapper;
 import com.suxton.kunmall.pojo.User;
 import com.suxton.kunmall.pojo.UserExample;
 import com.suxton.kunmall.service.UserService;
-import com.suxton.kunmall.utils.CommonUtils;
 import jakarta.annotation.Resource;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,11 +14,12 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     @Resource
     private UserMapper userMapper;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
     public void createUser(String name, String password) {
         User user = new User();
         user.setUsername(name);
-        user.setPasswd(password);
+        user.setPasswd(bCryptPasswordEncoder.encode(password));
         user.setIsadmin(false);
         userMapper.insert(user);
     }

@@ -40,14 +40,14 @@
         </ul>
         <ul class="navbar-nav me-right">
             <li class="nav-item">
-                <a class="nav-link" href="javascript:history.go(-1)">返回</a>
+                <a class="nav-link" th:href="@{/Login}">返回</a>
             </li>
         </ul>
     </div>
 </nav>
 <!--------------------------------------------------------------->
 <div class="login container mt-3">
-    <form action="Home.html" method="post" class="form">
+    <form action="/Register" method="post" class="form">
         <h2>注册</h2>
         <div class="mb-3 mt-3">
             <label for="username" class="form-label">用户账号:</label>
@@ -58,13 +58,8 @@
             <input type="password" class="form-control" id="password" placeholder="Enter Password" name="password"
                    required>
         </div>
-        <div class="mb-3">
-            <label for="Repassword" class="form-label">确认密码:</label>
-            <input type="password" class="form-control" id="Repassword" placeholder="Enter Password" name="password"
-                   required>
-        </div>
         <div th:if="${param.error}" class="text">
-            <p style="color: red;">用户名或密码不正确</p>
+            <p style="color: red;">用户名不合法</p>
         </div>
         <button type="submit" class="btn btn-primary">注册</button>
 

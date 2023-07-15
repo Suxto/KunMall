@@ -15,8 +15,7 @@ class KunMallApplicationTests {
 
     @Test
     void userServiceTest() {
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-//        userService.createUser("Suxton", bCryptPasswordEncoder.encode("1234"));
+//        userService.createUser("Suxton", "1234");
     }
 
 }
