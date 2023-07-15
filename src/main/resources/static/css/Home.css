@@ -6,7 +6,33 @@
 .carousel-control-next {
     margin: 15%;
 }
-
+.nav-link{
+    font-size: 18px;
+}
 .container-fluid {
     text-align: center;
+    font-family: 黑体;
+    font-weight: bolder;
+    letter-spacing: 10px;
+    font-size: 60px;
+    text-shadow: 1px 1px 5px #2E2E2E;
+    border: 8px groove #2E2E2E;
+    box-sizing: border-box;
+    width: 400px;
+    height:70px;
+    border-radius:15px;
+}
+
+.container-pic{
+    width:1000%;
+}
+.pic1{
+    float: left;
+    padding: 10px;
+    display: flex;
+}
+.container-aa{
+    text-align: center;
+    font-family: 黑体;
+    font-size:40px;
 }
