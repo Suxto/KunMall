@@ -101,11 +101,6 @@ public class UserController {
         return "user/Customize";
     }
 
-    @GetMapping("/ShopMall*")
-    public String shopMall(Model model) {
-        userInfoSetter(model);
-        return "user/ShopMall";
-    }
 
     @GetMapping("/Checkout*")
     public String checkout() {
