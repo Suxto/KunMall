@@ -8,6 +8,8 @@ import com.suxton.kunmall.utils.CommonUtils;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserServiceImpl implements UserService {
     @Resource
@@ -40,12 +42,9 @@ public class UserServiceImpl implements UserService {
     public User getUserByName(String name) {
         UserExample userExample = new UserExample();
         userExample.or().andUsernameEqualTo(name);
-        try {
-            return userMapper.selectByExample(userExample).get(0);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
+        List<User> users = userMapper.selectByExample(userExample);
+        if (users.size() == 0) return null;
+        else return users.get(0);
     }
 
 }

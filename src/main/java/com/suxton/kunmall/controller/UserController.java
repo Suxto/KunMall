@@ -5,12 +5,14 @@ import com.suxton.kunmall.pojo.RecommendsExample;
 import com.suxton.kunmall.service.HardwareService;
 import com.suxton.kunmall.service.Impl.HardwareServiceImpl;
 import com.suxton.kunmall.service.UserService;
+import com.suxton.kunmall.utils.MyUserDetails;
 import jakarta.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -47,9 +49,12 @@ public class UserController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Object principal = authentication.getPrincipal();
         if (!(principal instanceof String)) {
-            UserDetails userDetails = (UserDetails) principal;
+            MyUserDetails userDetails = (MyUserDetails) principal;
             String username = userDetails.getUsername();
             model.addAttribute("username", username);
+            if (userDetails.isAdmin()) {
+                model.addAttribute("admin", true);
+            } else model.addAttribute("admin", false);
         }
 
         List<String[]> resolvedRecommendsList = hardwareService.getResolvedRecommendsList();
