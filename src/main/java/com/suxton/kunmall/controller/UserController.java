@@ -77,7 +77,7 @@ public class UserController {
     }
 
     @GetMapping("/Customize*")
-    public String customize(Model model) {
+    public String customize(@RequestParam(defaultValue = "0", value = "recommend") String num, Model model) {
         userInfoSetter(model);
         return "user/Customize";
     }
