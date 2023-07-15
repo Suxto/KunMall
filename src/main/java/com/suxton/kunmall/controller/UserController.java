@@ -17,38 +17,38 @@ public class UserController {
 
     @GetMapping("/")
     public String redirectToHome() {
-        return "redirect:Home";
+        return "redirect:/Home";
     }
 
     @GetMapping("/Home*")
     public String home() {
-        return "Home";
+        return "user/Home";
     }
 
     @GetMapping("/Login*")
     public String loginForm() {
-        return "Login";
+        return "user/Login";
     }
 
 
     @GetMapping("/Order*")
     public String order() {
-        return "Order";
+        return "user/Order";
     }
 
     @GetMapping("/Customize*")
     public String customize() {
-        return "Customize";
+        return "user/Customize";
     }
 
     @GetMapping("/ShopMall*")
     public String shopMall() {
-        return "ShopMall";
+        return "user/ShopMall";
     }
 
     @GetMapping("/Checkout*")
     public String checkout() {
-        return "Checkout";
+        return "user/Checkout";
     }
 
 }

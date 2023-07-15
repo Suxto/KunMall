@@ -14,13 +14,8 @@
     text-align: center;
 }
 
-.btn1 {
+.btn{
     position: absolute;
-    left: 45%;
-    transform: translateX(-50%);
-}
-.btn2{
-    position: absolute;
-    right: 45%;
+    left: 50%;
     transform: translateX(-50%);
 }

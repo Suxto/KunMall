@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        background-image: url(img/background.jpg);
+        margin: 0;
+        padding: 0;
+        text-decoration: none;
+      }
+
+      .content {
+        float: left;
+        width: 1226px;
+        height: 460px;
+        background-color: #333;
+        margin: 0 auto;
+      }
+      .left {
+        float: left;
+        width: 300px;
+        height: 460px;
+      }
+      .left > div {
+        float: left;
+        width: 300px;
+        height: 110px;
+        background-color: white;
+        margin-top: 4px;
+      }
+      .right {
+        float: left;
+        width: 926px;
+        height: 460px;
+        background-color: yellow;
+      }
+      p {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        font-size: larger;
+        color: black;
+        text-align: center;
+      }
+      a {
+        float: right;
+      }
+      #t {
+        width: 100%;
+        height: 300px;
+        background-color: white;
+      }
+      #y {
+        height: 160px;
+        width: 45%;
+        margin: 0 auto;
+        background-color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="content">
+      <div class="left">
+        <div class="son">
+          <img src="img/1.png" height="110px" width="110px" />
+          鸡你太美
+          <a href="#">回复</a>
+        </div>
+        <div class="son">
+          <img src="img/2.png" height="110px" width="110px" />
+          撕裂的伤口QAQ
+          <a href="#">回复</a>
+        </div>
+        <div class="son">
+          <img src="img/3.png" height="110px" width="110px" />
+          爷傲耐我何?
+          <a href="#">回复</a>
+        </div>
+        <div class="son">
+          <img src="img/4.png" height="110px" width="110px" />
+          坤坤最帅
+          <a href="#">回复</a>
+        </div>
+      </div>
+      <div class="right">
+        <div id="t"><p>聊天框</p></div>
+        <div id="y">
+          输入信息：
+          <form>
+            <textarea name="输出信息" cols="50" rows="9">
+请输入您要回复的内容</textarea
+            >
+            <input type="submit" value="发送" />
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
