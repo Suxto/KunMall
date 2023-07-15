@@ -32,6 +32,19 @@ public class UserController {
 
     private final HardwareService hardwareService;
 
+    private void userInfoSetter(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Object principal = authentication.getPrincipal();
+        if (!(principal instanceof String)) {
+            MyUserDetails userDetails = (MyUserDetails) principal;
+            String username = userDetails.getUsername();
+            model.addAttribute("username", username);
+            if (userDetails.isAdmin()) {
+                model.addAttribute("admin", true);
+            } else model.addAttribute("admin", false);
+        }
+    }
+
     @Autowired
     public UserController(UserService userService, HardwareService hardwareService) {
         this.userService = userService;
@@ -46,17 +59,7 @@ public class UserController {
 
     @GetMapping("/Home*")
     public String home(Model model) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        Object principal = authentication.getPrincipal();
-        if (!(principal instanceof String)) {
-            MyUserDetails userDetails = (MyUserDetails) principal;
-            String username = userDetails.getUsername();
-            model.addAttribute("username", username);
-            if (userDetails.isAdmin()) {
-                model.addAttribute("admin", true);
-            } else model.addAttribute("admin", false);
-        }
-
+        userInfoSetter(model);
         List<String[]> resolvedRecommendsList = hardwareService.getResolvedRecommendsList();
         model.addAttribute("RecommendsList", resolvedRecommendsList);
         return "user/Home";
@@ -74,12 +77,14 @@ public class UserController {
     }
 
     @GetMapping("/Customize*")
-    public String customize() {
+    public String customize(Model model) {
+        userInfoSetter(model);
         return "user/Customize";
     }
 
     @GetMapping("/ShopMall*")
-    public String shopMall() {
+    public String shopMall(Model model) {
+        userInfoSetter(model);
         return "user/ShopMall";
     }
 

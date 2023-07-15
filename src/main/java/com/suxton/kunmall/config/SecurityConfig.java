@@ -35,6 +35,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.OPTIONS).permitAll()
                         .requestMatchers("/", "/Home*").permitAll()
                         .requestMatchers("/Login*").permitAll()
+                        .requestMatchers("/Register*").permitAll()
                         .requestMatchers("/static/**").permitAll()
                         .requestMatchers("/favicon.ico").permitAll()
                         .anyRequest().authenticated()
