@@ -1,19 +1,33 @@
 package com.suxton.kunmall.controller;
 
+import com.suxton.kunmall.pojo.Recommends;
+import com.suxton.kunmall.pojo.RecommendsExample;
+import com.suxton.kunmall.service.HardwareService;
 import com.suxton.kunmall.service.UserService;
+import jakarta.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class UserController {
     private final UserService userService;
 
-    public UserController(UserService userService) {
+    private final HardwareService hardwareService;
+
+    @Autowired
+    public UserController(UserService userService, HardwareService hardwareService) {
         this.userService = userService;
+        this.hardwareService = hardwareService;
     }
+
 
     @GetMapping("/")
     public String redirectToHome() {
@@ -21,7 +35,9 @@ public class UserController {
     }
 
     @GetMapping("/Home*")
-    public String home() {
+    public String home(Model model) {
+        List<String[]> resolvedRecommendsList = hardwareService.getResolvedRecommendsList();
+        model.addAttribute("RecommendsList", resolvedRecommendsList);
         return "user/Home";
     }
 

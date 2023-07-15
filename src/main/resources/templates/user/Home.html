@@ -86,71 +86,19 @@
         <span class="carousel-control-next-icon"></span>
     </button>
 </div>
-<!---------------------------------------------------------->
-<div class="container mt-3">
-    <h2>推荐配置一：</h2>
-    <div class="card">
-        <div class="card-header"><h3>初阶版</h3></div>
-        <div class="card-body">
-            <h5>CPU：</h5>
-            <h5>内存：</h5>
-            <h5>显卡：</h5>
-            <h5>硬盘：</h5></div>
-        <div class="card-footer"><h4>价格：<span style="color:gold;">1998</span> </h4></div>
-        <div class="card-footer"><h5>建议：美工电商，平面设计</h5></div>
-    </div>
-</div>
-<div class="container mt-3">
-    <h2>推荐配置二：</h2>
-    <div class="card">
-        <div class="card-header"><h3>中阶版</h3></div>
-        <div class="card-body">
-            <h5>CPU：</h5>
-            <h5>内存：</h5>
-            <h5>显卡：</h5>
-            <h5>硬盘：</h5></div>
-        <div class="card-footer"><h4>价格：<span style="color:gold;">1998</span> </h4></div>
-        <div class="card-footer"><h5>建议：大型游戏，设计渲染，电竞直播</h5></div>
-    </div>
-</div>
-<div class="container mt-3">
-    <h2>推荐配置三：</h2>
-    <div class="card">
-        <div class="card-header"><h3>高阶版</h3></div>
-        <div class="card-body">
-            <h5>CPU：</h5>
-            <h5>内存：</h5>
-            <h5>显卡：</h5>
-            <h5>硬盘：</h5></div>
-        <div class="card-footer"><h4>价格：<span style="color:gold;">1998</span> </h4></div>
-        <div class="card-footer"><h5>建议：大型渲染，视频剪辑，工业设计</h5></div>
-    </div>
-</div>
-<div class="container mt-3">
-    <h2>推荐配置四：</h2>
-    <div class="card">
-        <div class="card-header"><h3>旗舰版</h3></div>
-        <div class="card-body">
-            <h5>CPU：</h5>
-            <h5>内存：</h5>
-            <h5>显卡：</h5>
-            <h5>硬盘：</h5></div>
-        <div class="card-footer"><h4>价格：<span style="color:gold;">1998</span> </h4></div>
-        <div class="card-footer"><h5>建议：大型游戏，高端工业设计，渲染，剪辑</h5></div>
-    </div>
-</div>
-<div class="container mt-3">
-    <h2>推荐配置五：</h2>
-    <div class="card">
-        <div class="card-header"><h3>至尊版</h3></div>
-        <div class="card-body">
-            <h5>CPU：</h5>
-            <h5>内存：</h5>
-            <h5>显卡：</h5>
-            <h5>硬盘：</h5>
+<div th:each="item: ${RecommendsList}">
+    <div class="container mt-3">
+        <h2>推荐配置：</h2>
+        <div class="card">
+            <div class="card-body">
+                <h5>CPU：<span th:text="${item[0]}"></span></h5>
+                <h5>显卡：<span th:text="${item[1]}"></span></h5>
+                <h5>内存：<span th:text="${item[2]}"></span></h5>
+                <h5>硬盘：<span th:text="${item[3]}"></span></h5>
+            </div>
+            <div class="card-footer"><h4>价格：<span style="color:gold;" th:text="${item[4]}"></span></h4></div>
+            <div class="card-footer"><h5 th:text="${item[5]}"></h5></div>
         </div>
-        <div class="card-footer"><h4>价格：<span style="color:gold;">1998</span> </h4></div>
-        <div class="card-footer"><h5>建议：大型游戏，高端工业设计，渲染，剪辑</h5></div>
     </div>
 </div>
 
