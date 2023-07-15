@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>管理员界面</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        text-decoration: none;
+        background-image: url(../../static/img/background1.jpg);
+      }
+      body {
+        background-image: url(../../static/img/background1.jpg);
+      }
+      .top {
+        width: 1226px;
+        height: 40px;
+        background-color: yellow;
+        margin: 0 auto;
+        color: white;
+        text-decoration: none;
+        background-image: url(../../static/img/background1.jpg);
+      }
+      .header {
+        width: 1226px;
+        height: 100px;
+        background-color: #333;
+        margin: 0 auto;
+        text-decoration: none;
+        color: white;
+      }
+      ul {
+        list-style: none;
+      }
+      .header li {
+        float: left;
+      }
+      .header li a {
+        width: 245px;
+        height: 100px;
+        display: inline-block;
+        text-align: center;
+        line-height: 100px;
+        font-size: 20px;
+        color: #fff;
+      }
+      .header li a:hover {
+        background-color: black;
+      }
+      .content {
+        width: 1226px;
+        height: 460px;
+        background-color: green;
+        margin: 0 auto;
+        text-decoration: none;
+      }
+      .content > div {
+        float: left;
+        width: 600px;
+        height: 230px;
+        background-color: white;
+        margin-left: 8px;
+        margin-top: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <ul>
+        <li id="仓库管理">
+          <a href="营业查询.html" target="frame1">营业查询</a>
+        </li>
+        <li id="营业查询">
+          <a href="仓库管理.html" target="frame1">仓库管理</a>
+        </li>
+        <li id="订单处理">
+          <a href="订单处理.html" target="frame1">订单处理</a>
+        </li>
+        <li id="售后服务">
+          <a href="售后服务.html" target="frame1">售后服务</a>
+        </li>
+        <li id="登录"><a href="登录.html" target="frame1">登录</a></li>
+      </ul>
+    </div>
+    <div class="top">
+      <img src="img/三角.png" width="30px" height="30px" />
+      <a href="1网页入口.html"><strong>返回</strong></a>
+    </div>
+    <div class="content">
+      <iframe
+        src="初始页面.html"
+        name="frame1"
+        width="1226px"
+        height="460px"
+      ></iframe>
+    </div>
+  </body>
+</html>
