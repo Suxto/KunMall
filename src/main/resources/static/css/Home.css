@@ -36,3 +36,7 @@
     font-family: 黑体;
     font-size:40px;
 }
+.intro,.picture{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}

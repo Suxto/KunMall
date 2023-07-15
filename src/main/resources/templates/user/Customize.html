@@ -15,118 +15,109 @@
     <!-- 最新的 Bootstrap5 核心 JavaScript 文件 -->
     <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.min.js"></script>
     <!--导航栏样式-->
-    <link rel="stylesheet" type="text/css" href="../static/css/Navigation.css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/Navigation.css">
     <!--定制页样式-->
-    <link rel="stylesheet" type="text/css" href="../static/css/Customize.css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/Customize.css">
     <!--图标-->
-    <link rel="icon" type="favicon.ico" href ="../../static/img/ikunLOGO.png">
-</head>
+    <link rel="icon" type="favicon.ico" href="../../static/img/ikunLOGO.png">
 
 <body>
-    <!--导航栏-->
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-        <!-- Brand/logo -->
-        <a class="navbar-brand" href="#">
-            <img src="../../static/img/ikunLOGO.png" width="55">
-        </a>
+<!--导航栏-->
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark navbar-top">
+    <!-- Brand/logo -->
+    <a class="navbar-brand" href="#">
+        <img src="../../static/img/ikunLOGO.png" width="55">
+    </a>
 
-        <!-- Links -->
-        <div class="collapse navbar-collapse" id="mynavbar">
-            <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="Home.html">首页</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="Customize.html">定制</a>
-                </li>
-            </ul>
-            <ul class="navbar-nav me-right">
-                <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0)">客服</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="ShopMall.html">购物车</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="Login.html">登录</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <!------------------------------------------------------->
-    <div class="container mt-3">
-        <h4>筛选</h4>
-        <p><strong>注意：</strong> 使用 <strong>data-parent</strong> 属性来确保所有的折叠元素在指定的父元素下，这样就能实现在一个折叠选项显示时其他选项就隐藏。</p>
-
-        <div id="accordion">
-            <div class="card">
-                <div class="card-header">
-                    <a class="btn" data-bs-toggle="collapse" href="#collapseOne">
-                        CPU
-                    </a>
-                </div>
-                <div id="collapseOne" class="collapse show" data-bs-parent="#accordion">
-                    <div class="card-body">
-                        <table class="cpu">
-                            <tr>
-                                <td>i3</td>
-                                <td>i5</td>
-                                <td>i7</td>
-                                <td></td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
+    <!-- Links -->
+    <div class="collapse navbar-collapse" id="mynavbar">
+        <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="Home.html">首页</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="Customize.html">定制</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav me-right">
+            <li class="nav-item">
+                <a class="nav-link" href="javascript:void(0)">客服</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="ShopMall.html">购物车</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="Login.html">登录</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<!------------------------------------------------------->
+<div class="container mt-3">
+    <h4>筛选</h4>
+    <div id="accordion">
+        <div class="card">
+            <div class="card-header">
+                <a class="btn" data-bs-toggle="collapse" href="#collapseOne">
+                    CPU
+                </a>
             </div>
-            <div class="card">
-                <div class="card-header">
-                    <a class="collapsed btn" data-bs-toggle="collapse" href="#collapseTwo">
-                        显卡
-                    </a>
-                </div>
-                <div id="collapseTwo" class="collapse" data-bs-parent="#accordion">
-                    <div class="card-body">
-                        #3 内容：菜鸟教程 -- 学的不仅是技术，更是梦想！！！
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-header">
-                    <a class="collapsed btn" data-bs-toggle="collapse" href="#collapseThree">
-                        内存
-                    </a>
-                </div>
-                <div id="collapseThree" class="collapse" data-bs-parent="#accordion">
-                    <div class="card-body">
-                        #2 内容：菜鸟教程 -- 学的不仅是技术，更是梦想！！！
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-header">
-                    <a class="collapsed btn" data-bs-toggle="collapse" href="#collapseFour">
-                        硬盘
-                    </a>
-                </div>
-                <div id="collapseFour" class="collapse" data-bs-parent="#accordion">
-                    <div class="card-body">
-                        #2 内容：菜鸟教程 -- 学的不仅是技术，更是梦想！！！
-                    </div>
-                </div>
+            <div id="collapseOne" class="collapse" data-bs-parent="#accordion">
+                <a href="#" class="list-group-item list-group-item-action">第一项</a>
+                <a href="#" class="list-group-item list-group-item-action">第二项</a>
+                <a href="#" class="list-group-item list-group-item-action">第三项</a>
             </div>
         </div>
     </div>
-    <!---------------------------------------------------------------------->
-    <div class="container-fluid mt-3">
-        <h1>创建相等宽度的列</h1>
-        <p>创建三个相等宽度的列! 尝试在 class="row" 的 div 中添加新的 class="col" div，会显示四个等宽的列。</p>
-        <div class="row">
-            <div class="col p-4 bg-primary text-white">.col</div>
-            <div class="col p-4 bg-dark text-white">.col</div>
-            <div class="col p-4 bg-primary text-white">.col</div>
-            <div class="col p-4 bg-dark text-white">.col</div>
+    <div class="card">
+        <div class="card-header">
+            <a class="collapsed btn" data-bs-toggle="collapse" href="#collapseTwo">
+                显卡
+            </a>
+        </div>
+        <div id="collapseTwo" class="collapse" data-bs-parent="#accordion">
+            <a href="#" class="list-group-item list-group-item-action">第一项</a>
+            <a href="#" class="list-group-item list-group-item-action">第二项</a>
+            <a href="#" class="list-group-item list-group-item-action">第三项</a>
         </div>
     </div>
+    <div class="card">
+        <div class="card-header">
+            <a class="collapsed btn" data-bs-toggle="collapse" href="#collapseThree">
+                内存
+            </a>
+        </div>
+        <div id="collapseThree" class="collapse" data-bs-parent="#accordion">
+            <a href="#" class="list-group-item list-group-item-action">第一项</a>
+            <a href="#" class="list-group-item list-group-item-action">第二项</a>
+            <a href="#" class="list-group-item list-group-item-action">第三项</a>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <a class="collapsed btn" data-bs-toggle="collapse" href="#collapseFour">
+                硬盘
+            </a>
+        </div>
+        <div id="collapseFour" class="collapse" data-bs-parent="#accordion">
+            <a href="#" class="list-group-item list-group-item-action">第一项</a>
+            <a href="#" class="list-group-item list-group-item-action">第二项</a>
+            <a href="#" class="list-group-item list-group-item-action">第三项</a>
+        </div>
+    </div>
+</div>
+</div>
+<!---------------------------------------------------------------------->
+<div class="container-fluid mt-3">
+    <h1>创建相等宽度的列</h1>
+    <p>创建三个相等宽度的列! 尝试在 class="row" 的 div 中添加新的 class="col" div，会显示四个等宽的列。</p>
+    <div class="row">
+        <div class="col p-4 bg-primary text-white">.col</div>
+        <div class="col p-4 bg-dark text-white">.col</div>
+        <div class="col p-4 bg-primary text-white">.col</div>
+        <div class="col p-4 bg-dark text-white">.col</div>
+    </div>
+</div>
 </body>
 
 </html>

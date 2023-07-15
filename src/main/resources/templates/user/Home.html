@@ -18,12 +18,12 @@
     <!--首页样式-->
     <link rel="stylesheet" type="text/css" href="../../static/css/Home.css">
     <!--图标-->
-    <link rel="icon" type="favicon.ico" href ="../../static/img/ikunLOGO.png">
+    <link rel="icon" type="favicon.ico" href="../../static/img/ikunLOGO.png">
 </head>
 
 <body>
 <!--导航栏-->
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark navbar-top">
     <!-- Brand/logo -->
     <a class="navbar-brand" href="#">
         <img src="../../static/img/ikunLOGO.png" width="55">
@@ -54,7 +54,7 @@
 </nav>
 <!---------------------------------------------------------->
 
-<div class="container-fluid mt-3">
+<div class="picture container-fluid mt-3">
     <h1><strong>爱坤电脑城</strong></h1>
 </div>
 <!-- 轮播 -->
@@ -68,7 +68,7 @@
     </div>
 
     <!-- 轮播图片 -->
-    <div class="carousel-inner">
+    <div class="picture carousel-inner">
         <div class="carousel-item active">
             <img src="https://static.runoob.com/images/mix/img_fjords_wide.jpg" class="d-block" style="width:60%">
         </div>
@@ -90,7 +90,7 @@
     </button>
 </div>
 <div th:each="item: ${RecommendsList}">
-    <div class="container mt-3">
+    <div class="intro container mt-3">
         <h2>推荐配置 <span th:text="${itemStat.index + 1}"></span></h2>
         <div class="card">
             <div class="card-body">
