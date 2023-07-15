@@ -1,107 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <style>
-      * {
-        background-image: url(../../static/img/background.jpg);
-        margin: 0;
-        padding: 0;
-        text-decoration: none;
-      }
-      .content {
-        width: 1226px;
-        height: 460px;
-        background-color: #333;
-        margin: 0 auto;
-        text-decoration: none;
-      }
-      .content > div {
-        float: left;
-        width: 600px;
-        height: 220px;
-        background-color: peru;
-        margin-left: 8px;
-        margin-top: 4px;
-      }
-      .first {
-        padding-left: 2px;
-        padding-top: 2px;
-        height: 180px;
-        width: 590px;
-        font-size: large;
-        font-family: "Times New Roman", Times, serif;
-        font-style: oblique;
-        color: black;
-      }
-      .second {
-        padding-bottom: 3px;
-        padding-right: 3px;
-        height: 20px;
-        width: 590px;
-        right: 0;
-        text-align: end;
 
-        font-size: larger;
-        font-family: "Times New Roman", Times, serif;
-        font-style: oblique;
-        color: white;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="content">
-      <div>
-        <div class="first">
-          <p id="yi">
-            订单号:100004<br />状态:已完成<br />时间:2022/1/1<br />金额:3060元<br />
-            CPU型号:i7-13700KF 3199<br />显卡型号:MS-GeForce RTX3060<br />
-            内存型号:光威16GB<br />硬盘型号:联想1TB<br />
-          </p>
-        </div>
-        <div class="second">
-          <p  class="右下"><a href="OrderSelect.html">详情</a></p>
-        </div>
-      </div>
-      <div>
-        <div class="first">
-          <p id="er">
-            订单号:100000<br />状态:未完成<br />时间:2022/2/2<br />金额:7700元<br />
-            CPU型号:i5-13400F<br />显卡型号:InterARCA770<br />
-            内存型号:英睿达32GB<br />硬盘型号:纽曼500GB<br />
-          </p>
-        </div>
-        <div class="second">
-          <p  class="右下"><a href="OrderSelect.html">详情</a></p>
-        </div>
-      </div>
-      <div>
-        <div class="first">
-          <p id="san">
-            订单号:100001<br />状态:已完成<br />时间:2023/1/1<br />金额:5808元<br />
-            CPU型号:i7-13700K<br />显卡型号:RX580-8G<br />
-            内存型号:金白达<br />硬盘型号:希捷1TB<br />
-          </p>
-        </div>
-        <div class="second">
-          <p  class="右下"><a href="OrderSelect.html">详情</a></p>
-        </div>
-      </div>
-      <div>
-        <div class="first">
-          <p id="si">
-            订单号:100002<br />状态:未完成<br />时间:2023/7/7<br />金额:4070元<br />
-            CPU型号:锐龙七5700x<br />显卡型号:ROG RTX4070Ti<br />
-            内存型号:金士顿16GB<br />硬盘型号:小盘500GB<br />
-          </p>
-        </div>
-        <div class="second">
-          <p id="three" class="右下"><a href="OrderSelect.html">详情</a></p>
-        </div>
-      </div>
-    </div>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" type="text/css" href="../../static/css/Navigation.css">
+  <!-- 新 Bootstrap5 核心 CSS 文件 -->
+  <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css">
+
+  <!--  popper.min.js 用于弹窗、提示、下拉菜单 -->
+  <script src="https://cdn.staticfile.org/popper.js/2.9.3/umd/popper.min.js"></script>
+
+  <!-- 最新的 Bootstrap5 核心 JavaScript 文件 -->
+  <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+<!--导航栏-->
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark navbar-top">
+  <!-- Brand/logo -->
+  <a class="navbar-brand" href="#">
+    <img src="../../static/img/ikunLOGO.png" width="55">
+  </a>
+
+  <!-- Links -->
+  <div class="collapse navbar-collapse" id="mynavbar">
+    <ul class="navbar-nav me-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="AdminHome.html">营业查询</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="Store.html">仓库管理</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="OrderDeal.html">订单处理</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="Help.html">客服回复</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav me-right">
+      <li class="nav-item" th:if="${username==null}">
+        <a class="nav-link" href="Login.html">登录</a>
+      </li>
+      <li class="nav-item" th:if="${username!=null}">
+        <a class="nav-link" th:text="${username}"></a>
+      </li>
+      <li class="nav-item" th:if="${username!=null}">
+        <a class="nav-link" th:href="@{/logout}">登出</a>
+      </li>
+
+    </ul>
+  </div>
+</nav>
+<!--------------------------------------------------------------->
+
+
+<div class="left-top">
+  <div class="Order-h">
+    <h5>订单号:100004</h5>
+    <h5>状态:已完成</h5>
+    <h5>金额:3060元</h5>
+    <h5>时间:2022/1/1</h5>
+  </div>
+  <a class="Module" href="#">详情</a>
+</div>
+
+</body>
+
 </html>

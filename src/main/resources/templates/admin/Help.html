@@ -1,102 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <style>
-      * {
-        background-image: url(../../static/img/background.jpg);
-        margin: 0;
-        padding: 0;
-        text-decoration: none;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" type="text/css" href="../../static/css/Navigation.css">
+  <!-- 新 Bootstrap5 核心 CSS 文件 -->
+  <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css">
 
-      .content {
-        float: left;
-        width: 1226px;
-        height: 460px;
-        background-color: #333;
-        margin: 0 auto;
-      }
-      .left {
-        float: left;
-        width: 300px;
-        height: 460px;
-      }
-      .left > div {
-        float: left;
-        width: 300px;
-        height: 110px;
-        background-color: white;
-        margin-top: 4px;
-      }
-      .right {
-        float: left;
-        width: 926px;
-        height: 460px;
-        background-color: yellow;
-      }
-      p {
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        font-size: larger;
-        color: black;
-        text-align: center;
-      }
-      a {
-        float: right;
-      }
-      #t {
-        width: 100%;
-        height: 300px;
-        background-color: white;
-      }
-      #y {
-        height: 160px;
-        width: 45%;
-        margin: 0 auto;
-        background-color: white;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="content">
-      <div class="left">
-        <div class="son">
-          <img src="../../static/img/1.png" height="110px" width="110px" />
-          鸡你太美
-          <a href="#">回复</a>
-        </div>
-        <div class="son">
-          <img src="../../static/img/2.png" height="110px" width="110px" />
-          撕裂的伤口QAQ
-          <a href="#">回复</a>
-        </div>
-        <div class="son">
-          <img src="../../static/img/3.png" height="110px" width="110px" />
-          爷傲耐我何?
-          <a href="#">回复</a>
-        </div>
-        <div class="son">
-          <img src="../../static/img/4.png" height="110px" width="110px" />
-          坤坤最帅
-          <a href="#">回复</a>
-        </div>
-      </div>
-      <div class="right">
-        <div id="t"><p>聊天框</p></div>
-        <div id="y">
-          输入信息：
-          <form>
-            <label>
-              <textarea name="输出信息" cols="50" rows="8">请输入您要回复的内容</textarea>
-            </label>
-            <input type="submit" style="
-            "value="发送" />
-          </form>
-        </div>
-      </div>
+  <!--  popper.min.js 用于弹窗、提示、下拉菜单 -->
+  <script src="https://cdn.staticfile.org/popper.js/2.9.3/umd/popper.min.js"></script>
+
+  <!-- 最新的 Bootstrap5 核心 JavaScript 文件 -->
+  <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.min.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      text-decoration: none;
+    }
+
+    .content {
+      float: left;
+      width: 1226px;
+      height: 460px;
+      background-color: #333;
+      margin: 0 auto;
+    }
+    .left {
+      float: left;
+      width: 300px;
+      height: 460px;
+    }
+    .left > div {
+      float: left;
+      width: 300px;
+      height: 110px;
+      background-color: white;
+      margin-top: 4px;
+    }
+    .right {
+      float: left;
+      width: 926px;
+      height: 460px;
+      background-color: yellow;
+    }
+    p {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      font-size: larger;
+      color: black;
+      text-align: center;
+    }
+    a {
+      float: right;
+    }
+    #t {
+      width: 100%;
+      height: 300px;
+      background-color: white;
+    }
+    #y {
+      height: 160px;
+      width: 45%;
+      margin: 0 auto;
+      background-color: white;
+    }
+  </style>
+</head>
+<body>
+<!--导航栏-->
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark navbar-top">
+  <!-- Brand/logo -->
+  <a class="navbar-brand" href="#">
+    <img src="../../static/img/ikunLOGO.png" width="55">
+  </a><!-- Links -->
+  <div class="collapse navbar-collapse" id="mynavbar">
+    <ul class="navbar-nav me-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="AdminHome.html">营业查询</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="Store.html">仓库管理</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="OrderDeal.html">订单处理</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="Help.html">客服回复</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav me-right">
+      <li class="nav-item" th:if="${username==null}">
+        <a class="nav-link" href="Login.html">登录</a>
+      </li>
+      <li class="nav-item" th:if="${username!=null}">
+        <a class="nav-link" th:text="${username}"></a>
+      </li>
+      <li class="nav-item" th:if="${username!=null}">
+        <a class="nav-link" th:href="@{/logout}">登出</a>
+      </li>
+
+    </ul>
+  </div>
+</nav>
+<!--------------------------------------------------------------->
+<div class="content">
+  <div class="left">
+    <div class="son">
+      <img src="../../static/img/1.png" height="110px" width="110px" />
+      鸡你太美
+      <a href="#">回复</a>
     </div>
-  </body>
+    <div class="son">
+      <img src="../../static/img/2.png" height="110px" width="110px" />
+      撕裂的伤口QAQ
+      <a href="#">回复</a>
+    </div>
+    <div class="son">
+      <img src="../../static/img/3.png" height="110px" width="110px" />
+      爷傲耐我何?
+      <a href="#">回复</a>
+    </div>
+    <div class="son">
+      <img src="../../static/img/4.png" height="110px" width="110px" />
+      坤坤最帅
+      <a href="#">回复</a>
+    </div>
+  </div>
+  <div class="right">
+    <div id="t"><p>聊天框</p></div>
+    <div id="y">
+      输入信息：
+      <form>
+            <textarea name="输出信息" cols="50" rows="8">
+请输入您要回复的内容</textarea
+            >
+        <input type="submit" style="
+            "value="发送" />
+      </form>
+    </div>
+  </div>
+</div>
+</body>
 </html>

@@ -110,12 +110,12 @@
                 <h5>硬盘：<span th:text="${item[3]}"></span></h5>
             </div>
             <div class="card-footer">
-                <h4>价格：<span style="color:gold;" th:text="${item[4]}"></span>
-                    <a class="btn btn-primary"
-                       th:href="@{/Customize(recommend=${itemStat.index + 1})}"
-                       type="button">定制
-                    </a>
-                </h4>
+                <h4 style="display: inline-block;">价格：<span style="color:gold;" th:text="${item[4]}"></span>
+
+                </h4><a class="btn btn-primary"
+                        th:href="@{/Customize(recommend=${itemStat.index + 1})}"
+                        type="button" style="display: inline-block;position:absolute;right: 10px">定制
+            </a>
 
             </div>
             <div class="card-footer"><h5 th:text="${item[5]}"></h5></div>

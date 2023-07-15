@@ -1,0 +1,35 @@
+.Module {
+    width: 100%;
+}
+.left-top {
+    width: 30%;
+    position: absolute;
+    left: 10%;
+    top: 10%;
+}
+.right-top {
+    width: 30%;
+    position: absolute;
+    right: 10%;
+    top: 10%;
+}
+.left-bottom{
+    width: 30%;
+    position: absolute;
+    left: 10%;
+    bottom: 10%;
+}
+.right-bottom {
+    width: 30%;
+    position: absolute;
+    right: 10%;
+    bottom: 10%;
+}
+.Order{
+    width: 50%;
+    position: absolute;
+    left: 10%;
+}
+.Order-h{
+    width: 100%;
+}

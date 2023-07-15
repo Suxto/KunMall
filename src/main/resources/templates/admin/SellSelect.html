@@ -5,58 +5,54 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <style>
-      * {
-        background-image: url(../../static/img/background.jpg);
-        margin: 0;
-        padding: 0;
-        text-decoration: none;
-      }
-      .content {
-        width: 1226px;
-        height: 460px;
-        background-color: #333;
-        margin: 0 auto;
-        text-decoration: none;
-      }
-      .content > div {
-        float: left;
-        width: 600px;
-        height: 220px;
-        background-color: peru;
-        margin-left: 8px;
-        margin-top: 4px;
-      }
-      .first {
-        padding-left: 2px;
-        padding-top: 2px;
-        height: 190px;
-        width: 590px;
-      }
-      .second {
-        padding-bottom: 3px;
-        padding-right: 3px;
-        height: 20px;
-        width: 590px;
-        right: 0;
-        text-align: end;
-      }
-      .左上 {
-        font-size: large;
-        font-family: "Times New Roman", Times, serif;
-        font-style: oblique;
-        color: rgb(37, 37, 37);
-      }
-      .右下 {
-        float: right;
-        font-size: larger;
-        font-family: "Times New Roman", Times, serif;
-        font-style: oblique;
-        color: white;
-      }
-    </style>
+    <link rel="stylesheet" type="text/css" href="../../static/css/Navigation.css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/Admin.css">
+    <!-- 新 Bootstrap5 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css">
+
+    <!--  popper.min.js 用于弹窗、提示、下拉菜单 -->
+    <script src="https://cdn.staticfile.org/popper.js/2.9.3/umd/popper.min.js"></script>
+
+    <!-- 最新的 Bootstrap5 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.min.js"></script>
   </head>
   <body>
+  <!--导航栏-->
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark navbar-top">
+    <!-- Brand/logo -->
+    <a class="navbar-brand" href="#">
+      <img src="../../static/img/ikunLOGO.png" width="55">
+    </a><!-- Links -->
+    <div class="collapse navbar-collapse" id="mynavbar">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="AdminHome.html">营业查询</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="Store.html">仓库管理</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="OrderDeal.html">订单处理</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="Help.html">客服回复</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav me-right">
+        <li class="nav-item" th:if="${username==null}">
+          <a class="nav-link" href="Login.html">登录</a>
+        </li>
+        <li class="nav-item" th:if="${username!=null}">
+          <a class="nav-link" th:text="${username}"></a>
+        </li>
+        <li class="nav-item" th:if="${username!=null}">
+          <a class="nav-link" th:href="@{/logout}">登出</a>
+        </li>
+
+      </ul>
+    </div>
+  </nav>
+  <!--------------------------------------------------------------->
     <div class="content"style="
     display: flex;
     flex-wrap: wrap;

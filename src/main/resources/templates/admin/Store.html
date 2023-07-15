@@ -1,283 +1,306 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Document</title>
-    <style>
-        * {background-image: url(../../static/img/background.jpg);
-            margin: 0;
-            padding: 0;
-            text-decoration: none;
-        }
-        .content {
-            width: 1226px;
-            height: 460px;
-            background-color: green;
-            margin: 0 auto;
-        }
-        .content > div {
-            float: left;
-            width: 600px;
-            height: 220px;
-            background-color: white;
-            margin-left: 8px;
-            margin-top: 4px;
-        }
-        .first {
-            height: 200px;
-            width: 600px;
-        }
-        .second {
-            height: 20px;
-            width: 600px;
-            right: 0;
-            text-align: end;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="../../static/css/Navigation.css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/Admin.css">
+    <!-- 新 Bootstrap5 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css">
+
+    <!--  popper.min.js 用于弹窗、提示、下拉菜单 -->
+    <script src="https://cdn.staticfile.org/popper.js/2.9.3/umd/popper.min.js"></script>
+
+    <!-- 最新的 Bootstrap5 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.min.js"></script>
 </head>
+
 <body>
-<div class="content" style="
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-">
-    <div>
-        <div class="first"style="
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-"><p id="yi">CPU:</p>
-            <table>
-                <thead>
-                <tr>
-                    <form action="" name="型号" id="型号1">
-                        <th>品牌:
-                            <select name="品牌">
-                                <option value="英特尔">英特尔</option>
-                                <option value="AMD">AMD</option>
-                                <option value="MSI">MSI</option>
-                                <option value="ASUS">ASUS</option>
-                                <option value="ROG">ROG</option>
-                            </select>
-                        </th>
-                        <th>价位:
-                            <select name="价位">
-                                <option value="0">0-1000</option>
-                                <option value="1000">1000-2000</option>
-                                <option value="2000">2000-3700</option>
-                                <option value="3700">3700-5000</option>
-                                <option value="5000">5000-9700</option>
-                            </select>
-                        </th>
-                        <th>核心数:
-                            <select name="核心数">
-                                <option value="2">2</option>
-                                <option value="36">36</option>
-                                <option value="4">4</option>
-                                <option value="28">28</option>
-                                <option value="8">8</option>
-                            </select>
-                        </th>
-                    </form>
-                </tr>
-                <tr>
-                    <th>名称</th><th>价格</th><th>剩余量</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <th>奔腾G6405</th><th>479元</th><th>100件</th>
-                </tr>
-                <tr>
-                    <th>赛扬G6900</th><th>600元</th><th>200件</th>
-                </tr>
-                <tr>
-                    <th>奔腾G7400</th><th>739元</th><th>120件</th>
-                </tr>
-                </tbody>
-            </table>
-        </div>
+<!--导航栏-->
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark navbar-top">
+    <!-- Brand/logo -->
+    <a class="navbar-brand" href="#">
+        <img src="../../static/img/ikunLOGO.png" width="55">
+    </a><!-- Links -->
+    <div class="collapse navbar-collapse" id="mynavbar">
+        <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="AdminHome.html">营业查询</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="Store.html">仓库管理</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="OrderDeal.html">订单处理</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="Help.html">客服回复</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav me-right">
+            <li class="nav-item" th:if="${username==null}">
+                <a class="nav-link" href="Login.html">登录</a>
+            </li>
+            <li class="nav-item" th:if="${username!=null}">
+                <a class="nav-link" th:text="${username}"></a>
+            </li>
+            <li class="nav-item" th:if="${username!=null}">
+                <a class="nav-link" th:href="@{/logout}">登出</a>
+            </li>
 
+        </ul>
     </div>
-    <div>
-        <div class="first"style="
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-"><p id="er">显卡:</p>
-            <table>
-                <thead>
-                <tr>
-
-                    <form action="" name="型号" id="型号2">
-                        <th>品牌:
-                            <select name="品牌">
-                                <option value="ASUS">ASUS</option>
-                                <option value="七彩虹">七彩虹</option>
-                                <option value="MSI">MSI</option>
-                                <option value="盈通">盈通</option>
-                                <option value="NVIDIA">NVIDIA</option>
-                            </select>
-                        </th>
-                        <th>价位:
-                            <select name="价位">
-                                <option value="0">0-1500</option>
-                                <option value="1500">1500-2000</option>
-                                <option value="2000">2000-3700</option>
-                                <option value="3700">3700-5000</option>
-                                <option value="5000">5000-9700</option>
-                            </select>
-                        </th>
-                        <th>显存容量:
-                            <select name="显存容量">
-                                <option value="2">2GB</option>
-                                <option value="4">4GB</option>
-                                <option value="8">8GB</option>
-                                <option value="3">3GB</option>
-                                <option value="6">6GB</option>
-                            </select>
-                        </th>
-                    </form>
-                </tr>
-                <tr>
-                    <th>名称</th><th>价格</th><th>剩余量</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <th>ROG RTX4070Ti</th><th>3199元</th><th>30件</th>
-                </tr>
-                <tr>
-                    <th>TUF GeForce RTX 3060Ti</th><th>3089元</th><th>210件</th>
-                </tr>
-                <tr>
-                    <th>DUA-RX6750XT-O12G</th><th>2599元</th><th>132件</th>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-
-    </div>
-    <div>
-        <div class="first"style="
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-"><p id="san">内存:</p>
-            <table>
-                <thead>
-                <tr>
-
-                    <form action="" name="型号" id="型号3">
-                        <th>品牌:
-                            <select name="品牌">
-                                <option value="金士顿">金士顿</option>
-                                <option value="联想">联想</option>
-                                <option value="七彩虹">七彩虹</option>
-                                <option value="英睿达">英睿达</option>
-                                <option value="三星">三星</option>
-                            </select>
-                        </th>
-                        <th>价位:
-                            <select name="价位">
-                                <option value="0">0-1000</option>
-                                <option value="1000">1000-2000</option>
-                                <option value="2000">2000-3700</option>
-                                <option value="3700">3700-5000</option>
-                                <option value="5000">5000-9700</option>
-                            </select>
-                        </th>
-                        <th>内存频率
-                            <select name="内存频率">
-                                <option value="3600">3600MHz</option>
-                                <option value="6600">6600MHz</option>
-                                <option value="7200">7200MHz</option>
-                                <option value="7000">7000MHz</option>
-                                <option value="5800">5800MHz</option>
-                            </select>
-                        </th>
-                    </form>
-                </tr>
-                <tr>
-                    <th>名称</th><th>价格</th><th>剩余量</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <th>DDR4 8G</th><th>299元</th><th>91件</th>
-                </tr>
-                <tr>
-                    <th>FURY 32GB</th><th>528元</th><th>212件</th>
-                </tr>
-                <tr>
-                    <th>FURY 16GB</th><th>339元</th><th>113件</th>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-
-    </div>
-    <div>
-        <div class="first"style="
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-"><p id="si">硬盘:</p> <table>
-            <thead>
-            <tr>
-
-                <form action="" name="型号" id="型号4">
-                    <th>品牌:
-                        <select name="品牌">
-                            <option value="西部数据">西部数据</option>
-                            <option value="金士顿">金士顿</option>
-                            <option value="希捷">希捷</option>
-                            <option value="爱国者">爱国者</option>
-                            <option value="纽曼">纽曼</option>
-                        </select>
-                    </th>
-                    <th>价位:
-                        <select name="价位">
-                            <option value="0">0-1000</option>
-                            <option value="1000">1000-2000</option>
-                            <option value="2000">2000-3700</option>
-                            <option value="3700">3700-5000</option>
-                            <option value="5000">5000-9700</option>
-                        </select>
-                    </th>
-                    <th>容量
-                        <select name="容量">
-                            <option value="8">8TB</option>
-                            <option value="6">6TB</option>
-                            <option value="4">4TB</option>
-                            <option value="2">2TB</option>
-                            <option value="1">1TB</option>
-                        </select>
-                    </th>
-                </form>
-            </tr>
-            <tr>
-                <th>名称</th><th>价格</th><th>剩余量</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <th>西部数据1TB</th><th>366元</th><th>103件</th>
-            </tr>
-            <tr>
-                <th>西部数据2TB/th><th>489元</th><th>201件</th>
-            </tr>
-            <tr>
-                <th>西部数据4TB</th><th>739元</th><th>120件</th>
-            </tr>
-            </tbody>
-        </table></div>
-
-
-    </div>
+</nav>
+<!--------------------------------------------------------------->
+<div class="left-top  mt-3">
+    <h2>CPU:</h2>
+    <table class="Module table table-hover">
+        <thead>
+        <tr>
+            <form action="" name="型号" id="型号1">
+                <th>品牌:
+                    <select name="品牌">
+                        <option value="英特尔">英特尔</option>
+                        <option value="AMD">AMD</option>
+                        <option value="MSI">MSI</option>
+                        <option value="ASUS">ASUS</option>
+                        <option value="ROG">ROG</option>
+                    </select>
+                </th>
+                <th>价位:
+                    <select name="价位">
+                        <option value="0">0-1000</option>
+                        <option value="1000">1000-2000</option>
+                        <option value="2000">2000-3700</option>
+                        <option value="3700">3700-5000</option>
+                        <option value="5000">5000-9700</option>
+                    </select>
+                </th>
+                <th>核心数:
+                    <select name="核心数">
+                        <option value="2">2</option>
+                        <option value="36">36</option>
+                        <option value="4">4</option>
+                        <option value="28">28</option>
+                        <option value="8">8</option>
+                    </select>
+                </th>
+            </form>
+        </tr>
+        <tr>
+            <th>名称</th>
+            <th>价格</th>
+            <th>剩余量</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th>奔腾G6405</th>
+            <th>479元</th>
+            <th>100件</th>
+        </tr>
+        <tr>
+            <th>赛扬G6900</th>
+            <th>600元</th>
+            <th>200件</th>
+        </tr>
+        <tr>
+            <th>奔腾G7400</th>
+            <th>739元</th>
+            <th>120件</th>
+        </tr>
+        </tbody>
+    </table>
+    <a class="Module" href="#">详情</a>
+</div>
+<div class="right-top  mt-3">
+    <h2>显卡:</h2>
+    <table class="Module table table-hover">
+        <thead>
+        <tr>
+            <form action="" name="型号" id="型号2">
+                <th>品牌:
+                    <select name="品牌">
+                        <option value="ASUS">ASUS</option>
+                        <option value="七彩虹">七彩虹</option>
+                        <option value="MSI">MSI</option>
+                        <option value="盈通">盈通</option>
+                        <option value="NVIDIA">NVIDIA</option>
+                    </select>
+                </th>
+                <th>价位:
+                    <select name="价位">
+                        <option value="0">0-1500</option>
+                        <option value="1500">1500-2000</option>
+                        <option value="2000">2000-3700</option>
+                        <option value="3700">3700-5000</option>
+                        <option value="5000">5000-9700</option>
+                    </select>
+                </th>
+                <th>显存容量:
+                    <select name="显存容量">
+                        <option value="2">2GB</option>
+                        <option value="4">4GB</option>
+                        <option value="8">8GB</option>
+                        <option value="3">3GB</option>
+                        <option value="6">6GB</option>
+                    </select>
+                </th>
+            </form>
+        </tr>
+        <tr>
+            <th>名称</th>
+            <th>价格</th>
+            <th>剩余量</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th>ROG RTX4070Ti</th>
+            <th>3199元</th>
+            <th>30件</th>
+        </tr>
+        <tr>
+            <th>TUF GeForce RTX 3060Ti</th>
+            <th>3089元</th>
+            <th>210件</th>
+        </tr>
+        <tr>
+            <th>DUA-RX6750XT-O12G</th>
+            <th>2599元</th>
+            <th>132件</th>
+        </tr>
+        </tbody>
+    </table>
+    <a class="Module" href="#">详情</a>
+</div>
+<div class="left-bottom  mt-3">
+    <h2>内存:</h2>
+    <table class="Module table table-hover">
+        <thead>
+        <tr>
+            <form action="" name="型号" id="型号3">
+                <th>品牌:
+                    <select name="品牌">
+                        <option value="金士顿">金士顿</option>
+                        <option value="联想">联想</option>
+                        <option value="七彩虹">七彩虹</option>
+                        <option value="英睿达">英睿达</option>
+                        <option value="三星">三星</option>
+                    </select>
+                </th>
+                <th>价位:
+                    <select name="价位">
+                        <option value="0">0-1000</option>
+                        <option value="1000">1000-2000</option>
+                        <option value="2000">2000-3700</option>
+                        <option value="3700">3700-5000</option>
+                        <option value="5000">5000-9700</option>
+                    </select>
+                </th>
+                <th>内存频率
+                    <select name="内存频率">
+                        <option value="3600">3600MHz</option>
+                        <option value="6600">6600MHz</option>
+                        <option value="7200">7200MHz</option>
+                        <option value="7000">7000MHz</option>
+                        <option value="5800">5800MHz</option>
+                    </select>
+                </th>
+            </form>
+        </tr>
+        <tr>
+            <th>名称</th>
+            <th>价格</th>
+            <th>剩余量</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th>DDR4 8G</th>
+            <th>299元</th>
+            <th>91件</th>
+        </tr>
+        <tr>
+            <th>FURY 32GB</th>
+            <th>528元</th>
+            <th>212件</th>
+        </tr>
+        <tr>
+            <th>FURY 16GB</th>
+            <th>339元</th>
+            <th>113件</th>
+        </tr>
+        </tbody>
+    </table>
+    <a class="Module" href="#">详情</a>
+</div>
+<div class="right-bottom  mt-3">
+    <h2>硬盘:</h2>
+    <table class="Module table table-hover">
+        <thead>
+        <tr>
+            <form action="" name="型号" id="型号4">
+                <th>品牌:
+                    <select name="品牌">
+                        <option value="西部数据">西部数据</option>
+                        <option value="金士顿">金士顿</option>
+                        <option value="希捷">希捷</option>
+                        <option value="爱国者">爱国者</option>
+                        <option value="纽曼">纽曼</option>
+                    </select>
+                </th>
+                <th>价位:
+                    <select name="价位">
+                        <option value="0">0-1000</option>
+                        <option value="1000">1000-2000</option>
+                        <option value="2000">2000-3700</option>
+                        <option value="3700">3700-5000</option>
+                        <option value="5000">5000-9700</option>
+                    </select>
+                </th>
+                <th>容量
+                    <select name="容量">
+                        <option value="8">8TB</option>
+                        <option value="6">6TB</option>
+                        <option value="4">4TB</option>
+                        <option value="2">2TB</option>
+                        <option value="1">1TB</option>
+                    </select>
+                </th>
+            </form>
+        </tr>
+        <tr>
+            <th>名称</th>
+            <th>价格</th>
+            <th>剩余量</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th>西部数据1TB</th>
+            <th>366元</th>
+            <th>103件</th>
+        </tr>
+        <tr>
+            <th>西部数据2TB/th>
+            <th>489元</th>
+            <th>201件</th>
+        </tr>
+        <tr>
+            <th>西部数据4TB</th>
+            <th>739元</th>
+            <th>120件</th>
+        </tr>
+        </tbody>
+    </table>
+    <a class="Module" href="#">详情</a>
+</div>
+</div>
 </div>
 </body>
+
 </html>
