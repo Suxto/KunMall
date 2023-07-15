@@ -65,3 +65,20 @@ CREATE TABLE Memory
     amount INT
 );
 
+CREATE TABLE Service
+(
+    userID   INT PRIMARY KEY REFERENCES Users (id),
+    content  TEXT,
+    lastChat TIMESTAMP
+);
+
+CREATE TABLE Cart
+(
+    userID   INT PRIMARY KEY REFERENCES Users (id),
+    id       INT AUTO_INCREMENT UNIQUE KEY,
+    CPUID    INT NOT NULL REFERENCES CPU (id),
+    GPUID    INT NOT NULL REFERENCES GPU (id),
+    DriveID  INT NOT NULL REFERENCES Drive (id),
+    MemoryID INT NOT NULL REFERENCES Memory (id)
+)
+

@@ -44,6 +44,8 @@
         <table tableName="Drive" domainObjectName="Drive"/>
         <table tableName="Orders" domainObjectName="Orders"/>
         <table tableName="Recommends" domainObjectName="Recommends"/>
+        <table tableName="Cart" domainObjectName="Cart"/>
+        <table tableName="Service" domainObjectName="Service"/>
         <!-- 可以配置多个表 -->
 
     </context>
