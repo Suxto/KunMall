@@ -10,5 +10,11 @@ public interface HardwareService {
 
     List<String[]> getResolvedRecommendsList();
 
-    CPU getCPUById(int id);
+    List<String[]> getCPUInfoList();
+
+    List<String[]> getGPUInfoList();
+
+    List<String[]> getMemoryInfoList();
+
+    List<String[]> getDriveInfoList();
 }

@@ -4,10 +4,8 @@ import com.suxton.kunmall.dao.*;
 import com.suxton.kunmall.pojo.*;
 import com.suxton.kunmall.service.HardwareService;
 import jakarta.annotation.Resource;
-import lombok.extern.log4j.Log4j2;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import org.springframework.boot.logging.log4j2.*;
 import org.slf4j.Logger;
 
 import java.math.BigDecimal;
@@ -33,7 +31,6 @@ public class HardwareServiceImpl implements HardwareService {
 
     private List<Recommends> getAllRecommends() {
         RecommendsExample recommendsExample = new RecommendsExample();
-        recommendsExample.or().andCpuidIsNotNull();
         return recommendsMapper.selectByExample(recommendsExample);
     }
 
@@ -67,8 +64,52 @@ public class HardwareServiceImpl implements HardwareService {
     }
 
     @Override
-    public CPU getCPUById(int id) {
-        return null;
+    public List<String[]> getCPUInfoList() {
+        CPUExample cpuExample = new CPUExample();
+        List<String[]> cpuList = new ArrayList<>();
+        cpuMapper.selectByExample(cpuExample).forEach(cpu -> {
+            String[] strings = new String[2];
+            strings[0] = cpu.getName();
+            strings[1] = cpu.getMoney().toString();
+            cpuList.add(strings);
+        });
+        return cpuList;
+    }
+
+    @Override
+    public List<String[]> getGPUInfoList() {
+        List<String[]> gpuList = new ArrayList<>();
+        gpuMapper.selectByExample(new GPUExample()).forEach(cpu -> {
+            String[] strings = new String[2];
+            strings[0] = cpu.getName();
+            strings[1] = cpu.getMoney().toString();
+            gpuList.add(strings);
+        });
+        return gpuList;
+    }
+
+    @Override
+    public List<String[]> getMemoryInfoList() {
+        List<String[]> list = new ArrayList<>();
+        memoryMapper.selectByExample(new MemoryExample()).forEach(cpu -> {
+            String[] strings = new String[2];
+            strings[0] = cpu.getName();
+            strings[1] = cpu.getMoney().toString();
+            list.add(strings);
+        });
+        return list;
+    }
+
+    @Override
+    public List<String[]> getDriveInfoList() {
+        List<String[]> list = new ArrayList<>();
+        driveMapper.selectByExample(new DriveExample()).forEach(cpu -> {
+            String[] strings = new String[2];
+            strings[0] = cpu.getName();
+            strings[1] = cpu.getMoney().toString();
+            list.add(strings);
+        });
+        return list;
     }
 
 
