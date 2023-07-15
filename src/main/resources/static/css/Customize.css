@@ -12,3 +12,9 @@
     position: absolute;
     right: 12.5%;
 }
+.form-check-input{
+    margin-top: 10px;
+}
+.select-form{
+    margin-left: 50px;
+}

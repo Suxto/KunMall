@@ -1,7 +1,7 @@
 <!--定制-->
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 
 <head>
     <meta charset="UTF-8">
@@ -20,7 +20,8 @@
     <link rel="stylesheet" type="text/css" href="../../static/css/Customize.css">
     <!--图标-->
     <link rel="icon" type="favicon.ico" href="../../static/img/ikunLOGO.png">
-
+    <!--JS-->
+    <script type="text/javascript" src="../../static/js/Customize.js"></script>
 <body>
 <!--导航栏-->
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark navbar-top">
@@ -63,13 +64,30 @@
                 </a>
             </div>
             <div id="collapseOne" class="collapse" data-bs-parent="#accordion">
-                <table class="Module table ">
-                    <tr>
-                        <td>i7-8888</td>
-                        <td>6000</td>
-                    </tr>
-                </table>
-
+                <form class="select-form" onclick="Select()">
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" id="cpus" name="optradio-cpu">
+                        <label class="form-check-label" for="cpus">
+                            <table class="Module table ">
+                                <tr>
+                                    <td id="cpu">i7-8888</td>
+                                    <td id="cpuValue">6000</td>
+                                </tr>
+                            </table>
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" id="cpus1" name="optradio-cpu">
+                        <label class="form-check-label" for="cpus1">
+                            <table class="Module table ">
+                                <tr>
+                                    <td id="cpu1">i7-8888</td>
+                                    <td id="cpuValue1">9000</td>
+                                </tr>
+                            </table>
+                        </label>
+                    </div>
+                </form>
             </div>
         </div>
 
@@ -80,9 +98,30 @@
                 </a>
             </div>
             <div id="collapseTwo" class="collapse" data-bs-parent="#accordion">
-                <a href="#" class="list-group-item list-group-item-action">第一项</a>
-                <a href="#" class="list-group-item list-group-item-action">第二项</a>
-                <a href="#" class="list-group-item list-group-item-action">第三项</a>
+                <form class="select-form" onclick="Select()">
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" id="gpus" name="optradio-gpu">
+                        <label class="form-check-label" for="gpus">
+                            <table class="Module table ">
+                                <tr>
+                                    <td id="gpu">i7-8888</td>
+                                    <td id="gpuValue">6000</td>
+                                </tr>
+                            </table>
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" id="gpus1" name="optradio-gpu">
+                        <label class="form-check-label" for="gpus1">
+                            <table class="Module table ">
+                                <tr>
+                                    <td id="gpu1">i7-8888</td>
+                                    <td id="gpuValue1">9000</td>
+                                </tr>
+                            </table>
+                        </label>
+                    </div>
+                </form>
             </div>
         </div>
 
@@ -94,9 +133,30 @@
                 </a>
             </div>
             <div id="collapseThree" class="collapse" data-bs-parent="#accordion">
-                <a href="#" class="list-group-item list-group-item-action">第一项</a>
-                <a href="#" class="list-group-item list-group-item-action">第二项</a>
-                <a href="#" class="list-group-item list-group-item-action">第三项</a>
+                <form class="select-form" onclick="Select()">
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" id="memorys" name="optradio-memory">
+                        <label class="form-check-label" for="memorys">
+                            <table class="Module table ">
+                                <tr>
+                                    <td id="memory">i7-8888</td>
+                                    <td id="memoryValue">6000</td>
+                                </tr>
+                            </table>
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" id="memorys1" name="optradio-memory">
+                        <label class="form-check-label" for="memorys1">
+                            <table class="Module table ">
+                                <tr>
+                                    <td id="memory1">i7-8888</td>
+                                    <td id="memoryValue1">9000</td>
+                                </tr>
+                            </table>
+                        </label>
+                    </div>
+                </form>
             </div>
         </div>
         <div class="card">
@@ -106,9 +166,30 @@
                 </a>
             </div>
             <div id="collapseFour" class="collapse" data-bs-parent="#accordion">
-                <a href="#" class="list-group-item list-group-item-action">第一项</a>
-                <a href="#" class="list-group-item list-group-item-action">第二项</a>
-                <a href="#" class="list-group-item list-group-item-action">第三项</a>
+                <form class="select-form" onclick="Select()">
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" id="disks" name="optradio-disk">
+                        <label class="form-check-label" for="disks">
+                            <table class="Module table ">
+                                <tr>
+                                    <td id="disk">i7-8888</td>
+                                    <td id="disksValue">6000</td>
+                                </tr>
+                            </table>
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" id="disks1" name="optradio-disk">
+                        <label class="form-check-label" for="disks1">
+                            <table class="Module table ">
+                                <tr>
+                                    <td id="disk1">i7-8888</td>
+                                    <td id="diskValue1">9000</td>
+                                </tr>
+                            </table>
+                        </label>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -118,48 +199,60 @@
 
 <!---------------------------------------------------------------------->
 <div class="container-fluid mt-3">
+
     <div class="row">
         <div class="col p-4">
-            <table class="Module table ">
-                <tr>
-                    <td>100002</td>
-                </tr>
-                <tr>
-                    <td>蔡坤</td>
-                </tr>
-            </table>
+            <form id="form1" action="https://localhost:8080" method="post">
+                <table class="Module table ">
+                    <tr>
+                        <td id="cpu-select"><input class="input" type="text" name="cpu" readonly></td>
+                    </tr>
+                    <tr>
+                        <td id="cpuValue-select"><input class="input" type="text" name="cpuValue" readonly></td>
+                    </tr>
+                </table>
+            </form>
         </div>
         <div class="col p-4 ">
-            <table class="Module table ">
-                <tr>
-                    <td>100002</td>
-                </tr>
-                <tr>
-                    <td>蔡坤</td>
-                </tr>
-            </table>
+            <form id="form2" action="https://localhost:8080" method="post">
+                <table class="Module table ">
+                    <tr>
+                        <td id="gpu-select"><input class="input" type="text" name="gpu" readonly></td>
+                    </tr>
+                    <tr>
+                        <td id="gpuValue-select"><input class="input" type="text" name="gpuValue" readonly></td>
+                    </tr>
+                </table>
+            </form>
+
         </div>
         <div class="col p-4 ">
-            <table class="Module table ">
-                <tr>
-                    <td>100002</td>
-                </tr>
-                <tr>
-                    <td>蔡坤</td>
-                </tr>
-            </table>
-            <h4 class="sum">合计:</h4>
+            <form id="form3" action="https://localhost:8080" method="post">
+                <table class="Module table ">
+                    <tr>
+                        <td id="memory-select"><input class="input" type="text" name="memory" readonly></td>
+                    </tr>
+                    <tr>
+                        <td id="memoryValue-select"><input class="input" type="text" name="memoryValue" readonly></td>
+                    </tr>
+                </table>
+            </form>
+
         </div>
         <div class="col p-4 ">
-            <table class="Module table ">
-                <tr>
-                    <td>100002</td>
-                </tr>
-                <tr>
-                    <td>蔡坤</td>
-                </tr>
-            </table>
-            <button class="buy btn btn-primary">购入</button>
+            <form id="form4" action="https://localhost:8080" method="post">
+                <table class="Module table ">
+                    <tr>
+                        <td id="disk-select"><input class="input" type="text" name="disk" readonly></td>
+                    </tr>
+                    <tr>
+                        <td id="diskValue-select"><input class="input" type="text" name="diskValue" readonly></td>
+                    </tr>
+                </table>
+                <h4 class="sum">合计:<label>
+                    <input type="number" name="SumMoney" id="SumMoney" readonly style="border: none" value="0">
+                </label></h4></form>
+            <button type="button" onclick="Submit()" class="buy btn btn-primary">购入</button>
         </div>
     </div>
 </div>
