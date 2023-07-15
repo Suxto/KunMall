@@ -45,7 +45,6 @@ public class UserController {
     @GetMapping("/Home*")
     public String home(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        if (authentication != null && authentication.isAuthenticated()) {
         Object principal = authentication.getPrincipal();
         if (!(principal instanceof String)) {
             UserDetails userDetails = (UserDetails) principal;
