@@ -5,45 +5,54 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-      }
-      .content {
-        width: 1226px;
-        height: 460px;
-        background-color: peru;
-        margin: 0 auto;
-      }
-      input {
-        height: 40px;
-        width: 80px;
-      }
-      table {
-        margin: 0 auto;
-        border-collapse: collapse;
-        width: 100%;
-        height: 360px;
-      }
-      form {
-        margin: 0 auto;
-      }
-      table,
-      td,
-      th {
-        border: 1px solid black;
-      }
-      th {
-        height: 50px;
-      }
-      .上 {
-        text-align: center;
-        height: 100px;
-      }
-    </style>
+    <link rel="stylesheet" type="text/css" href="../../static/css/Navigation.css">
+    <!-- 新 Bootstrap5 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css">
+
+    <!--  popper.min.js 用于弹窗、提示、下拉菜单 -->
+    <script src="https://cdn.staticfile.org/popper.js/2.9.3/umd/popper.min.js"></script>
+
+    <!-- 最新的 Bootstrap5 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.min.js"></script>
   </head>
   <body>
+  <!--导航栏-->
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark navbar-top">
+    <!-- Brand/logo -->
+    <a class="navbar-brand" href="#">
+      <img src="../../static/img/ikunLOGO.png" width="55">
+    </a><!-- Links -->
+    <div class="collapse navbar-collapse" id="mynavbar">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="AdminHome.html">营业查询</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="Store.html">仓库管理</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="OrderDeal.html">订单处理</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="Help.html">客服回复</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav me-right">
+        <li class="nav-item" th:if="${username==null}">
+          <a class="nav-link" href="Login.html">登录</a>
+        </li>
+        <li class="nav-item" th:if="${username!=null}">
+          <a class="nav-link" th:text="${username}"></a>
+        </li>
+        <li class="nav-item" th:if="${username!=null}">
+          <a class="nav-link" th:href="@{/logout}">登出</a>
+        </li>
+
+      </ul>
+    </div>
+  </nav>
+  <!--------------------------------------------------------------->
+
     <div class="content">
       <div class="上">
         <form action="" method="get">
