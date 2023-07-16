@@ -31,4 +31,5 @@ public class CommonUtils {
         if (s == null) return true;
         return s.length() == 0;
     }
+
 }

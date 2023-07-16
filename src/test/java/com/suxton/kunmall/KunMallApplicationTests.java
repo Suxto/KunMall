@@ -22,6 +22,7 @@ class KunMallApplicationTests {
             System.out.println(consumedInfo.getMoney());
             System.out.println(consumedInfo.getConsumeTime());
             System.out.println(consumedInfo.getUserName());
+            System.out.println(consumedInfo.getLatestOrder());
         }
     }
 

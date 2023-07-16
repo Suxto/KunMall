@@ -75,4 +75,23 @@ public class UserServiceImpl implements UserService {
     public List<UserConsumed> getUserConsumed() {
         return userConsumedMapper.getUsersConsumed();
     }
+
+    @Override
+    public List<User> getAllUsers() {
+        return userMapper.selectByExample(new UserExample());
+    }
+
+    @Override
+    public void changeRole(int id) {
+        User user = userMapper.selectByPrimaryKey(id);
+        user.setIsadmin(!user.getIsadmin());
+        userMapper.updateByPrimaryKey(user);
+    }
+
+    @Override
+    public void updatePassword(int id, String password) {
+        User user = userMapper.selectByPrimaryKey(id);
+        user.setPasswd(bCryptPasswordEncoder.encode(password));
+        userMapper.updateByPrimaryKey(user);
+    }
 }

@@ -19,4 +19,10 @@ public interface UserService {
     List<Orders> getUserOrderList(int id);
 
     List<UserConsumed> getUserConsumed();
+
+    List<User> getAllUsers();
+
+    void changeRole(int id);
+
+    void updatePassword(int id, String password);
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8"/>
@@ -15,6 +15,8 @@
 
     <!-- 最新的 Bootstrap5 核心 JavaScript 文件 -->
     <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.min.js"></script>
+    <script src="../../static/js/AdminHome.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -22,7 +24,7 @@
 
 <!-------------------------------------------------------------------->
 <div class="left-top  mt-3">
-    <h2>消费用户: </h2>
+    <h2>消费用户: <span th:text="${userConsumed.size()}"></span></h2>
     <table class="Module table table-hover">
         <thead>
         <tr>
@@ -33,85 +35,84 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <th>100002</th>
-            <th>蔡坤</th>
-            <th>未完成</th>
-            <th>2023/7/7</th>
+        <tr th:each="item : ${userConsumed}">
+            <td th:text="${item.getUserName()}"></td>
+            <td th:text="${item.getConsumeTime()}"></td>
+            <td th:text="${item.getMoney()}"></td>
+            <td th:text="${item.getLatestOrder()}"></td>
         </tr>
         </tbody>
     </table>
-    <a class="Module" href="#">详情</a>
 </div>
 <div class="right-top  mt-3">
-    <h2>全部用户:</h2>
+    <h2>全部用户: <span th:text="${allUsers.size()}"></span></h2>
     <table class="Module table table-hover">
         <thead>
         <tr>
             <th>用户ID</th>
             <th>用户名</th>
             <th>权限</th>
+            <th>操作</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <th>100000</th>
-            <th>蔡徐</th>
-            <th>未完成</th>
-        </tr>
-
-        <tr>
-            <th>100002</th>
-            <th>蔡坤</th>
-            <th>未完成</th>
+        <tr th:each="item:${allUsers}">
+            <td th:text="${item.getId()}"></td>
+            <td th:text="${item.getUsername()}"></td>
+            <td>
+                <span th:text="${item.getIsadmin() ? 'Admin' : 'User'}"></span>
+            </td>
+            <td>
+                <a class="btn btn-primary" th:onclick="'changeRole(' + ${item.getId()} + ')'">
+                    改变权限
+                </a>
+                <a class="btn btn-primary" th:onclick="'changePassword(' + ${item.getId()} + ')'">
+                    更改密码
+                </a>
+            </td>
         </tr>
         </tbody>
     </table>
-    <a class="Module" href="#">详情</a>
 </div>
 <div class="left-bottom  mt-3">
-    <h2>未处理订单:</h2>
+    <h2>未完成订单: <span th:text="${unhandledOrder.size()}"></span></h2>
     <table class="Module table table-hover">
         <thead>
         <tr>
             <th>订单号</th>
-            <th>用户名</th>
-            <th>状态</th>
+            <th>用户ID</th>
             <th>时间</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <th>100002</th>
-            <th>蔡坤</th>
-            <th>未完成</th>
-            <th>2023/7/7</th>
+        <tr th:each="item:${unhandledOrder}">
+            <td th:text="${item.getId()}"></td>
+            <td th:text="${item.getUserid()}"></td>
+            <td th:text="${item.getOrdertime()}"></td>
         </tr>
         </tbody>
     </table>
-    <a class="Module" href="#">详情</a>
 </div>
-<div class="right-bottom  mt-3">
-    <h2>全部订单:</h2>
+<div class="right-bottom mt-3">
+    <h2>全部订单: <span th:text="${allOrder.size()}"></span></h2>
     <table class="Module table table-hover">
         <thead>
         <tr>
             <th>订单号</th>
-            <th>用户名</th>
+            <th>用户ID</th>
             <th>状态</th>
             <th>时间</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <th>100002</th>
-            <th>蔡坤</th>
-            <th>未完成</th>
-            <th>2023/7/7</th>
+        <tr th:each="item:${allOrder}">
+            <td th:text="${item.getId()}"></td>
+            <td th:text="${item.getUserid()}"></td>
+            <td th:text="${item.getStatus()}"></td>
+            <td th:text="${item.getOrdertime()}"></td>
         </tr>
         </tbody>
     </table>
-    <a class="Module" href="#">详情</a>
 </div>
 
 </body>
