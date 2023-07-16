@@ -39,10 +39,11 @@
     text-align: center;
 }
 
-/**/
+/*客服回复*/
 h1 {
     text-align: center;
 }
+
 .dialog {
     margin-top: 3%;
     width: 80%;
@@ -105,6 +106,7 @@ h1 {
     padding: 20px;
     overflow-y: auto;
 }
+
 /*行间距*/
 .message {
     display: flex;
