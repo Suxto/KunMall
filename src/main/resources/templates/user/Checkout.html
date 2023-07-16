@@ -18,6 +18,7 @@
     <link rel="stylesheet" type="text/css" href="../../static/css/Checkout.css">
     <!--图标-->
     <link rel="icon" type="favicon.ico" href="../../static/img/ikunLOGO.png">
+    <script src="../../static/js/Checkout.js"></script>
 </head>
 
 <body>
@@ -53,22 +54,22 @@
         <tbody>
         <tr>
             <td>CPU</td>
-            <td th:text="${CPUName}"></td>
+            <td th:text="${CPUName}" id="cpuName"></td>
             <td th:text="${CPUPrice}"></td>
         </tr>
         <tr>
             <td>显卡</td>
-            <td th:text="${GPUName}"></td>
+            <td th:text="${GPUName}" id="gpuName"></td>
             <td th:text="${GPUPrice}"></td>
         </tr>
         <tr>
             <td>内存</td>
-            <td th:text="${MemoryName}"></td>
+            <td th:text="${MemoryName}" id="memoryName"></td>
             <td th:text="${MemoryPrice}"></td>
         </tr>
         <tr>
             <td>硬盘</td>
-            <td th:text="${DriveName}"></td>
+            <td th:text="${DriveName}" id="driveName"></td>
             <td th:text="${DrivePrice}"></td>
         </tr>
         </tbody>
@@ -78,28 +79,42 @@
 <!----------------------------------------------->
 <div class="container mt-3">
     <h2>收货人信息：</h2>
-    <form action="http://localhost:8080" method="post">
+    <form>
         <div class="mb-3 mt-3">
             <h4>地址:</h4>
-            <input type="text" class="form-control form-control-lg" placeholder="大号输入框">
-        </div>
-        <div class="mb-3 mt-3">
-            <h4>电话:</h4>
-            <input type="text" class="form-control form-control-lg" placeholder="大号输入框">
+            <input type="text" class="form-control form-control-lg" placeholder="请输入地址" name="address"
+                   id="address">
         </div>
         <div class="mb-3 mt-3">
             <h4>支付方式:</h4>
-            <input type="text" class="form-control form-control-lg" placeholder="大号输入框">
+            <input type="text" class="form-control form-control-lg" placeholder="请选择支付方式">
         </div>
         <div class="mb-3 mt-3">
             <h4>备注:</h4>
+            <label for="comment"></label>
             <textarea class="form-control remark" rows="5" id="comment" name="text"></textarea>
         </div>
-        <h4 class="money">合计:<span th:text="${sum}"></span></h4>
-        <button type="submit" class="btn btn-primary btn-lg">支付</button>
+        <h4 class="money">合计:<span th:text="${sum}" id="money"></span></h4>
+
     </form>
+    <button onclick="submit()" class="btn btn-primary btn-lg">支付
+    </button>
 </div>
 
 </body>
 
 </html>
+<!-- 隐藏的表单元素 -->
+<form id="hiddenForm" action="/SubmitOrder" method="post">
+    <input type="hidden" name="CPUName" id="hidden_cpuName">
+    <input type="hidden" name="GPUName" id="hidden_gpuName">
+    <input type="hidden" name="MemoryName" id="hidden_memoryName">
+    <input type="hidden" name="DriveName" id="hidden_driveName">
+    <input type="hidden" name="sum" id="hidden_sum">
+    <input type="hidden" name="address" id="hidden_address">
+    <input type="hidden" name="comment" id="hidden_comment">
+    <!--    <input type="hidden" name="common" id="hidden_comment">-->
+    <button type="submit" class="btn btn-primary" style="display: none" id="sb">注册</button>
+</form>
+
+

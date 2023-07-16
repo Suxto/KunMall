@@ -1,6 +1,8 @@
 package com.suxton.kunmall.service.Impl;
 
+import com.suxton.kunmall.dao.OrdersMapper;
 import com.suxton.kunmall.dao.UserMapper;
+import com.suxton.kunmall.pojo.Orders;
 import com.suxton.kunmall.pojo.User;
 import com.suxton.kunmall.pojo.UserExample;
 import com.suxton.kunmall.service.UserService;
@@ -14,6 +16,9 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     @Resource
     private UserMapper userMapper;
+    @Resource
+    private OrdersMapper ordersMapper;
+
     private final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
     public void createUser(String name, String password) {
@@ -47,5 +52,8 @@ public class UserServiceImpl implements UserService {
         if (users.size() == 0) return null;
         else return users.get(0);
     }
-
+@Override
+    public void createOrder(Orders order) {
+        ordersMapper.insert(order);
+    }
 }

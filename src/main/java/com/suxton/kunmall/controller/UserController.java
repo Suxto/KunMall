@@ -1,30 +1,31 @@
 package com.suxton.kunmall.controller;
 
+import com.suxton.kunmall.pojo.Orders;
 import com.suxton.kunmall.pojo.Recommends;
 import com.suxton.kunmall.pojo.RecommendsExample;
 import com.suxton.kunmall.service.HardwareService;
 import com.suxton.kunmall.service.Impl.HardwareServiceImpl;
 import com.suxton.kunmall.service.UserService;
 import com.suxton.kunmall.utils.MyUserDetails;
+import com.suxton.kunmall.utils.OrderData;
 import jakarta.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
+import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.math.BigDecimal;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.util.*;
 
 @Controller
 public class UserController {
@@ -112,9 +113,34 @@ public class UserController {
         return "user/Customize";
     }
 
-    @PostMapping("/SubmitOrder")
-    public String submitOrder() {
-        return "redirect:/Checkout";
+
+    @PostMapping("/SubmitOrder*")
+    public String submitOrder(@RequestParam("CPUName") String cpuName,
+                              @RequestParam("GPUName") String gpuName,
+                              @RequestParam("MemoryName") String memoryName,
+                              @RequestParam("DriveName") String driveName,
+                              @RequestParam("sum") double sum,
+                              @RequestParam("address") String address,
+                              @RequestParam("comment") String comment) {
+
+        Orders orders = new Orders();
+        orders.setCpuname(cpuName);
+        orders.setGpuname(gpuName);
+        orders.setDrivename(driveName);
+        orders.setMemoryname(memoryName);
+        orders.setMoney(BigDecimal.valueOf(sum));
+        orders.setAddress(address);
+        orders.setComment(comment);
+        orders.setOrdertime(new Date());
+        orders.setStatus("未发货");
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Object principal = authentication.getPrincipal();
+        MyUserDetails userDetails = (MyUserDetails) principal;
+
+        orders.setUserid(userDetails.id());
+        userService.createOrder(orders);
+        return "redirect:/Order";
     }
 
     @GetMapping("/Checkout*")
@@ -125,8 +151,8 @@ public class UserController {
                            @RequestParam("MemoryName") String memoryName,
                            @RequestParam("MemoryPrice") String memoryPrice,
                            @RequestParam("DriveName") String driveName,
-                           @RequestParam("DrivePrice") String drivePrice,
-                           @RequestParam("sum") String sum, Model model) {
+                           @RequestParam("DrivePrice") String drivePrice, @RequestParam("sum") String sum,
+                           Model model) {
         model.addAttribute("CPUName", cpuName);
         model.addAttribute("CPUPrice", cpuPrice);
         model.addAttribute("GPUName", gpuName);

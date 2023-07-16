@@ -1,5 +1,6 @@
 package com.suxton.kunmall.service;
 
+import com.suxton.kunmall.pojo.Orders;
 import com.suxton.kunmall.pojo.User;
 
 public interface UserService {
@@ -9,4 +10,6 @@ public interface UserService {
 
     boolean hasUser(String name);
     User getUserByName(String name);
+
+    void createOrder(Orders order);
 }
