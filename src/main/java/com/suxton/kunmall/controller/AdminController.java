@@ -1,12 +1,25 @@
 package com.suxton.kunmall.controller;
 
+import com.suxton.kunmall.service.HardwareService;
+import com.suxton.kunmall.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class AdminController {
+    private final UserService userService;
+    private final HardwareService hardwareService;
+
+    @Autowired
+    public AdminController(UserService userService, HardwareService hardwareService) {
+        this.userService = userService;
+        this.hardwareService = hardwareService;
+    }
+
     @GetMapping("/Admin/AdminHome*")
     public String adminHome() {
+
         return "/admin/AdminHome";
     }
 
