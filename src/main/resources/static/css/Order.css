@@ -1,12 +1,17 @@
 .order-border {
-    margin-top: 10%;
+    margin-top: 3%;
     width: 80%;
     margin-left: 10%;
     border: 1px solid #ccc;
     padding: 10px;
     border-radius: 20px;
 }
-
+h1{
+    margin-top: 2%;
+    margin-bottom: 2%;
+    font-weight: bolder;
+   text-align: center;
+}
 .order {
     border-collapse: collapse;
     width: 100%;
@@ -23,7 +28,10 @@
     margin-top: 10px;
     padding: 0;
 }
-
+.order tr td{
+    font-size: 20px;
+    height: 40px;
+}
 .order tr:nth-child(even) {
     background-color: #f2f2f2;
 }
