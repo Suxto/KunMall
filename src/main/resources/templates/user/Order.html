@@ -26,6 +26,7 @@
 <div th:replace="~{user/NavBar :: navbar}"></div>
 
 <!----------------------------->
+<h1>订单详情</h1>
 <div class="order-border" th:each="item:${orders}">
     <table class="order">
         <tr>
@@ -41,7 +42,7 @@
         </tr>
         <tr>
             <td>状态：</td>
-            <td th:text="${item.getStatus()}">a</td>
+            <td th:text="${item.getStatus()}"></td>
         </tr>
         <tr>
             <td>时间：</td>
