@@ -10,6 +10,8 @@
   <!-- 新 Bootstrap5 核心 CSS 文件 -->
   <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css">
 
+  <!--订单页样式-->
+  <link rel="stylesheet" type="text/css" href="../../static/css/Order.css">
   <!--  popper.min.js 用于弹窗、提示、下拉菜单 -->
   <script src="https://cdn.staticfile.org/popper.js/2.9.3/umd/popper.min.js"></script>
 
@@ -57,16 +59,33 @@
   </div>
 </nav>
 <!--------------------------------------------------------------->
-
-
-<div class="left-top">
-  <div class="Order-h">
-    <h5>订单号:100004</h5>
-    <h5>状态:已完成</h5>
-    <h5>金额:3060元</h5>
-    <h5>时间:2022/1/1</h5>
-  </div>
-  <a class="Module" href="#">详情</a>
+<h1>订单详情</h1>
+<div class="order-border" th:each="item:${orders}">
+  <table class="order">
+    <tr>
+      <td>详情：</td>
+      <td>
+        <ul>
+          <li>CPU: <span th:text="${item.getCpuname()}"></span></li>
+          <li>GPU: <span th:text="${item.getGpuname()}"></span></li>
+          <li>内存: <span th:text="${item.getMemoryname()}"></span></li>
+          <li>硬盘: <span th:text="${item.getDrivename()}"></span></li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>状态：</td>
+      <td th:text="${item.getStatus()}"></td>
+    </tr>
+    <tr>
+      <td>时间：</td>
+      <td th:text="${item.getOrdertime()}"></td>
+    </tr>
+    <tr>
+      <td>金额：</td>
+      <td th:text="${item.getMoney()}"></td>
+    </tr>
+  </table>
 </div>
 
 </body>
