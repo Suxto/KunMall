@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import java.util.HashMap;
+
 @SpringBootTest
 class KunMallApplicationTests {
     @Autowired
@@ -18,4 +20,8 @@ class KunMallApplicationTests {
 //        userService.createUser("Suxton", "1234");
     }
 
+    public static void main(String[] args) {
+        HashMap<String, Integer> map = new HashMap<>();
+        System.out.println(map.get("hello"));
+    }
 }

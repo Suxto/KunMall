@@ -1,8 +1,6 @@
 package com.suxton.kunmall.service;
 
-import com.suxton.kunmall.pojo.CPU;
-import com.suxton.kunmall.pojo.Recommends;
-
+import java.util.HashMap;
 import java.util.List;
 
 public interface HardwareService {
@@ -17,4 +15,6 @@ public interface HardwareService {
     List<String[]> getMemoryInfoList();
 
     List<String[]> getDriveInfoList();
+
+    HashMap<String, Integer> getRecommendDetail(int id);
 }

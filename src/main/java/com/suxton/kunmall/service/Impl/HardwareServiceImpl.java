@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -112,5 +113,15 @@ public class HardwareServiceImpl implements HardwareService {
         return list;
     }
 
+    @Override
+    public HashMap<String, Integer> getRecommendDetail(int id) {
+        Recommends recommends = recommendsMapper.selectByPrimaryKey(id);
+        HashMap<String, Integer> details = new HashMap<>();
+        details.put("CPUSel", recommends.getCpuid());
+        details.put("GPUSel", recommends.getGpuid());
+        details.put("MemorySel", recommends.getMemoryid());
+        details.put("DriveSel", recommends.getDriveid());
+        return details;
+    }
 
 }

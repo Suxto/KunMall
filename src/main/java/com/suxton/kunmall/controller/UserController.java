@@ -22,7 +22,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class UserController {
@@ -94,6 +96,19 @@ public class UserController {
     @GetMapping("/Customize*")
     public String customize(@RequestParam(defaultValue = "0", value = "recommend") String num, Model model) {
         userInfoSetter(model);
+        List<String[]> cpuInfoList = hardwareService.getCPUInfoList();
+        model.addAttribute("CPUList", cpuInfoList);
+        List<String[]> gpuInfoList = hardwareService.getGPUInfoList();
+        model.addAttribute("GPUList", gpuInfoList);
+        List<String[]> memoryInfoList = hardwareService.getMemoryInfoList();
+        model.addAttribute("MemoryList", memoryInfoList);
+        List<String[]> driveInfoList = hardwareService.getDriveInfoList();
+        model.addAttribute("DriveList", driveInfoList);
+        HashMap<String, Integer> details;
+        if (!"0".equals(num)) {
+            details = hardwareService.getRecommendDetail(Integer.parseInt(num));
+        } else details = new HashMap<>();
+        model.addAttribute("details", details);
         return "user/Customize";
     }
 

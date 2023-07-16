@@ -1,3 +1,7 @@
+window.onload = function () {
+    Select();
+};
+
 function Select() {
     // 获取选中的单选按钮的值和 ID
     let cpuRadio = document.querySelector('input[name="optradio-cpu"]:checked');

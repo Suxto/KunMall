@@ -1,6 +1,6 @@
 <!--定制-->
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -22,7 +22,7 @@
     <!--JS-->
     <script type="text/javascript" src="../../static/js/Customize.js"></script>
 <body>
-<div th:replace="user/NavBar :: navbar"></div>
+<div th:replace="~{user/NavBar :: navbar}"></div>
 
 <div class="container mt-3">
     <h4>筛选</h4>
@@ -35,27 +35,20 @@
             </div>
             <div id="collapseOne" class="collapse" data-bs-parent="#accordion">
                 <form class="select-form" onclick="Select()">
-                    <div class="form-check">
-                        <input type="radio" class="form-check-input" id="cpus" name="optradio-cpu">
-                        <label class="form-check-label" for="cpus">
-                            <table class="Module table ">
-                                <tr>
-                                    <td id="cpu">i7-8888</td>
-                                    <td id="cpuValue">6000</td>
-                                </tr>
-                            </table>
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input type="radio" class="form-check-input" id="cpus1" name="optradio-cpu">
-                        <label class="form-check-label" for="cpus1">
-                            <table class="Module table ">
-                                <tr>
-                                    <td id="cpu1">i7-8888</td>
-                                    <td id="cpuValue1">9000</td>
-                                </tr>
-                            </table>
-                        </label>
+                    <div th:each="item : ${CPUList}">
+                        <div class="form-check">
+                            <!--/*@thymesVar id="get" type="java.lang.Integer"*/-->
+                            <input type="radio" class="form-check-input" id="cpus" name="optradio-cpu"
+                                   th:checked="${itemStat.index + 1} == ${details.get('CPUSel')}">
+                            <label class="form-check-label" for="cpus">
+                                <table class="Module table ">
+                                    <tr>
+                                        <td id="cpu" th:text="${item[0]}"></td>
+                                        <td id="cpuValue" th:text="${item[1]}">6000</td>
+                                    </tr>
+                                </table>
+                            </label>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -69,27 +62,19 @@
             </div>
             <div id="collapseTwo" class="collapse" data-bs-parent="#accordion">
                 <form class="select-form" onclick="Select()">
-                    <div class="form-check">
-                        <input type="radio" class="form-check-input" id="gpus" name="optradio-gpu">
-                        <label class="form-check-label" for="gpus">
-                            <table class="Module table ">
-                                <tr>
-                                    <td id="gpu">i7-8888</td>
-                                    <td id="gpuValue">6000</td>
-                                </tr>
-                            </table>
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input type="radio" class="form-check-input" id="gpus1" name="optradio-gpu">
-                        <label class="form-check-label" for="gpus1">
-                            <table class="Module table ">
-                                <tr>
-                                    <td id="gpu1">i7-8888</td>
-                                    <td id="gpuValue1">9000</td>
-                                </tr>
-                            </table>
-                        </label>
+                    <div th:each="item:${GPUList}">
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" id="gpus" name="optradio-gpu"
+                            th:checked="${itemStat.index + 1} == ${details.get('GPUSel')}">
+                            <label class="form-check-label" for="gpus">
+                                <table class="Module table ">
+                                    <tr>
+                                        <td id="gpu" th:text="${item[0]}"></td>
+                                        <td id="gpuValue" th:text="${item[0]}"></td>
+                                    </tr>
+                                </table>
+                            </label>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -104,27 +89,19 @@
             </div>
             <div id="collapseThree" class="collapse" data-bs-parent="#accordion">
                 <form class="select-form" onclick="Select()">
-                    <div class="form-check">
-                        <input type="radio" class="form-check-input" id="memorys" name="optradio-memory">
-                        <label class="form-check-label" for="memorys">
-                            <table class="Module table ">
-                                <tr>
-                                    <td id="memory">i7-8888</td>
-                                    <td id="memoryValue">6000</td>
-                                </tr>
-                            </table>
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input type="radio" class="form-check-input" id="memorys1" name="optradio-memory">
-                        <label class="form-check-label" for="memorys1">
-                            <table class="Module table ">
-                                <tr>
-                                    <td id="memory1">i7-8888</td>
-                                    <td id="memoryValue1">9000</td>
-                                </tr>
-                            </table>
-                        </label>
+                    <div th:each="item:${MemoryList}">
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" id="memorys" name="optradio-memory"
+                            th:checked="${itemStat.index + 1} == ${details.get('MemorySel')}">
+                            <label class="form-check-label" for="memorys">
+                                <table class="Module table ">
+                                    <tr>
+                                        <td id="memory" th:text="${item[0]}"/>
+                                        <td id="memoryValue" th:text="${item[1]}"/>
+                                    </tr>
+                                </table>
+                            </label>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -137,27 +114,19 @@
             </div>
             <div id="collapseFour" class="collapse" data-bs-parent="#accordion">
                 <form class="select-form" onclick="Select()">
-                    <div class="form-check">
-                        <input type="radio" class="form-check-input" id="disks" name="optradio-disk">
-                        <label class="form-check-label" for="disks">
-                            <table class="Module table ">
-                                <tr>
-                                    <td id="disk">i7-8888</td>
-                                    <td id="disksValue">6000</td>
-                                </tr>
-                            </table>
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input type="radio" class="form-check-input" id="disks1" name="optradio-disk">
-                        <label class="form-check-label" for="disks1">
-                            <table class="Module table ">
-                                <tr>
-                                    <td id="disk1">i7-8888</td>
-                                    <td id="diskValue1">9000</td>
-                                </tr>
-                            </table>
-                        </label>
+                    <div th:each="item:${DriveList}">
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" id="disks" name="optradio-disk"
+                            th:checked="${itemStat.index + 1} == ${details.get('DriveSel')}">
+                            <label class="form-check-label" for="disks">
+                                <table class="Module table ">
+                                    <tr>
+                                        <td id="disk" th:text="${item[0]}"/>
+                                        <td id="disksValue" th:text="${item[1]}"/>
+                                    </tr>
+                                </table>
+                            </label>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -168,7 +137,7 @@
 
 
 <!---------------------------------------------------------------------->
-<div class="container-fluid mt-3">
+<div class="container-fluid mt-3" onload="Select()">
 
     <div class="row">
         <div class="col p-4">
