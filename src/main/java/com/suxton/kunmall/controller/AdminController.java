@@ -92,4 +92,17 @@ public class AdminController {
         return "redirect:/Admin/Store";
     }
 
+    @PostMapping("/Admin/DeleteComponent")
+    public String delete(@RequestParam("type") String type, @RequestParam("id") int id) {
+        if ("CPU".equals(type)) {
+            hardwareService.deleteCPU(id);
+        } else if ("GPU".equals(type)) {
+            hardwareService.deleteGPU(id);
+        } else if ("Memory".equals(type)) {
+            hardwareService.deleteMemory(id);
+        } else if ("Drive".equals(type)) {
+            hardwareService.deleteDrive(id);
+        }
+        return "redirect:/Admin/Store";
+    }
 }

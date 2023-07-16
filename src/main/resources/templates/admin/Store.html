@@ -43,7 +43,11 @@
                 <td>
                     <button type="button" th:id="'CPU_' + ${item.getId()}"
                             th:onclick="'Clicked(\'CPU_' + ${item.getId()} + '\')'"
-                            class="btn-primary">编辑
+                            class="btn btn-primary">编辑
+                    </button>
+                    <button type="button" class="btn btn-danger"
+                            th:onclick="'Remove(\'CPU\', ' + ${item.getId()} + ')'">
+                        删除
                     </button>
                 </td>
             </tr>
@@ -68,8 +72,12 @@
                 <td><input class="input" type="number" readonly th:value="${item.getAmount()}">件</td>
                 <td>
                     <button type="button" th:id="'GPU_' + ${item.getId()}"
-                            th:onclick="'Clicked(GPU_' + ${item.getId()} + ')'"
-                            class="btn-primary">编辑
+                            th:onclick="'Clicked(\'GPU_' + ${item.getId()} + '\')'"
+                            class="btn btn-primary">编辑
+                    </button>
+                    <button type="button" class="btn btn-danger"
+                            th:onclick="'Remove(\'GPU\', ' + ${item.getId()} + ')'">
+                        删除
                     </button>
                 </td>
             </tr>
@@ -96,9 +104,13 @@
                 <td><input class="input" type="number" readonly th:value="${item.getAmount()}">件</td>
                 <td>
                     <button type="button" th:id="'Memory_' + ${item.getId()}"
-                            th:onclick="'Clicked(Memory_' + ${item.getId()} + ')'"
-                            class="btn-primary">
+                            th:onclick="'Clicked(\'Memory_' + ${item.getId()} + '\')'"
+                            class="btn btn-primary">
                         编辑
+                    </button>
+                    <button type="button" class="btn btn-danger"
+                            th:onclick="'Remove(\'Memory\', ' + ${item.getId()} + ')'">
+                        删除
                     </button>
                 </td>
             </tr>
@@ -123,8 +135,12 @@
                 <td><input class="input" type="number" readonly th:value="${item.getAmount()}">件</td>
                 <td>
                     <button type="button" th:id="'Drive_' + ${item.getId()}"
-                            th:onclick="'Clicked(Drive_' + ${item.getId()} + ')'"
-                            class="btn-primary">编辑
+                            th:onclick="'Clicked(\'Drive_' + ${item.getId()} + '\')'"
+                            class="btn btn-primary">编辑
+                    </button>
+                    <button type="button" class="btn btn-danger"
+                            th:onclick="'Remove(\'Drive\', ' + ${item.getId()} + ')'">
+                        删除
                     </button>
                 </td>
             </tr>

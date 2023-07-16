@@ -176,4 +176,24 @@ public class HardwareServiceImpl implements HardwareService {
         driveMapper.updateByPrimaryKey(drive);
     }
 
+    @Override
+    public void deleteCPU(int id) {
+        cpuMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public void deleteGPU(int id) {
+        gpuMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public void deleteMemory(int id) {
+        memoryMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public void deleteDrive(int id) {
+        driveMapper.deleteByPrimaryKey(id);
+    }
+
 }

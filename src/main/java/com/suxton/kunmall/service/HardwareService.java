@@ -38,4 +38,12 @@ public interface HardwareService {
     void updateMemory(int id, double price, int amount);
 
     void updateDrive(int id, double price, int amount);
+
+    void deleteCPU(int id);
+
+    void deleteGPU(int id);
+
+    void deleteMemory(int id);
+
+    void deleteDrive(int id);
 }
