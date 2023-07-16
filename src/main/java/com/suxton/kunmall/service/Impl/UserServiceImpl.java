@@ -3,6 +3,7 @@ package com.suxton.kunmall.service.Impl;
 import com.suxton.kunmall.dao.OrdersMapper;
 import com.suxton.kunmall.dao.UserMapper;
 import com.suxton.kunmall.pojo.Orders;
+import com.suxton.kunmall.pojo.OrdersExample;
 import com.suxton.kunmall.pojo.User;
 import com.suxton.kunmall.pojo.UserExample;
 import com.suxton.kunmall.service.UserService;
@@ -52,8 +53,17 @@ public class UserServiceImpl implements UserService {
         if (users.size() == 0) return null;
         else return users.get(0);
     }
-@Override
+
+    @Override
     public void createOrder(Orders order) {
         ordersMapper.insert(order);
+    }
+
+    @Override
+    public List<Orders> getUserOrderList(int id) {
+        OrdersExample ordersExample = new OrdersExample();
+        ordersExample.or().andUseridEqualTo(id);
+        ordersExample.setOrderByClause("orderTime DESC");
+        return ordersMapper.selectByExample(ordersExample);
     }
 }

@@ -1,31 +1,24 @@
 package com.suxton.kunmall.controller;
 
 import com.suxton.kunmall.pojo.Orders;
-import com.suxton.kunmall.pojo.Recommends;
-import com.suxton.kunmall.pojo.RecommendsExample;
 import com.suxton.kunmall.service.HardwareService;
-import com.suxton.kunmall.service.Impl.HardwareServiceImpl;
 import com.suxton.kunmall.service.UserService;
 import com.suxton.kunmall.utils.MyUserDetails;
-import com.suxton.kunmall.utils.OrderData;
-import jakarta.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
-import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.math.BigDecimal;
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.util.*;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 
 @Controller
 public class UserController {
@@ -90,7 +83,12 @@ public class UserController {
     }
 
     @GetMapping("/Order*")
-    public String order() {
+    public String order(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Object principal = authentication.getPrincipal();
+        MyUserDetails userDetails = (MyUserDetails) principal;
+
+        model.addAttribute("orders", userService.getUserOrderList(userDetails.id()));
         return "user/Order";
     }
 
