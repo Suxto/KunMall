@@ -1,6 +1,6 @@
 <!--订单-->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -26,30 +26,30 @@
 <div th:replace="~{user/NavBar :: navbar}"></div>
 
 <!----------------------------->
-<div class="order-border">
-    <table class="order" >
+<div class="order-border" th:each="item:${orders}">
+    <table class="order">
         <tr>
             <td>详情：</td>
             <td>
                 <ul>
-                    <li>CPU</li>
-                    <li>GPU</li>
-                    <li>内存</li>
-                    <li>硬盘</li>
+                    <li>CPU: <span th:text="${item.getCpuname()}"></span></li>
+                    <li>GPU: <span th:text="${item.getGpuname()}"></span></li>
+                    <li>内存: <span th:text="${item.getMemoryname()}"></span></li>
+                    <li>硬盘: <span th:text="${item.getDrivename()}"></span></li>
                 </ul>
             </td>
         </tr>
         <tr>
             <td>状态：</td>
-            <td>a</td>
+            <td th:text="${item.getStatus()}">a</td>
         </tr>
         <tr>
             <td>时间：</td>
-            <td>a</td>
+            <td th:text="${item.getOrdertime()}"></td>
         </tr>
         <tr>
             <td>金额：</td>
-            <td>a</td>
+            <td th:text="${item.getMoney()}"></td>
         </tr>
     </table>
 </div>
