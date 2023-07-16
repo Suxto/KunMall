@@ -12,9 +12,16 @@
     position: absolute;
     right: 12.5%;
 }
-.form-check-input{
+
+.form-check-input {
     margin-top: 10px;
 }
-.select-form{
+
+.select-form {
     margin-left: 50px;
+}
+
+.input {
+    background-color: transparent;
+    border: none;
 }
