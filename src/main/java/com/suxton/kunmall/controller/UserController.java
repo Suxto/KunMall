@@ -112,9 +112,30 @@ public class UserController {
         return "user/Customize";
     }
 
+    @PostMapping("/SubmitOrder")
+    public String submitOrder() {
+        return "redirect:/Checkout";
+    }
 
     @GetMapping("/Checkout*")
-    public String checkout() {
+    public String checkout(@RequestParam("CPUName") String cpuName,
+                           @RequestParam("CPUPrice") String cpuPrice,
+                           @RequestParam("GPUName") String gpuName,
+                           @RequestParam("GPUPrice") String gpuPrice,
+                           @RequestParam("MemoryName") String memoryName,
+                           @RequestParam("MemoryPrice") String memoryPrice,
+                           @RequestParam("DriveName") String driveName,
+                           @RequestParam("DrivePrice") String drivePrice,
+                           @RequestParam("sum") String sum, Model model) {
+        model.addAttribute("CPUName", cpuName);
+        model.addAttribute("CPUPrice", cpuPrice);
+        model.addAttribute("GPUName", gpuName);
+        model.addAttribute("GPUPrice", gpuPrice);
+        model.addAttribute("MemoryName", memoryName);
+        model.addAttribute("MemoryPrice", memoryPrice);
+        model.addAttribute("DriveName", driveName);
+        model.addAttribute("DrivePrice", drivePrice);
+        model.addAttribute("sum", sum);
         return "user/Checkout";
     }
 

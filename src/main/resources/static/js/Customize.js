@@ -23,6 +23,8 @@ function Select() {
     SumMoney();
 }
 
+var cpuName, gpuName, memoryName, driveName;
+
 function Import(selectedRadio, type) {
     let table = selectedRadio.parentNode.querySelector('table');
     let tdElements = table.querySelectorAll('tr > td:nth-child(2)');
@@ -32,6 +34,7 @@ function Import(selectedRadio, type) {
         case 'cpu': {
             let cpu_select = document.getElementById('cpu-select');
             let cpuValue_select = document.getElementById('cpuValue-select');
+            cpuName = name;
             cpu_select.textContent = 'CPU型号：' + name;
             cpuValue_select.textContent = '价格：' + nameValue;
             break;
@@ -39,6 +42,7 @@ function Import(selectedRadio, type) {
         case 'gpu': {
             let gpu_select = document.getElementById('gpu-select');
             let gpuValue = document.getElementById('gpuValue-select');
+            gpuName = name;
             gpu_select.textContent = '显卡型号：' + name;
             gpuValue.textContent = '价格：' + nameValue;
             break;
@@ -46,6 +50,7 @@ function Import(selectedRadio, type) {
         case 'memory': {
             let memory_select = document.getElementById('memory-select');
             let memoryValue_select = document.getElementById('memoryValue-select');
+            memoryName = name;
             memory_select.textContent = '内存型号：' + name;
             memoryValue_select.textContent = '价格：' + nameValue;
             break;
@@ -53,6 +58,7 @@ function Import(selectedRadio, type) {
         case 'disk': {
             let disk_select = document.getElementById('disk-select');
             let diskValue_select = document.getElementById('diskValue-select');
+            driveName = name;
             disk_select.textContent = '硬盘型号：' + name;
             diskValue_select.textContent = '价格：' + nameValue;
             break;
@@ -60,16 +66,18 @@ function Import(selectedRadio, type) {
     }
 }
 
+var c, g, m, d, sum;
+
 function SumMoney() {
     const cpuValue = document.getElementById('cpuValue-select');
     const gpuValue = document.getElementById('gpuValue-select');
     const memoryValue = document.getElementById('memoryValue-select');
     const diskValue = document.getElementById('diskValue-select');
-    let sum = 0;
-    const c = parseFloat(cpuValue.textContent.split("：").at(1));
-    const g = parseFloat(gpuValue.textContent.split("：").at(1))
-    const m = parseFloat(memoryValue.textContent.split("：").at(1))
-    const d = parseFloat(diskValue.textContent.split("：").at(1))
+    sum = 0;
+    c = parseFloat(cpuValue.textContent.split("：").at(1));
+    g = parseFloat(gpuValue.textContent.split("：").at(1))
+    m = parseFloat(memoryValue.textContent.split("：").at(1))
+    d = parseFloat(diskValue.textContent.split("：").at(1))
     if (c) sum += c;
     if (g) sum += g;
     if (m) sum += m;
@@ -79,9 +87,16 @@ function SumMoney() {
     console.log(SumMoney.value);
 }
 
+
 function Submit() {
-    document.getElementById("form1").submit();
-    document.getElementById("form2").submit();
-    document.getElementById("form3").submit();
-    document.getElementById("form4").submit();
+    if (c > 0 && g > 0 && m > 0 && d > 0) {
+        window.location.href = '/Checkout?'
+            + 'CPUName=' + encodeURIComponent(cpuName) + '&CPUPrice=' + encodeURIComponent(c)
+            + '&GPUName=' + encodeURIComponent(gpuName) + '&GPUPrice=' + encodeURIComponent(g)
+            + '&MemoryName=' + encodeURIComponent(memoryName) + '&MemoryPrice=' + encodeURIComponent(m)
+            + '&DriveName=' + encodeURIComponent(driveName) + '&DrivePrice=' + encodeURIComponent(d)
+            + '&sum=' + encodeURIComponent(sum);
+    } else {
+        window.alert("请选择所有部件");
+    }
 }

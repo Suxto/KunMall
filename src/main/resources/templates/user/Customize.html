@@ -1,7 +1,6 @@
 <!--定制-->
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.thymeleaf.org">
-
 <head>
     <meta charset="UTF-8">
     <title>定制-爱坤电脑城-为ikun提供最好的服务</title>
@@ -65,12 +64,12 @@
                     <div th:each="item:${GPUList}">
                         <div class="form-check">
                             <input type="radio" class="form-check-input" id="gpus" name="optradio-gpu"
-                            th:checked="${itemStat.index + 1} == ${details.get('GPUSel')}">
+                                   th:checked="${itemStat.index + 1} == ${details.get('GPUSel')}">
                             <label class="form-check-label" for="gpus">
                                 <table class="Module table ">
                                     <tr>
                                         <td id="gpu" th:text="${item[0]}"></td>
-                                        <td id="gpuValue" th:text="${item[0]}"></td>
+                                        <td id="gpuValue" th:text="${item[1]}"></td>
                                     </tr>
                                 </table>
                             </label>
@@ -92,7 +91,7 @@
                     <div th:each="item:${MemoryList}">
                         <div class="form-check">
                             <input type="radio" class="form-check-input" id="memorys" name="optradio-memory"
-                            th:checked="${itemStat.index + 1} == ${details.get('MemorySel')}">
+                                   th:checked="${itemStat.index + 1} == ${details.get('MemorySel')}">
                             <label class="form-check-label" for="memorys">
                                 <table class="Module table ">
                                     <tr>
@@ -117,7 +116,7 @@
                     <div th:each="item:${DriveList}">
                         <div class="form-check">
                             <input type="radio" class="form-check-input" id="disks" name="optradio-disk"
-                            th:checked="${itemStat.index + 1} == ${details.get('DriveSel')}">
+                                   th:checked="${itemStat.index + 1} == ${details.get('DriveSel')}">
                             <label class="form-check-label" for="disks">
                                 <table class="Module table ">
                                     <tr>
@@ -179,7 +178,7 @@
 
         </div>
         <div class="col p-4 ">
-            <form id="form4" action="https://localhost:8080" method="post">
+            <form id="form4" th:action="@{/Checkout}" method="get">
                 <table class="Module table ">
                     <tr>
                         <td id="disk-select"><input class="input" type="text" name="disk" readonly></td>
@@ -191,10 +190,12 @@
                 <h4 class="sum">合计:<label>
                     <input type="number" name="SumMoney" id="SumMoney" readonly style="border: none" value="0">
                 </label></h4></form>
-            <button type="button" onclick="Submit()" class="buy btn btn-primary">购入</button>
+            <button type="button" onclick="Submit()" class="buy btn btn-primary" id="checkout-button"
+                    data-checkout-url="@{/checkout}">
+                购入
+            </button>
         </div>
     </div>
 </div>
 </body>
-
 </html>
