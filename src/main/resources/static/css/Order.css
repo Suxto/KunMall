@@ -1,0 +1,29 @@
+.order-border {
+    margin-top: 10%;
+    width: 80%;
+    margin-left: 10%;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.order {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.order td:first-child {
+    font-weight: bold;
+    text-align: center;
+    width: 10%;
+}
+
+.order li {
+    list-style: none;
+    margin-top: 10px;
+    padding: 0;
+}
+
+.order tr:nth-child(even) {
+    background-color: #f2f2f2;
+}

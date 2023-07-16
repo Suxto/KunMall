@@ -16,7 +16,7 @@
     <!--导航栏样式-->
     <link rel="stylesheet" type="text/css" href="../../static/css/Navigation.css">
     <!--订单页样式-->
-    <link rel="stylesheet" type="text/css" href="../../static/css/Home.css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/Order.css">
     <!--图标-->
     <link rel="icon" type="favicon.ico" href="../../static/img/ikunLOGO.png">
 </head>
@@ -24,6 +24,37 @@
 <body>
 <!--导航栏-->
 <div th:replace="~{user/NavBar :: navbar}"></div>
+
+<!----------------------------->
+<div class="order-border">
+    <table class="order" >
+        <tr>
+            <td>详情：</td>
+            <td>
+                <ul>
+                    <li>CPU</li>
+                    <li>GPU</li>
+                    <li>内存</li>
+                    <li>硬盘</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>状态：</td>
+            <td>a</td>
+        </tr>
+        <tr>
+            <td>时间：</td>
+            <td>a</td>
+        </tr>
+        <tr>
+            <td>金额：</td>
+            <td>a</td>
+        </tr>
+    </table>
+</div>
+
+
 </body>
 
 </html>
