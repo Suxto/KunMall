@@ -87,6 +87,7 @@ public class UserController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Object principal = authentication.getPrincipal();
         MyUserDetails userDetails = (MyUserDetails) principal;
+        userInfoSetter(model);
 
         model.addAttribute("orders", userService.getUserOrderList(userDetails.id()));
         return "user/Order";
