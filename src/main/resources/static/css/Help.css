@@ -1,0 +1,111 @@
+
+/*客服回复*/
+h1 {
+    text-align: center;
+}
+
+.dialog {
+    margin-top: 3%;
+    width: 80%;
+    margin-left: 10%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    font-size: 14px;
+    font-family: "Microsoft YaHei", sans-serif;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    background-color: #eee;
+    border-bottom: 1px solid #ccc;
+}
+
+.info {
+    margin-left: 10px;
+}
+
+.name {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.status {
+    font-size: 12px;
+    color: #999;
+}
+
+.actions {
+    margin-left: auto;
+    display: flex;
+}
+
+.btn {
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+    border-radius: 50%;
+    background-color: #ccc;
+    cursor: pointer;
+}
+
+.close {
+    background-image: url("https://img.icons8.com/ios-filled/50/000000/close-window.png");
+    background-size: 60%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.messages {
+    height: 300px;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+/*行间距*/
+.message {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+/*添加气泡底色*/
+.content {
+    max-width: 70%;
+    padding: 10px;
+    border-radius: 5px;
+    line-height: 1.5;
+    background-color: #f6f6f6;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.input-box {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.input-box input {
+    flex: 1;
+    height: 40px;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px;
+    font-size: 14px;
+    background-color: #f6f6f6;
+}
+
+.input-box button {
+    margin-left: 10px;
+    width: 100px;
+    height: 40px;
+    border: none;
+    cursor: pointer;
+}
