@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8"/>
@@ -16,56 +16,62 @@
 
     <!-- 最新的 Bootstrap5 核心 JavaScript 文件 -->
     <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.min.js"></script>
-
     <script src="../../static/js/Store.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
-<!--导航栏-->
-<!--------------------------------------------------------------->
+<div th:replace="~{admin/NavBar :: navbar}"></div>
+
 <div class="top">
     <div class="left-top  mt-3">
-        <h2>CPU:</h2>
+        <h2>CPU:<span th:text="${CPUList.size()}"></span></h2>
         <table class="Module table table-hover">
             <thead>
             <tr>
                 <th>名称</th>
                 <th>价格</th>
                 <th>剩余量</th>
-                <th>编辑</th>
+                <th>操作</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <th>西部数据1TB</th>
-                <th><input class="input" type="number" readonly value="99999">元</th>
-                <th><input class="input" type="number" readonly value="999">件</th>
-                <th>
-                    <button id="button-cpu"  onclick="Clicked('button-cpu')" class="btn-primary" >编辑</button>
-                </th>
+            <tr th:each="item:${CPUList}">
+                <td th:text="${item.getName()}"></td>
+                <td><input class="input" type="number" readonly th:value="${item.getMoney()}">元</td>
+                <td><input class="input" type="number" readonly th:value="${item.getAmount()}">件</td>
+                <td>
+                    <button type="button" th:id="'CPU_' + ${item.getId()}"
+                            th:onclick="'Clicked(\'CPU_' + ${item.getId()} + '\')'"
+                            class="btn-primary">编辑
+                    </button>
+                </td>
             </tr>
             </tbody>
         </table>
     </div>
     <div class="right-top  mt-3">
-        <h2>显卡:</h2>
+        <h2>显卡:<span th:text="${GPUList.size()}"></span></h2>
         <table class="Module table table-hover">
             <thead>
             <tr>
                 <th>名称</th>
                 <th>价格</th>
                 <th>剩余量</th>
-                <th>编辑</th>
+                <th>操作</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <th>西部数据1TB</th>
-                <th><input class="input" type="number" readonly value="99999">元</th>
-                <th><input class="input" type="number" readonly value="999">件</th>
-                <th>
-                    <button id="button-gpu" onclick="Clicked('button-gpu')"  class="btn-primary">编辑</button>
-                </th>
+            <tr th:each="item:${GPUList}">
+                <td th:text="${item.getName()}"></td>
+                <td><input class="input" type="number" readonly th:value="${item.getMoney()}">元</td>
+                <td><input class="input" type="number" readonly th:value="${item.getAmount()}">件</td>
+                <td>
+                    <button type="button" th:id="'GPU_' + ${item.getId()}"
+                            th:onclick="'Clicked(GPU_' + ${item.getId()} + ')'"
+                            class="btn-primary">编辑
+                    </button>
+                </td>
             </tr>
             </tbody>
         </table>
@@ -73,53 +79,58 @@
 </div>
 <div class="bottom">
     <div class="left-bottom  mt-3">
-        <h2>内存:</h2>
+        <h2>内存:<span th:text="${MemoryList.size()}"></span></h2>
         <table class="Module table table-hover">
             <thead>
             <tr>
                 <th>名称</th>
                 <th>价格</th>
                 <th>剩余量</th>
-                <th>编辑</th>
+                <th>操作</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <th>西部数据1TB</th>
-                <th><input class="input" type="number" readonly value="99999">元</th>
-                <th><input class="input" type="number" readonly value="999">件</th>
-                <th>
-                    <button id="button-memory" onclick="Clicked('button-memory')" class="btn-primary">编辑</button>
-                </th>
+            <tr th:each="item:${MemoryList}">
+                <td th:text="${item.getName()}"></td>
+                <td><input class="input" type="number" readonly th:value="${item.getMoney()}">元</td>
+                <td><input class="input" type="number" readonly th:value="${item.getAmount()}">件</td>
+                <td>
+                    <button type="button" th:id="'Memory_' + ${item.getId()}"
+                            th:onclick="'Clicked(Memory_' + ${item.getId()} + ')'"
+                            class="btn-primary">
+                        编辑
+                    </button>
+                </td>
             </tr>
             </tbody>
         </table>
     </div>
     <div class="right-bottom  mt-3">
-        <h2>硬盘:</h2>
+        <h2>硬盘:<span th:text="${DriveList.size()}"></span></h2>
         <table class="Module table table-hover">
             <thead>
             <tr>
                 <th>名称</th>
                 <th>价格</th>
                 <th>剩余量</th>
-                <th>编辑</th>
+                <th>操作</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <th>西部数据1TB</th>
-                <th><input class="input" type="number" readonly value="99999">元</th>
-                <th><input class="input" type="number" readonly value="999">件</th>
-                <th>
-                    <button id="button-driver" onclick="Clicked('button-driver')" class="btn-primary">编辑</button>
-                </th>
+            <tr th:each="item:${DriveList}">
+                <td th:text="${item.getName()}"></td>
+                <td><input class="input" type="number" readonly th:value="${item.getMoney()}">元</td>
+                <td><input class="input" type="number" readonly th:value="${item.getAmount()}">件</td>
+                <td>
+                    <button type="button" th:id="'Drive_' + ${item.getId()}"
+                            th:onclick="'Clicked(Drive_' + ${item.getId()} + ')'"
+                            class="btn-primary">编辑
+                    </button>
+                </td>
             </tr>
             </tbody>
         </table>
     </div>
-</div>
-</div>
 </div>
 </body>
 

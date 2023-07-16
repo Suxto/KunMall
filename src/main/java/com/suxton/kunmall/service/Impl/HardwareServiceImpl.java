@@ -124,4 +124,56 @@ public class HardwareServiceImpl implements HardwareService {
         return details;
     }
 
+    @Override
+    public List<CPU> getCPUList() {
+        return cpuMapper.selectByExample(new CPUExample());
+    }
+
+    @Override
+    public List<GPU> getGPUList() {
+        return gpuMapper.selectByExample(new GPUExample());
+    }
+
+    @Override
+    public List<Memory> getMemoryList() {
+        return memoryMapper.selectByExample(new MemoryExample());
+    }
+
+    @Override
+    public List<Drive> getDriveList() {
+        return driveMapper.selectByExample(new DriveExample());
+    }
+
+    @Override
+    public void updateCPU(int id, double price, int amount) {
+        CPU cpu = cpuMapper.selectByPrimaryKey(id);
+        cpu.setMoney(BigDecimal.valueOf(price));
+        cpu.setAmount(amount);
+        cpuMapper.updateByPrimaryKey(cpu);
+    }
+
+    @Override
+    public void updateGPU(int id, double price, int amount) {
+        GPU gpu = gpuMapper.selectByPrimaryKey(id);
+        gpu.setMoney(BigDecimal.valueOf(price));
+        gpu.setAmount(amount);
+        gpuMapper.updateByPrimaryKey(gpu);
+    }
+
+    @Override
+    public void updateMemory(int id, double price, int amount) {
+        Memory memory = memoryMapper.selectByPrimaryKey(id);
+        memory.setAmount(amount);
+        memory.setMoney(BigDecimal.valueOf(price));
+        memoryMapper.updateByPrimaryKey(memory);
+    }
+
+    @Override
+    public void updateDrive(int id, double price, int amount) {
+        Drive drive = driveMapper.selectByPrimaryKey(id);
+        drive.setAmount(amount);
+        drive.setMoney(BigDecimal.valueOf(price));
+        driveMapper.updateByPrimaryKey(drive);
+    }
+
 }

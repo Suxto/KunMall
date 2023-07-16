@@ -67,4 +67,29 @@ public class AdminController {
         return "redirect:/Admin/AdminHome";
     }
 
+    @GetMapping("/Admin/Store*")
+    public String store(Model model) {
+        userInfoSetter(model);
+        model.addAttribute("CPUList", hardwareService.getCPUList());
+        model.addAttribute("GPUList", hardwareService.getGPUList());
+        model.addAttribute("MemoryList", hardwareService.getMemoryList());
+        model.addAttribute("DriveList", hardwareService.getDriveList());
+        return "/admin/Store";
+    }
+
+    @PostMapping("/Admin/UpdateComponent")
+    public String update(@RequestParam("type") String type, @RequestParam("id") int id, @RequestParam(
+            "price") double price, @RequestParam("amount") int amount) {
+        if ("CPU".equals(type)) {
+            hardwareService.updateCPU(id, price, amount);
+        } else if ("GPU".equals(type)) {
+            hardwareService.updateGPU(id, price, amount);
+        } else if ("Memory".equals(type)) {
+            hardwareService.updateMemory(id, price, amount);
+        } else if ("Drive".equals(type)) {
+            hardwareService.updateDrive(id, price, amount);
+        }
+        return "redirect:/Admin/Store";
+    }
+
 }
