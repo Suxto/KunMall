@@ -25,7 +25,17 @@
 <!--------------------------------------------------------------->
 <div class="top">
     <div class="left-top  mt-3">
+<<<<<<< Updated upstream
         <h2>CPU:</h2>
+=======
+<<<<<<< Updated upstream
+        <h2>CPU:<span th:text="${CPUList.size()}"></span></h2>
+=======
+        <h2>CPU:<span th:text="${CPUList.size()}"></span>
+            <button class="btn btn-primary" onclick="showForm()">添加</button>
+        </h2>
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
         <table class="Module table table-hover">
             <thead>
             <tr>
@@ -36,6 +46,7 @@
             </tr>
             </thead>
             <tbody>
+<<<<<<< Updated upstream
             <tr>
                 <th>西部数据1TB</th>
                 <th><input class="input" type="number" readonly value="99999">元</th>
@@ -43,6 +54,26 @@
                 <th>
                     <button id="button-cpu"  onclick="Clicked('button-cpu')" class="btn-primary" >编辑</button>
                 </th>
+=======
+            <tr th:each="item:${CPUList}">
+                <td th:text="${item.getName()}"></td>
+                <td><input class="input" type="number" readonly th:value="${item.getMoney()}">元</td>
+                <td><input class="input" type="number" readonly th:value="${item.getAmount()}">件</td>
+                <td>
+                    <button type="button" th:id="'CPU_' + ${item.getId()}"
+<<<<<<< Updated upstream
+                            th:onclick="'Clicked(\'CPU_' + ${item.getId()} + '\')'"
+                            class="btn btn-primary">编辑
+=======
+                            th:onclick="'Clicked(\'CPU_' + ${item.getId()} + '\')'" class="btn btn-primary">编辑
+>>>>>>> Stashed changes
+                    </button>
+                    <button type="button" class="btn btn-danger"
+                            th:onclick="'Remove(\'CPU\', ' + ${item.getId()} + ')'">
+                        删除
+                    </button>
+                </td>
+>>>>>>> Stashed changes
             </tr>
             </tbody>
         </table>
@@ -59,6 +90,7 @@
             </tr>
             </thead>
             <tbody>
+<<<<<<< Updated upstream
             <tr>
                 <th>西部数据1TB</th>
                 <th><input class="input" type="number" readonly value="99999">元</th>
@@ -66,6 +98,26 @@
                 <th>
                     <button id="button-gpu" onclick="Clicked('button-gpu')"  class="btn-primary">编辑</button>
                 </th>
+=======
+            <tr th:each="item:${GPUList}">
+                <td th:text="${item.getName()}"></td>
+                <td><input class="input" type="number" readonly th:value="${item.getMoney()}">元</td>
+                <td><input class="input" type="number" readonly th:value="${item.getAmount()}">件</td>
+                <td>
+                    <button type="button" th:id="'GPU_' + ${item.getId()}"
+<<<<<<< Updated upstream
+                            th:onclick="'Clicked(\'GPU_' + ${item.getId()} + '\')'"
+                            class="btn btn-primary">编辑
+=======
+                            th:onclick="'Clicked(\'GPU_' + ${item.getId()} + '\')'" class="btn btn-primary">编辑
+>>>>>>> Stashed changes
+                    </button>
+                    <button type="button" class="btn btn-danger"
+                            th:onclick="'Remove(\'GPU\', ' + ${item.getId()} + ')'">
+                        删除
+                    </button>
+                </td>
+>>>>>>> Stashed changes
             </tr>
             </tbody>
         </table>
@@ -84,6 +136,7 @@
             </tr>
             </thead>
             <tbody>
+<<<<<<< Updated upstream
             <tr>
                 <th>西部数据1TB</th>
                 <th><input class="input" type="number" readonly value="99999">元</th>
@@ -91,6 +144,27 @@
                 <th>
                     <button id="button-memory" onclick="Clicked('button-memory')" class="btn-primary">编辑</button>
                 </th>
+=======
+            <tr th:each="item:${MemoryList}">
+                <td th:text="${item.getName()}"></td>
+                <td><input class="input" type="number" readonly th:value="${item.getMoney()}">元</td>
+                <td><input class="input" type="number" readonly th:value="${item.getAmount()}">件</td>
+                <td>
+                    <button type="button" th:id="'Memory_' + ${item.getId()}"
+<<<<<<< Updated upstream
+                            th:onclick="'Clicked(\'Memory_' + ${item.getId()} + '\')'"
+                            class="btn btn-primary">
+=======
+                            th:onclick="'Clicked(\'Memory_' + ${item.getId()} + '\')'" class="btn btn-primary">
+>>>>>>> Stashed changes
+                        编辑
+                    </button>
+                    <button type="button" class="btn btn-danger"
+                            th:onclick="'Remove(\'Memory\', ' + ${item.getId()} + ')'">
+                        删除
+                    </button>
+                </td>
+>>>>>>> Stashed changes
             </tr>
             </tbody>
         </table>
@@ -107,6 +181,7 @@
             </tr>
             </thead>
             <tbody>
+<<<<<<< Updated upstream
             <tr>
                 <th>西部数据1TB</th>
                 <th><input class="input" type="number" readonly value="99999">元</th>
@@ -114,6 +189,26 @@
                 <th>
                     <button id="button-driver" onclick="Clicked('button-driver')" class="btn-primary">编辑</button>
                 </th>
+=======
+            <tr th:each="item:${DriveList}">
+                <td th:text="${item.getName()}"></td>
+                <td><input class="input" type="number" readonly th:value="${item.getMoney()}">元</td>
+                <td><input class="input" type="number" readonly th:value="${item.getAmount()}">件</td>
+                <td>
+                    <button type="button" th:id="'Drive_' + ${item.getId()}"
+<<<<<<< Updated upstream
+                            th:onclick="'Clicked(\'Drive_' + ${item.getId()} + '\')'"
+                            class="btn btn-primary">编辑
+=======
+                            th:onclick="'Clicked(\'Drive_' + ${item.getId()} + '\')'" class="btn btn-primary">编辑
+>>>>>>> Stashed changes
+                    </button>
+                    <button type="button" class="btn btn-danger"
+                            th:onclick="'Remove(\'Drive\', ' + ${item.getId()} + ')'">
+                        删除
+                    </button>
+                </td>
+>>>>>>> Stashed changes
             </tr>
             </tbody>
         </table>
