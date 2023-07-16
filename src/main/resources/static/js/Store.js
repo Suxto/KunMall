@@ -53,7 +53,7 @@ function showForm(type) {
     if (isAdding) return;
     isAdding = true;
     // 创建一个新的<tr>元素
-    const tbody = document.querySelector('.Module tbody');
+    const tbody = document.getElementById('tbody_'+type);
     const firstRow = tbody.querySelector('tr');
     const newRow = document.createElement('tr');
     const funcName = '\"SaveNewChange(\'' + type + '\')\"';
@@ -73,7 +73,7 @@ function SaveNewChange(type) {
     let name = childNodes.item(0).firstChild.value;
     let price = childNodes.item(1).firstChild.value;
     let amount = childNodes.item(2).firstChild.value;
-    console.log(type);
+    // console.log(name,price,amount);
     $.ajax({
         url: '/Admin/AddComponent',
         type: 'POST',
