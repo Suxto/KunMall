@@ -10,17 +10,17 @@ CREATE TABLE Users
 
 CREATE TABLE Orders
 (
-    id        INT PRIMARY KEY AUTO_INCREMENT,
-    userID    INT NOT NULL REFERENCES Users (id),
-    CPUID     INT NOT NULL REFERENCES CPU (id),
-    GPUID     INT NOT NULL REFERENCES GPU (id),
-    DriveID   INT NOT NULL REFERENCES Drive (id),
-    MemoryID  INT NOT NULL REFERENCES Memory (id),
-    address   VARCHAR(40),
-    money     DECIMAL(10, 2),
-    orderTime DATETIME,
-    status    BOOLEAN,
-    comment   VARCHAR(70)
+    id         INT PRIMARY KEY AUTO_INCREMENT,
+    userID     INT NOT NULL REFERENCES Users (id),
+    CPUName    VARCHAR(20),
+    GPUName    VARCHAR(20),
+    DriveName  VARCHAR(20),
+    MemoryName VARCHAR(20),
+    address    VARCHAR(40),
+    money      DECIMAL(10, 2),
+    orderTime  DATETIME,
+    status     VARCHAR(10),
+    comment    VARCHAR(70)
 );
 
 CREATE TABLE Recommends
@@ -72,13 +72,4 @@ CREATE TABLE Service
     lastChat TIMESTAMP
 );
 
-CREATE TABLE Cart
-(
-    userID   INT PRIMARY KEY REFERENCES Users (id),
-    id       INT AUTO_INCREMENT UNIQUE KEY,
-    CPUID    INT NOT NULL REFERENCES CPU (id),
-    GPUID    INT NOT NULL REFERENCES GPU (id),
-    DriveID  INT NOT NULL REFERENCES Drive (id),
-    MemoryID INT NOT NULL REFERENCES Memory (id)
-)
 
