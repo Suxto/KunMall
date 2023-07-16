@@ -25,9 +25,8 @@
 
 <div class="top">
     <div class="left-top  mt-3">
-
-        <h2>CPU:<span th:text="${CPUList.size()}"></span>
-            <button class="btn btn-primary" onclick="showForm()">添加</button>
+        <h2>CPU:<span th:text="${CPUList.size()}"></span>个
+            <button class="btn btn-primary" onclick="showForm('CPU')">添加</button>
         </h2>
         <table class="Module table table-hover">
             <thead>
@@ -57,7 +56,7 @@
         </table>
     </div>
     <div class="right-top  mt-3">
-        <h2>显卡:<span th:text="${GPUList.size()}"></span></h2>
+        <h2>显卡:<span th:text="${GPUList.size()}"></span>个</h2>
         <table class="Module table table-hover">
             <thead>
             <tr>
@@ -88,7 +87,7 @@
 </div>
 <div class="bottom">
     <div class="left-bottom  mt-3">
-        <h2>内存:<span th:text="${MemoryList.size()}"></span></h2>
+        <h2>内存:<span th:text="${MemoryList.size()}"></span>个</h2>
         <table class="Module table table-hover">
             <thead>
             <tr>
@@ -118,7 +117,7 @@
         </table>
     </div>
     <div class="right-bottom  mt-3">
-        <h2>硬盘:<span th:text="${DriveList.size()}"></span></h2>
+        <h2>硬盘:<span th:text="${DriveList.size()}"></span>个</h2>
         <table class="Module table table-hover">
             <thead>
             <tr>
