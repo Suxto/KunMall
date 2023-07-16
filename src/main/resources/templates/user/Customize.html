@@ -1,7 +1,6 @@
 <!--定制-->
-
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 
 <head>
     <meta charset="UTF-8">
@@ -23,35 +22,8 @@
     <!--JS-->
     <script type="text/javascript" src="../../static/js/Customize.js"></script>
 <body>
-<!--导航栏-->
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark navbar-top">
-    <!-- Brand/logo -->
-    <a class="navbar-brand" href="#">
-        <img src="../../static/img/ikunLOGO.png" width="55">
-    </a>
+<div th:replace="user/NavBar :: navbar"></div>
 
-    <!-- Links -->
-    <div class="collapse navbar-collapse" id="mynavbar">
-        <ul class="navbar-nav me-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="Home.html">首页</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="Customize.html">定制</a>
-            </li>
-        </ul>
-        <ul class="navbar-nav me-right">
-            <li class="nav-item">
-                <a class="nav-link" href="javascript:void(0)">客服</a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="Login.html">登录</a>
-            </li>
-        </ul>
-    </div>
-</nav>
-<!------------------------------------------------------->
 <div class="container mt-3">
     <h4>筛选</h4>
     <div>

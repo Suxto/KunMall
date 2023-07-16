@@ -94,10 +94,6 @@ public class UserController {
     @GetMapping("/Customize*")
     public String customize(@RequestParam(defaultValue = "0", value = "recommend") String num, Model model) {
         userInfoSetter(model);
-
-        if ("0".equals(num)) {
-
-        }
         return "user/Customize";
     }
 
