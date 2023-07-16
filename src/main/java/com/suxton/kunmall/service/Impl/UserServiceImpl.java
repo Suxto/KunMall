@@ -1,12 +1,14 @@
 package com.suxton.kunmall.service.Impl;
 
 import com.suxton.kunmall.dao.OrdersMapper;
+import com.suxton.kunmall.dao.UserConsumedMapper;
 import com.suxton.kunmall.dao.UserMapper;
 import com.suxton.kunmall.pojo.Orders;
 import com.suxton.kunmall.pojo.OrdersExample;
 import com.suxton.kunmall.pojo.User;
 import com.suxton.kunmall.pojo.UserExample;
 import com.suxton.kunmall.service.UserService;
+import com.suxton.kunmall.pojo.UserConsumed;
 import jakarta.annotation.Resource;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,8 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
     @Resource
     private OrdersMapper ordersMapper;
+    @Resource
+    private UserConsumedMapper userConsumedMapper;
 
     private final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
@@ -65,5 +69,10 @@ public class UserServiceImpl implements UserService {
         ordersExample.or().andUseridEqualTo(id);
         ordersExample.setOrderByClause("orderTime DESC");
         return ordersMapper.selectByExample(ordersExample);
+    }
+
+    @Override
+    public List<UserConsumed> getUserConsumed() {
+        return userConsumedMapper.getUsersConsumed();
     }
 }

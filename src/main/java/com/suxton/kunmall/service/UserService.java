@@ -2,6 +2,7 @@ package com.suxton.kunmall.service;
 
 import com.suxton.kunmall.pojo.Orders;
 import com.suxton.kunmall.pojo.User;
+import com.suxton.kunmall.pojo.UserConsumed;
 
 import java.util.List;
 
@@ -16,4 +17,6 @@ public interface UserService {
     void createOrder(Orders order);
 
     List<Orders> getUserOrderList(int id);
+
+    List<UserConsumed> getUserConsumed();
 }
