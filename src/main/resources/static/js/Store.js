@@ -29,22 +29,6 @@ function Clicked(ElemID) {
     }
 }
 
-function Remove(type, id) {
-    $.ajax({
-        url: '/Admin/DeleteComponent',
-        type: 'POST',
-        data: {
-            id: id,
-            type: type
-        }, success: function (data) {
-            window.alert("删除成功");
-            location.reload();
-        }, error: function (xhr, status, error) {
-            window.alert("失败");
-            console.error('Error updating password: ' + error);
-        }
-    });
-}
 
 function Remove(type, id) {
     $.ajax({
