@@ -11,9 +11,6 @@ function ChangeSubmit(btn, attribute) {
     if (btn.textContent === "编辑") {
         price.readOnly = true;
         quantity.readOnly = true;
-    } else {
-        price.readOnly = false;
-        quantity.readOnly = false;
         let attrs = attribute.split("_")
         // 在控制台输出名称、价格和剩余量
         // console.log("名称：" + name + "，价格：" + price + "，剩余量：" + quantity);
@@ -35,6 +32,10 @@ function ChangeSubmit(btn, attribute) {
                 console.error('Error updating password: ' + error);
             }
         });
+    } else {
+        price.readOnly = false;
+        quantity.readOnly = false;
+
     }
 }
 
