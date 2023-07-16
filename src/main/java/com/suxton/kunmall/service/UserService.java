@@ -25,4 +25,6 @@ public interface UserService {
     void changeRole(int id);
 
     void updatePassword(int id, String password);
+
+    void getHelpText(int id);
 }

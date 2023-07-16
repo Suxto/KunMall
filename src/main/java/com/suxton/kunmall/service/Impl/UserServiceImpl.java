@@ -94,4 +94,9 @@ public class UserServiceImpl implements UserService {
         user.setPasswd(bCryptPasswordEncoder.encode(password));
         userMapper.updateByPrimaryKey(user);
     }
+
+    @Override
+    public void getHelpText(int id) {
+
+    }
 }

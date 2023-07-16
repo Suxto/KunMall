@@ -8,4 +8,8 @@ public interface OrderService {
     List<Orders> getUnfinishedOrders();
 
     List<Orders> getAllOrders();
+
+    List<Orders> getOrderByUserID(int id);
+
+    void updateStatusByID(int id, String status);
 }

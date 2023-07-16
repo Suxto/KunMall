@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8"/>
@@ -17,47 +17,12 @@
 
     <!-- 最新的 Bootstrap5 核心 JavaScript 文件 -->
     <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.min.js"></script>
-
+    <script src="../../static/js/OrderDeal.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
-<!--导航栏-->
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark navbar-top">
-    <!-- Brand/logo -->
-    <a class="navbar-brand" href="#">
-        <img src="../../static/img/ikunLOGO.png" width="55">
-    </a>
-
-    <!-- Links -->
-    <div class="collapse navbar-collapse" id="mynavbar">
-        <ul class="navbar-nav me-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="AdminHome.html">营业查询</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="Store.html">仓库管理</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="OrderDeal.html">订单处理</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="Help.html">客服回复</a>
-            </li>
-        </ul>
-        <ul class="navbar-nav me-right">
-            <li class="nav-item" th:if="${username==null}">
-                <a class="nav-link" href="Login.html">登录</a>
-            </li>
-            <li class="nav-item" th:if="${username!=null}">
-                <a class="nav-link" th:text="${username}"></a>
-            </li>
-            <li class="nav-item" th:if="${username!=null}">
-                <a class="nav-link" th:href="@{/logout}">登出</a>
-            </li>
-
-        </ul>
-    </div>
-</nav>
+<div th:replace="~{admin/NavBar :: navbar}"></div>
 <!--------------------------------------------------------------->
 <h1>订单详情</h1>
 <div class="order-border" th:each="item:${orders}">
@@ -75,12 +40,14 @@
         </tr>
         <tr>
             <td>状态：</td>
-            <td><select class="status" name="status" id="status" th:text="${item.getStatus()}" >
-                <option value="0">未发货</option>
-                <option value="1">已发货</option>
-                <option value="2">已完成</option>
-            </select></se></td>
-            <td class="button"><button class="btn btn-primary">编辑</button></td>
+            <td>
+                <select class="status" name="status" th:id="'status_' + ${item.getId()}"
+                        th:onchange="'changeStatus('+${item.getId()}+')'">
+                    <option value="未发货" th:selected="${item.getStatus().equals('未发货')}">未发货</option>
+                    <option value="已发货" th:selected="${item.getStatus().equals('已发货')}">已发货</option>
+                    <option value="已完成" th:selected="${item.getStatus().equals('已完成')}">已完成</option>
+                </select>
+            </td>
         </tr>
         <tr>
             <td>时间：</td>

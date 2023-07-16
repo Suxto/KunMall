@@ -41,11 +41,11 @@ h1 {
 }
 
 .status {
-    pointer-events: none; /* 禁用鼠标事件 */
+    /*pointer-events: none; !* 禁用鼠标事件 *!*/
     opacity: 0.6; /* 设置不透明度，以显示禁用状态 */
     text-align: center;
     width: 100px;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
+    /*-webkit-appearance: none;*/
+    /*-moz-appearance: none;*/
+    /*appearance: none;*/
 }

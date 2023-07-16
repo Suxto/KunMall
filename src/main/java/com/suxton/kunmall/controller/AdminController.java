@@ -112,14 +112,43 @@ public class AdminController {
                       @RequestParam("price") double price,
                       @RequestParam("amount") int amount) {
         if ("CPU".equals(type)) {
-            hardwareService.addCPU(name,price,amount);
+            hardwareService.addCPU(name, price, amount);
         } else if ("GPU".equals(type)) {
-            hardwareService.addGPU(name,price,amount);
+            hardwareService.addGPU(name, price, amount);
         } else if ("Memory".equals(type)) {
-            hardwareService.addMemory(name,price,amount);
+            hardwareService.addMemory(name, price, amount);
         } else if ("Drive".equals(type)) {
-            hardwareService.addDrive(name,price,amount);
+            hardwareService.addDrive(name, price, amount);
         }
         return "redirect:/Admin/Store";
+    }
+
+    @GetMapping("/Admin/OrderDeal*")
+    public String orderDealPage(Model model) {
+        userInfoSetter(model);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Object principal = authentication.getPrincipal();
+        MyUserDetails userDetails = (MyUserDetails) principal;
+        int id = userDetails.id();
+        model.addAttribute("orders", orderService.getAllOrders());
+        return "/admin/OrderDeal";
+    }
+
+    @PostMapping("/Admin/ChangeStatus")
+    public String changeStatus(@RequestParam("id") int id, @RequestParam("status") String status) {
+        orderService.updateStatusByID(id, status);
+        return "redirect:/OrderDeal";
+    }
+
+    @GetMapping("/Admin/Help*")
+    public String helpPage(Model model) {
+        userInfoSetter(model);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Object principal = authentication.getPrincipal();
+        MyUserDetails userDetails = (MyUserDetails) principal;
+        int id = userDetails.id();
+        userService.getHelpText(id);
+        model.addAttribute("text","jjeee \n eeeee");
+        return "admin/Help";
     }
 }

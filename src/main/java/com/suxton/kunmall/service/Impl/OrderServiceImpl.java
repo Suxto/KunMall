@@ -25,4 +25,18 @@ public class OrderServiceImpl implements OrderService {
     public List<Orders> getAllOrders() {
         return ordersMapper.selectByExample(new OrdersExample());
     }
+
+    @Override
+    public List<Orders> getOrderByUserID(int id) {
+        OrdersExample ordersExample = new OrdersExample();
+        ordersExample.or().andUseridEqualTo(id);
+        return ordersMapper.selectByExample(ordersExample);
+    }
+
+    @Override
+    public void updateStatusByID(int id, String status) {
+        Orders orders = ordersMapper.selectByPrimaryKey(id);
+        orders.setStatus(status);
+        ordersMapper.updateByPrimaryKey(orders);
+    }
 }
