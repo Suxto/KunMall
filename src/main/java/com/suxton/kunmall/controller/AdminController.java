@@ -105,4 +105,21 @@ public class AdminController {
         }
         return "redirect:/Admin/Store";
     }
+
+    @PostMapping("/Admin/AddComponent")
+    public String add(@RequestParam("type") String type,
+                      @RequestParam("name") String name,
+                      @RequestParam("price") double price,
+                      @RequestParam("amount") int amount) {
+        if ("CPU".equals(type)) {
+            hardwareService.addCPU(name,price,amount);
+        } else if ("GPU".equals(type)) {
+            hardwareService.addGPU(name,price,amount);
+        } else if ("Memory".equals(type)) {
+            hardwareService.addMemory(name,price,amount);
+        } else if ("Drive".equals(type)) {
+            hardwareService.addDrive(name,price,amount);
+        }
+        return "redirect:/Admin/Store";
+    }
 }

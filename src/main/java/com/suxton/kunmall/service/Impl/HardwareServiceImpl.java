@@ -196,4 +196,40 @@ public class HardwareServiceImpl implements HardwareService {
         driveMapper.deleteByPrimaryKey(id);
     }
 
+    @Override
+    public void addCPU(String name, double price, int amount) {
+        CPU cpu = new CPU();
+        cpu.setAmount(amount);
+        cpu.setName(name);
+        cpu.setMoney(BigDecimal.valueOf(price));
+        cpuMapper.insert(cpu);
+    }
+
+    @Override
+    public void addGPU(String name, double price, int amount) {
+        GPU gpu = new GPU();
+        gpu.setAmount(amount);
+        gpu.setName(name);
+        gpu.setMoney(BigDecimal.valueOf(price));
+        gpuMapper.insert(gpu);
+    }
+
+    @Override
+    public void addMemory(String name, double price, int amount) {
+        Memory memory = new Memory();
+        memory.setAmount(amount);
+        memory.setName(name);
+        memory.setMoney(BigDecimal.valueOf(price));
+        memoryMapper.insert(memory);
+    }
+
+    @Override
+    public void addDrive(String name, double price, int amount) {
+        Drive drive = new Drive();
+        drive.setAmount(amount);
+        drive.setName(name);
+        drive.setMoney(BigDecimal.valueOf(price));
+        driveMapper.insert(drive);
+    }
+
 }

@@ -46,4 +46,12 @@ public interface HardwareService {
     void deleteMemory(int id);
 
     void deleteDrive(int id);
+
+    void addCPU(String name, double price, int amount);
+
+    void addGPU(String name, double price, int amount);
+
+    void addMemory(String name, double price, int amount);
+
+    void addDrive(String name, double price, int amount);
 }

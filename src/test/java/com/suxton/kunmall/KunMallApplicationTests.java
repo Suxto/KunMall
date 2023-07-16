@@ -1,5 +1,6 @@
 package com.suxton.kunmall;
 
+import com.suxton.kunmall.service.HardwareService;
 import com.suxton.kunmall.service.UserService;
 import com.suxton.kunmall.pojo.UserConsumed;
 import org.junit.jupiter.api.Test;
@@ -12,18 +13,13 @@ import java.util.List;
 class KunMallApplicationTests {
     @Autowired
     private UserService userService;
+    @Autowired
+    HardwareService hardwareService;
 
     @Test
     void userServiceTest() {
 //        userService.createUser("Suxton", "1234");
-        List<UserConsumed> userConsumed = userService.getUserConsumed();
-        for (UserConsumed consumedInfo : userConsumed) {
-            System.out.println(consumedInfo.getUserID());
-            System.out.println(consumedInfo.getMoney());
-            System.out.println(consumedInfo.getConsumeTime());
-            System.out.println(consumedInfo.getUserName());
-            System.out.println(consumedInfo.getLatestOrder());
-        }
+        hardwareService.addCPU("i5-13500", 1500, 20);
     }
 
 }
