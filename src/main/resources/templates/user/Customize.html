@@ -152,7 +152,7 @@
             </form>
         </div>
         <div class="col p-4 ">
-            <form id="form2" action="https://localhost:8080" method="post">
+            <form id="form2" method="post">
                 <table class="Module table ">
                     <tr>
                         <td id="gpu-select"><input class="input" type="text" name="gpu" readonly></td>
@@ -165,7 +165,7 @@
 
         </div>
         <div class="col p-4 ">
-            <form id="form3" action="https://localhost:8080" method="post">
+            <form id="form3" method="post">
                 <table class="Module table ">
                     <tr>
                         <td id="memory-select"><input class="input" type="text" name="memory" readonly></td>
@@ -188,7 +188,8 @@
                     </tr>
                 </table>
                 <h4 class="sum">合计:<label>
-                    <input class="input" type="number" name="SumMoney" id="SumMoney" readonly style="border: none" value="0">
+                    <input class="input" type="number" name="SumMoney" id="SumMoney" readonly style="border: none"
+                           value="0">
                 </label></h4></form>
             <button type="button" onclick="Submit()" class="buy btn btn-primary" id="checkout-button"
                     data-checkout-url="@{/checkout}">
