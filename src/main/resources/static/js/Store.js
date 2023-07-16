@@ -45,3 +45,41 @@ function Remove(type, id) {
         }
     });
 }
+
+function Remove(type, id) {
+    $.ajax({
+        url: '/Admin/DeleteComponent',
+        type: 'POST',
+        data: {
+            id: id,
+            type: type
+        }, success: function (data) {
+            window.alert("删除成功");
+            location.reload();
+        }, error: function (xhr, status, error) {
+            window.alert("失败");
+            console.error('Error updating password: ' + error);
+        }
+    });
+}
+
+function showForm() {
+    // 创建一个新的<tr>元素
+    const tbody = document.querySelector('.Module tbody');
+    const firstRow = tbody.querySelector('tr');
+    const newRow = document.createElement('tr');
+// 添加新行的HTML内容，包括四个<td>元素
+    newRow.innerHTML = '<td><input  type="text" name="name" style="width: 100px;"></td>' +
+        '<td><input  type="number" name="price" style="width: 100px;">元</td>' +
+        '<td><input  type="number" name="amount" style="width: 100px;">件</td>' +
+        '<td><button id="save" type="button" class="btn btn-primary" onclick="SaveNewChange()">保存</button></td>';
+
+// 将新行插入到第一个行的前面
+    tbody.insertBefore(newRow, firstRow);
+
+}
+
+function SaveNewChange() {
+    const save = document.getElementById("save").parentNode.parentNode;
+}
+
