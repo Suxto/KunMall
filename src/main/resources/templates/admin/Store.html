@@ -5,7 +5,7 @@
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Document</title>
+    <title>管理员界面-仓库管理</title>
     <link rel="stylesheet" type="text/css" href="../../static/css/Navigation.css">
     <link rel="stylesheet" type="text/css" href="../../static/css/Admin.css">
     <!-- 新 Bootstrap5 核心 CSS 文件 -->
@@ -37,7 +37,7 @@
                 <th>操作</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody id="tbody_CPU">
             <tr th:each="item:${CPUList}">
                 <td th:text="${item.getName()}"></td>
                 <td><input class="input" type="number" readonly th:value="${item.getMoney()}">元</td>
@@ -56,7 +56,8 @@
         </table>
     </div>
     <div class="right-top  mt-3">
-        <h2>显卡:<span th:text="${GPUList.size()}"></span>个</h2>
+        <h2>显卡:<span th:text="${GPUList.size()}"></span>个
+            <button class="btn btn-primary" onclick="showForm('GPU')">添加</button></h2>
         <table class="Module table table-hover">
             <thead>
             <tr>
@@ -66,7 +67,7 @@
                 <th>操作</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody id="tbody_GPU">
             <tr th:each="item:${GPUList}">
                 <td th:text="${item.getName()}"></td>
                 <td><input class="input" type="number" readonly th:value="${item.getMoney()}">元</td>
@@ -87,7 +88,8 @@
 </div>
 <div class="bottom">
     <div class="left-bottom  mt-3">
-        <h2>内存:<span th:text="${MemoryList.size()}"></span>个</h2>
+        <h2>内存:<span th:text="${MemoryList.size()}"></span>
+            <button class="btn btn-primary" onclick="showForm('Memory')">添加</button></h2>
         <table class="Module table table-hover">
             <thead>
             <tr>
@@ -97,7 +99,7 @@
                 <th>操作</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody id="tbody_Memory">
             <tr th:each="item:${MemoryList}">
                 <td th:text="${item.getName()}"></td>
                 <td><input class="input" type="number" readonly th:value="${item.getMoney()}">元</td>
@@ -117,7 +119,8 @@
         </table>
     </div>
     <div class="right-bottom  mt-3">
-        <h2>硬盘:<span th:text="${DriveList.size()}"></span>个</h2>
+        <h2>硬盘:<span th:text="${DriveList.size()}"></span>个
+            <button class="btn btn-primary" onclick="showForm('Drive')">添加</button></h2>
         <table class="Module table table-hover">
             <thead>
             <tr>
@@ -127,7 +130,7 @@
                 <th>操作</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody id="tbody_Drive">
             <tr th:each="item:${DriveList}">
                 <td th:text="${item.getName()}"></td>
                 <td><input class="input" type="number" readonly th:value="${item.getMoney()}">元</td>
