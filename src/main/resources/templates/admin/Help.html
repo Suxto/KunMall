@@ -16,6 +16,14 @@
     <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="../../static/js/Help.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', function () {
+            setTimeout(function () {
+                var messages = document.getElementById('messages');
+                messages.scrollTop = messages.scrollHeight;
+            }, 0);
+        });
+    </script>
 </head>
 <body>
 <!--导航栏-->
@@ -31,7 +39,7 @@
             <div class="btn close"></div>
         </div>
     </div>
-    <div class="messages">
+    <div class="messages" id="messages">
         <div class="message" th:text="${text}" style="white-space: pre-wrap;">
         </div>
     </div>
