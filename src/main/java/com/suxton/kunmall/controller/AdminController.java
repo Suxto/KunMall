@@ -141,14 +141,16 @@ public class AdminController {
     }
 
     @GetMapping("/Admin/Help*")
-    public String helpPage(Model model) {
+    public String helpPage(Model model, @RequestParam("userName") String username) {
         userInfoSetter(model);
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Object principal = authentication.getPrincipal();
         MyUserDetails userDetails = (MyUserDetails) principal;
+        model.addAttribute("uname", username);
         int id = userDetails.id();
-        userService.getHelpText(id);
-        model.addAttribute("text","jjeee \n eeeee");
+        model.addAttribute("text", userService.getHelpText(id, (short) 2));
         return "admin/Help";
     }
+
+
 }

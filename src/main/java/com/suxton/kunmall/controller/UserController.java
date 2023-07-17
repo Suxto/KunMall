@@ -164,4 +164,15 @@ public class UserController {
         return "user/Checkout";
     }
 
+    @GetMapping("/Help*")
+    public String helpForm(Model model) {
+        userInfoSetter(model);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Object principal = authentication.getPrincipal();
+        MyUserDetails userDetails = (MyUserDetails) principal;
+        Integer id = userDetails.id();
+        String username = userDetails.getUsername();
+        String helpText = userService.getHelpText(id, (short) 1);
+        return "user/Help";
+    }
 }

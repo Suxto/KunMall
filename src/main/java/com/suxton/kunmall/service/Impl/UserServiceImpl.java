@@ -1,6 +1,7 @@
 package com.suxton.kunmall.service.Impl;
 
 import com.suxton.kunmall.dao.OrdersMapper;
+import com.suxton.kunmall.dao.ServiceMapper;
 import com.suxton.kunmall.dao.UserConsumedMapper;
 import com.suxton.kunmall.dao.UserMapper;
 import com.suxton.kunmall.pojo.Orders;
@@ -13,6 +14,7 @@ import jakarta.annotation.Resource;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -23,6 +25,8 @@ public class UserServiceImpl implements UserService {
     private OrdersMapper ordersMapper;
     @Resource
     private UserConsumedMapper userConsumedMapper;
+    @Resource
+    private ServiceMapper serviceMapper;
 
     private final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
@@ -96,7 +100,33 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void getHelpText(int id) {
+    public String getHelpText(int id, short type) {
+        com.suxton.kunmall.pojo.Service service = serviceMapper.selectByPrimaryKey(id);
+        if (service == null) return "";
+        service.setStatus((short) (service.getStatus() & type));
+        return service.getContent();
+    }
 
+    /*
+     * type=1是用户，type=2是管理员
+     * status=0是双方已读，status=1是管理员未读，status=2是用户未读
+     * */
+    @Override
+    public void addHelpText(int id, String content, short type, String username) {
+        com.suxton.kunmall.pojo.Service service = serviceMapper.selectByPrimaryKey(id);
+        if (service == null) {
+            service = new com.suxton.kunmall.pojo.Service();
+            service.setUserid(id);
+            service.setContent(content);
+            service.setUsername(username);
+            service.setStatus(type);
+            service.setLastchat(new Date());
+            serviceMapper.insert(service);
+        } else {
+            service.setContent(service.getContent() + "\n\n" + content);
+            service.setStatus((short) (3 - type));
+            service.setLastchat(new Date());
+            serviceMapper.updateByPrimaryKey(service);
+        }
     }
 }

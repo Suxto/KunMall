@@ -65,10 +65,14 @@ CREATE TABLE Memory
     amount INT
 );
 
+DROP TABLE Service;
+
 CREATE TABLE Service
 (
     userID   INT PRIMARY KEY REFERENCES Users (id),
+    userName VARCHAR(30) REFERENCES Users (userName),
     content  TEXT,
+    status   INT2,
     lastChat TIMESTAMP
 );
 
