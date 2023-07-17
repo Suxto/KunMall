@@ -1,6 +1,5 @@
 package com.suxton.kunmall.service.Impl;
 
-import com.suxton.kunmall.controller.UserController;
 import com.suxton.kunmall.dao.OrdersMapper;
 import com.suxton.kunmall.dao.ServiceMapper;
 import com.suxton.kunmall.dao.UserConsumedMapper;
@@ -26,7 +25,7 @@ public class UserServiceImpl implements UserService {
     private UserConsumedMapper userConsumedMapper;
     @Resource
     private ServiceMapper serviceMapper;
-//    private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
     private final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
@@ -103,9 +102,9 @@ public class UserServiceImpl implements UserService {
     public String getHelpText(int id, short type) {
         com.suxton.kunmall.pojo.Service service = serviceMapper.selectByPrimaryKey(id);
         if (service == null) return "";
+//        logger.warn(service.getStatus()+"");
         service.setStatus((short) (service.getStatus() & type));
         serviceMapper.updateByPrimaryKey(service);
-//        logger.warn(service.getContent());
         return service.getContent();
     }
 
@@ -126,8 +125,8 @@ public class UserServiceImpl implements UserService {
             serviceMapper.insert(service);
         } else {
             service.setContent(service.getContent() + "\n" + content);
-//            logger.warn(service.getContent());
-            service.setStatus((short) (3 - type));
+            service.setStatus(type);
+//            logger.warn(service.getStatus() + "");
             service.setLastchat(new Date());
             serviceMapper.updateByPrimaryKey(service);
         }
@@ -138,5 +137,11 @@ public class UserServiceImpl implements UserService {
         ServiceExample serviceExample = new ServiceExample();
         serviceExample.setOrderByClause("status DESC");
         return serviceMapper.selectByExample(serviceExample);
+    }
+
+    @Override
+    public boolean isUnread(int id) {
+        com.suxton.kunmall.pojo.Service service = serviceMapper.selectByPrimaryKey(id);
+        return service.getStatus() == 1;
     }
 }

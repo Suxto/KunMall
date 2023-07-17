@@ -45,6 +45,7 @@ public class AdminController {
             if (userDetails.isAdmin()) {
                 model.addAttribute("admin", true);
             } else model.addAttribute("admin", false);
+
         }
     }
 

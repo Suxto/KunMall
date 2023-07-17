@@ -37,4 +37,6 @@ public interface UserService {
     void addHelpText(int id, String content, short type, String username);
 
     List<com.suxton.kunmall.pojo.Service> getServiceList();
+
+    boolean isUnread(int id);
 }

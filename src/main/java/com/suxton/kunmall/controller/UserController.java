@@ -38,7 +38,9 @@ public class UserController {
             if (userDetails.isAdmin()) {
                 model.addAttribute("admin", true);
             } else model.addAttribute("admin", false);
+            model.addAttribute("unread", userService.isUnread(userDetails.id()));
         }
+
     }
 
     @Autowired
@@ -172,6 +174,7 @@ public class UserController {
         Integer id = userDetails.id();
         String helpText = userService.getHelpText(id, (short) 2);
         model.addAttribute("text", helpText);
+        model.addAttribute("unread", false);
         return "user/Help";
     }
 
