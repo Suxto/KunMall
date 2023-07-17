@@ -117,8 +117,7 @@ public class UserController {
     public String submitOrder(@RequestParam("CPUName") String cpuName,
                               @RequestParam("GPUName") String gpuName,
                               @RequestParam("MemoryName") String memoryName,
-                              @RequestParam("DriveName") String driveName,
-                              @RequestParam("sum") double sum,
+                              @RequestParam("DriveName") String driveName, @RequestParam("sum") double sum,
                               @RequestParam("address") String address,
                               @RequestParam("comment") String comment) {
 
@@ -173,6 +172,17 @@ public class UserController {
         Integer id = userDetails.id();
         String username = userDetails.getUsername();
         String helpText = userService.getHelpText(id, (short) 1);
+        model.addAttribute("text", helpText);
         return "user/Help";
+    }
+
+    @PostMapping("/SendMsg")
+    public String sendMsg(@RequestParam("content") String content) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Object principal = authentication.getPrincipal();
+        MyUserDetails userDetails = (MyUserDetails) principal;
+        Integer id = userDetails.id();
+        userService.addHelpText(id, content, (short) 1, userDetails.getUsername());
+        return "redirect:/Help";
     }
 }
