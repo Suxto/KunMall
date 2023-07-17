@@ -1,16 +1,15 @@
 package com.suxton.kunmall.service.Impl;
 
+import com.suxton.kunmall.controller.UserController;
 import com.suxton.kunmall.dao.OrdersMapper;
 import com.suxton.kunmall.dao.ServiceMapper;
 import com.suxton.kunmall.dao.UserConsumedMapper;
 import com.suxton.kunmall.dao.UserMapper;
-import com.suxton.kunmall.pojo.Orders;
-import com.suxton.kunmall.pojo.OrdersExample;
-import com.suxton.kunmall.pojo.User;
-import com.suxton.kunmall.pojo.UserExample;
+import com.suxton.kunmall.pojo.*;
 import com.suxton.kunmall.service.UserService;
-import com.suxton.kunmall.pojo.UserConsumed;
 import jakarta.annotation.Resource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +26,7 @@ public class UserServiceImpl implements UserService {
     private UserConsumedMapper userConsumedMapper;
     @Resource
     private ServiceMapper serviceMapper;
+//    private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
     private final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
@@ -104,12 +104,14 @@ public class UserServiceImpl implements UserService {
         com.suxton.kunmall.pojo.Service service = serviceMapper.selectByPrimaryKey(id);
         if (service == null) return "";
         service.setStatus((short) (service.getStatus() & type));
+        serviceMapper.updateByPrimaryKey(service);
+//        logger.warn(service.getContent());
         return service.getContent();
     }
 
     /*
-     * type=1是用户，type=2是管理员
-     * status=0是双方已读，status=1是管理员未读，status=2是用户未读
+     * type=2是用户，type=1是管理员
+     * status=0是双方已读，status=2是管理员未读，status=1是用户未读
      * */
     @Override
     public void addHelpText(int id, String content, short type, String username) {
@@ -123,10 +125,18 @@ public class UserServiceImpl implements UserService {
             service.setLastchat(new Date());
             serviceMapper.insert(service);
         } else {
-            service.setContent(service.getContent() + "\n\n" + content);
+            service.setContent(service.getContent() + "\n" + content);
+//            logger.warn(service.getContent());
             service.setStatus((short) (3 - type));
             service.setLastchat(new Date());
             serviceMapper.updateByPrimaryKey(service);
         }
+    }
+
+    @Override
+    public List<com.suxton.kunmall.pojo.Service> getServiceList() {
+        ServiceExample serviceExample = new ServiceExample();
+        serviceExample.setOrderByClause("status DESC");
+        return serviceMapper.selectByExample(serviceExample);
     }
 }

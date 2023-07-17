@@ -5,6 +5,8 @@ import com.suxton.kunmall.service.HardwareService;
 import com.suxton.kunmall.service.OrderService;
 import com.suxton.kunmall.service.UserService;
 import com.suxton.kunmall.utils.MyUserDetails;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -13,14 +15,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
+
 
 @Controller
 public class AdminController {
     private final UserService userService;
     private final HardwareService hardwareService;
     private final OrderService orderService;
+    private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 
     @Autowired
     public AdminController(UserService userService, HardwareService hardwareService,
@@ -107,10 +112,8 @@ public class AdminController {
     }
 
     @PostMapping("/Admin/AddComponent")
-    public String add(@RequestParam("type") String type,
-                      @RequestParam("name") String name,
-                      @RequestParam("price") double price,
-                      @RequestParam("amount") int amount) {
+    public String add(@RequestParam("type") String type, @RequestParam("name") String name, @RequestParam(
+            "price") double price, @RequestParam("amount") int amount) {
         if ("CPU".equals(type)) {
             hardwareService.addCPU(name, price, amount);
         } else if ("GPU".equals(type)) {
@@ -141,16 +144,27 @@ public class AdminController {
     }
 
     @GetMapping("/Admin/Help*")
-    public String helpPage(Model model, @RequestParam("userName") String username) {
+    public String helpPage(Model model, @RequestParam("username") String username,
+                           @RequestParam("id") int id) {
         userInfoSetter(model);
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        Object principal = authentication.getPrincipal();
-        MyUserDetails userDetails = (MyUserDetails) principal;
-        model.addAttribute("uname", username);
-        int id = userDetails.id();
-        model.addAttribute("text", userService.getHelpText(id, (short) 2));
+        model.addAttribute("username", username);
+        model.addAttribute("id", id);
+        model.addAttribute("text", userService.getHelpText(id, (short) 1));
         return "admin/Help";
     }
 
+    @ResponseBody
+    @PostMapping("/Admin/Reply")
+    public String replyUserHelp(@RequestParam("id") int id,
+                                @RequestParam("content") String content) {
+        userService.addHelpText(id, "Admin: " + content, (short) 1, null);
+        return "ok";
+    }
 
+    @GetMapping("/Admin/AdminHelp*")
+    public String adminHelpPage(Model model) {
+        userInfoSetter(model);
+        model.addAttribute("List", userService.getServiceList());
+        return "/admin/AdminHelp";
+    }
 }

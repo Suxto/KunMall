@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <head>
         <meta charset="UTF-8"/>
@@ -25,23 +25,24 @@
 <div th:replace="~{admin/NavBar :: navbar}"></div>
 <!--------------------------------------------------------------->
 <h1 class="messageQ">消息列表</h1>
-<div class="order-border" th:each="item:${orders}">
+<div class="order-border" th:each="item:${List}">
     <table class="order">
         <tr>
-            <td>客户:<span>小帅</span></td>
-            <td>
-                未读
-            </td>
+            <td>客户:<span th:text="${item.getUsername()}"></span></td>
+            <td>状态:<span th:text="${item.getStatus()==2?'未读':'已读'}"></span></td>
             <td colspan="2">
             </td>
         </tr>
         <tr>
             <td>时间:</td>
             <td>
-            2023/7/17 12/12/44
+                <span th:text="${item.getLastchat()}"></span>
             </td>
             <td colspan="2">
-                <button class="btn btn-primary">回复</button>
+                <a class="btn btn-primary"
+                   th:href="@{/Admin/Help(username=${item.getUsername()},id=${item.getUserid()})}">
+                    回复
+                </a>
             </td>
         </tr>
     </table>

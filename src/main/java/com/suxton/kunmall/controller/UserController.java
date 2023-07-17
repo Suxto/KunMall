@@ -170,8 +170,7 @@ public class UserController {
         Object principal = authentication.getPrincipal();
         MyUserDetails userDetails = (MyUserDetails) principal;
         Integer id = userDetails.id();
-        String username = userDetails.getUsername();
-        String helpText = userService.getHelpText(id, (short) 1);
+        String helpText = userService.getHelpText(id, (short) 2);
         model.addAttribute("text", helpText);
         return "user/Help";
     }
@@ -182,7 +181,8 @@ public class UserController {
         Object principal = authentication.getPrincipal();
         MyUserDetails userDetails = (MyUserDetails) principal;
         Integer id = userDetails.id();
-        userService.addHelpText(id, content, (short) 1, userDetails.getUsername());
+        String username = userDetails.getUsername();
+        userService.addHelpText(id, username + ": " + content, (short) 2, username);
         return "redirect:/Help";
     }
 }

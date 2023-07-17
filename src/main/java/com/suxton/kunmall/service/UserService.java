@@ -35,4 +35,6 @@ public interface UserService {
      * status=0是双方已读，status=1是管理员未读，status=2是用户未读
      * */
     void addHelpText(int id, String content, short type, String username);
+
+    List<com.suxton.kunmall.pojo.Service> getServiceList();
 }
