@@ -16,13 +16,13 @@
 
 .order {
     border-collapse: collapse;
-    width: 100%;
+    margin:15px 25px ;
+    width: 95%;
 }
 
 .order td:first-child {
     font-weight: bold;
-    text-align: center;
-    width: 10%;
+    width: 20%;
 }.order td:nth-child(2) {
      font-weight: bold;
      width: 30%;
