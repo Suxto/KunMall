@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <head>
+        <meta charset="UTF-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>管理员界面-客服回复</title>
+        <link rel="stylesheet" type="text/css" href="../../static/css/Navigation.css">
+        <link rel="stylesheet" type="text/css" href="../../static/css/AdminHelp.css">
+        <!-- 新 Bootstrap5 核心 CSS 文件 -->
+        <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css">
+
+        <!--  popper.min.js 用于弹窗、提示、下拉菜单 -->
+        <script src="https://cdn.staticfile.org/popper.js/2.9.3/umd/popper.min.js"></script>
+
+        <!-- 最新的 Bootstrap5 核心 JavaScript 文件 -->
+        <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.min.js"></script>
+        <script src="../../static/js/Store.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    </head>
+</head>
+<body>
+<!--导航栏-->
+<div th:replace="~{admin/NavBar :: navbar}"></div>
+<!--------------------------------------------------------------->
+<h1 class="messageQ">消息列表</h1>
+<div class="order-border" th:each="item:${orders}">
+    <table class="order">
+        <tr>
+            <td>客户:<span>小帅</span></td>
+            <td>
+                未读
+            </td>
+            <td colspan="2">
+            </td>
+        </tr>
+        <tr>
+            <td>时间:</td>
+            <td>
+            2023/7/17 12/12/44
+            </td>
+            <td colspan="2">
+                <button class="btn btn-primary">回复</button>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

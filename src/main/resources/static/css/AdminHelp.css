@@ -1,0 +1,47 @@
+.order-border {
+    margin-top: 3%;
+    width: 60%;
+    margin-left: 20%;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.messageQ {
+    margin-top: 2%;
+    margin-bottom: 2%;
+    font-weight: bolder;
+    text-align: center;
+}
+
+.order {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.order td:first-child {
+    font-weight: bold;
+    text-align: center;
+    width: 10%;
+}.order td:nth-child(2) {
+     font-weight: bold;
+     width: 30%;
+ }
+.order td:nth-child(3) {
+    font-weight: bold;
+    text-align: right;
+}
+.order li {
+    list-style: none;
+    margin-top: 10px;
+    padding: 0;
+}
+
+.order tr td {
+    font-size: 20px;
+    height: 40px;
+}
+
+.order tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
