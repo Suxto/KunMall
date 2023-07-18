@@ -31,7 +31,9 @@
         <tr>
             <td>客户:<span th:text="${item.getUsername()}">Suxton</span></td>
             <td>状态:<span
-                    th:text="${item.getStatus()==2?'管理员未读':(item.getStatus()==1?'用户未读':'均已读')}"></span></td>
+                    th:text="${item.getStatus()==2?'管理员未读':(item.getStatus()==1?'用户未读':'均已读')}"
+                    th:style="'color:'+ ${item.getStatus()==2?'red':(item.getStatus()==1?'green':'black')}"
+            ></span></td>
             <td colspan="2">
             </td>
         </tr>
