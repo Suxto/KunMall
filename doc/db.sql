@@ -1,11 +1,12 @@
-CREATE DATABASE KunMall;
+-- CREATE DATABASE KunMall;
 USE KunMall;
+# drop table Users;
 CREATE TABLE Users
 (
     id       INT PRIMARY KEY AUTO_INCREMENT,
     userName VARCHAR(30),
     isAdmin  BOOLEAN DEFAULT FALSE,
-    passwd   VARCHAR(40) NOT NULL
+    passwd   VARCHAR(80) NOT NULL
 );
 
 CREATE TABLE Orders
@@ -23,15 +24,7 @@ CREATE TABLE Orders
     comment    VARCHAR(70)
 );
 
-CREATE TABLE Recommends
-(
-    id       INT PRIMARY KEY AUTO_INCREMENT,
-    CPUID    INT NOT NULL REFERENCES CPU (id),
-    GPUID    INT NOT NULL REFERENCES GPU (id),
-    DriveID  INT NOT NULL REFERENCES Drive (id),
-    MemoryID INT NOT NULL REFERENCES Memory (id),
-    comment  VARCHAR(70)
-);
+
 
 CREATE TABLE CPU
 (
@@ -65,15 +58,24 @@ CREATE TABLE Memory
     amount INT
 );
 
-DROP TABLE Service;
+# DROP TABLE Service;
 
 CREATE TABLE Service
 (
-    userID   INT PRIMARY KEY REFERENCES Users (id),
-    userName VARCHAR(30) REFERENCES Users (userName),
+    userID   INT PRIMARY KEY,#REFERENCES Users (id),
+    userName VARCHAR(30),#REFERENCES Users (userName),
     content  TEXT,
     status   INT2,
     lastChat TIMESTAMP
 );
 
 
+CREATE TABLE Recommends
+(
+    id       INT PRIMARY KEY AUTO_INCREMENT,
+    CPUID    INT NOT NULL REFERENCES CPU (id),
+    GPUID    INT NOT NULL REFERENCES GPU (id),
+    DriveID  INT NOT NULL REFERENCES Drive (id),
+    MemoryID INT NOT NULL REFERENCES Memory (id),
+    comment  VARCHAR(70)
+);

@@ -57,7 +57,7 @@ public class UserServiceImpl implements UserService {
         UserExample userExample = new UserExample();
         userExample.or().andUsernameEqualTo(name);
         List<User> users = userMapper.selectByExample(userExample);
-        if (users.size() == 0) return null;
+        if (users.isEmpty()) return null;
         else return users.get(0);
     }
 
@@ -142,6 +142,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean isUnread(int id) {
         com.suxton.kunmall.pojo.Service service = serviceMapper.selectByPrimaryKey(id);
+        if (service == null) return false;
         return service.getStatus() == 1;
     }
 }
