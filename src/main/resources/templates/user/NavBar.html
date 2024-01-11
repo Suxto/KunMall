@@ -13,12 +13,18 @@
             <li class="nav-item">
                 <a class="nav-link" href="Customize.html">定制</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="KunCircle.html">Kun友圈</a>
+            </li>
         </ul>
         <ul class="navbar-nav me-right">
             <li class="nav-item">
                 <a class="nav-link" href="Help.html">客服
-                    <span style="position: absolute;top: 20px;right: 395px; display: inline-block;width: 8px;height:
-                    8px;border-radius: 50%;background-color: red;margin-left: 5px;" th:if="${unread}"></span>
+                    <!--                    <span style="position: absolute;top: 20px;right: 395px; display: inline-block;width: 8px;height:-->
+                    <!--                    8px;border-radius: 50%;background-color: red;margin-left: 5px;" th:if="${unread}"></span>-->
+                    <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle"
+                          th:if="${unread}">
+                    </span>
                 </a>
             </li>
             <li class="nav-item" th:if="${username==null}">

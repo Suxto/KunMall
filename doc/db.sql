@@ -79,3 +79,4 @@ CREATE TABLE Recommends
     MemoryID INT NOT NULL REFERENCES Memory (id),
     comment  VARCHAR(70)
 );
+

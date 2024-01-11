@@ -1,0 +1,21 @@
+.post-container {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    margin-bottom: 20px;
+}
+
+.post-header {
+    background-color: #f8f9fa;
+    padding: 10px;
+}
+
+.post-body {
+    padding: 10px;
+}
+
+.comment-section {
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-top: 1px solid #dee2e6;
+}
