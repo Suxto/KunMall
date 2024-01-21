@@ -24,8 +24,6 @@ CREATE TABLE Orders
     comment    VARCHAR(70)
 );
 
-
-
 CREATE TABLE CPU
 (
     id     INT PRIMARY KEY AUTO_INCREMENT,
@@ -58,7 +56,7 @@ CREATE TABLE Memory
     amount INT
 );
 
-# DROP TABLE Service;
+-- DROP TABLE Service;
 
 CREATE TABLE Service
 (
@@ -80,3 +78,30 @@ CREATE TABLE Recommends
     comment  VARCHAR(70)
 );
 
+CREATE TABLE Comment
+(
+    id        INT PRIMARY KEY AUTO_INCREMENT,
+    moment_id INT NOT NULL,
+    text      TEXT
+);
+
+CREATE TABLE Photo
+(
+    id        INT PRIMARY KEY AUTO_INCREMENT,
+    moment_id INT,
+    photo     MEDIUMBLOB
+);
+
+CREATE TABLE Moment
+(
+    id        INT PRIMARY KEY AUTO_INCREMENT,
+    user_id   INT NOT NULL,
+    user_name VARCHAR(30),
+    like_num  INT DEFAULT (0)
+);
+
+CREATE TABLE MomentLike
+(
+    user_id   INT NOT NULL,
+    moment_id INT
+)

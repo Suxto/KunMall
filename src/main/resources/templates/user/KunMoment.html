@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Kun友圈-爱坤电脑城</title>
+  <!-- 新 Bootstrap5 核心 CSS 文件 -->
+  <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css">
+
+  <!--  popper.min.js 用于弹窗、提示、下拉菜单 -->
+  <script src="https://cdn.staticfile.org/popper.js/2.9.3/umd/popper.min.js"></script>
+
+  <!-- 最新的 Bootstrap5 核心 JavaScript 文件 -->
+  <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.min.js"></script>
+  <!--导航栏样式-->
+  <link rel="stylesheet" type="text/css" href="../../static/css/Navigation.css">
+  <!--首页样式-->
+  <link rel="stylesheet" type="text/css" href="../../static/css/KunMoment.css">
+  <!--图标-->
+  <link rel="icon" type="favicon.ico" href="../../static/img/ikunLOGO.png">
+</head>
+<body>
+<div class="container mt-5">
+  <div class="post-container">
+    <div class="post-header">
+      <h5>User Name</h5>
+    </div>
+    <div class="post-body">
+      <div id="carouselExampleIndicators" class="carousel carousel-dark slide">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
+                  aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1"
+                  aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2"
+                  aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner photo-container">
+          <div class="carousel-item active">
+            <img src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo-shadow.png"
+                 class="d-block w-100 photo-inside" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="https://www.runoob.com/wp-content/uploads/2013/09/ytxdmm71yvt3zokkrpn4-scaled.jpeg"
+                 class="d-block w-100 photo-inside" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="	https://www.runoob.com/images/box-model.gif" class="d-block w-100 photo-inside" alt="...">
+          </div>
+        </div>
+        <!--    pic swapper-->
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+
+      </div>
+    </div>
+
+    <div class="comment-section">
+      <p class="d-inline-flex ">
+        <a class="btn btn-danger" data-bs-toggle="collapse" href="#commonArea" role="button"
+           aria-expanded="false" aria-controls="collapseExample">
+          点赞(100)
+          <span th:text=""></span>
+        </a>
+      </p>
+
+      <p class="d-inline-flex ">
+        <a class="btn btn-primary" data-bs-toggle="collapse" href="#commonArea" role="button"
+           aria-expanded="false" aria-controls="collapseExample">
+          评论
+        </a>
+      </p>
+      <div class="collapse" id="commonArea">
+        <div class="comment-form">
+          <div class="mb-3">
+            <label for="commentInput" class="form-label" style="font-weight: bold">评论：</label>
+            <div class="d-flex align-items-start">
+              <label for="commentInput"></label>
+              <textarea id="commentInput" class="form-control" rows="3"
+                        style="border-radius: 10px;margin: 0 10px 0 0"
+                        placeholder="在此评论"></textarea>
+              <button type="submit" class="btn btn-primary comment-btn">发表评论
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card card-body comment">
+          <span class="comment-user-name">Suxton:</span>
+          Some placeholder content for the collapse component. This panel is hidden by default but revealed
+          when the user activates the relevant trigger.
+        </div>
+        <div class="card card-body comment">
+          <span class="comment-user-name ">Sux:</span>
+          Some placeholder content for the collapse component. This panel is hidden by default but revealed
+          when the user activates the relevant trigger.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
