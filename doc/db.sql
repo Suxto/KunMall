@@ -81,7 +81,9 @@ CREATE TABLE Recommends
 CREATE TABLE Comment
 (
     id        INT PRIMARY KEY AUTO_INCREMENT,
-    moment_id INT NOT NULL,
+    user_id   INT         NOT NULL,
+    user_name VARCHAR(30) NOT NULL,
+    moment_id INT         NOT NULL,
     text      TEXT
 );
 
