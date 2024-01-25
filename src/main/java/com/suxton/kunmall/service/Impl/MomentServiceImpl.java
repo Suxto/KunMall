@@ -28,7 +28,7 @@ public class MomentServiceImpl implements MomentService {
         List<MomentWithPhoto> momentWithPhotoList = new ArrayList<>();
         MomentExample momentExample = new MomentExample();
         momentExample.setOrderByClause("id DESC");
-        momentMapper.selectByExample(momentExample).forEach(moment -> {
+        momentMapper.selectByExampleWithBLOBs(momentExample).forEach(moment -> {
 //            System.out.println(moment);
             MomentWithPhoto momentWithPhoto = new MomentWithPhoto(moment);
             int id = momentWithPhoto.getId();

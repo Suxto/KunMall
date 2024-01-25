@@ -12,6 +12,7 @@
 
 .post-body {
     padding: 10px;
+    height: 435px;
 }
 
 .comment-section {
@@ -20,14 +21,12 @@
     border-top: 1px solid #dee2e6;
 }
 
-.photo-container {
-
-}
 
 .photo-inside {
     /*max-width: 100%;*/
     height: 400px;
     object-fit: contain;
+    border-radius: 25px;
 }
 
 .comment-user-name {
@@ -69,5 +68,12 @@
 }
 
 .modal-style {
-    max-width:50%;
+    max-width: 50%;
+}
+
+.moment-content {
+    font-size: larger;
+    height: 400px;
+    overflow-y: auto;
+    word-wrap: break-word;
 }
