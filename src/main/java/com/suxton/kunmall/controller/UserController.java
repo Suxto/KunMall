@@ -1,11 +1,14 @@
 package com.suxton.kunmall.controller;
 
+import com.suxton.kunmall.pojo.Moment;
+import com.suxton.kunmall.pojo.MomentWithPhoto;
 import com.suxton.kunmall.pojo.Orders;
 import com.suxton.kunmall.service.HardwareService;
+import com.suxton.kunmall.service.MomentService;
 import com.suxton.kunmall.service.UserService;
 import com.suxton.kunmall.utils.MyUserDetails;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+//import org.slf4j.Logger;
+//import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -14,19 +17,27 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.math.BigDecimal;
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
 @Controller
 public class UserController {
-    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+//    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
     private final UserService userService;
 
     private final HardwareService hardwareService;
+
+
+    private final MomentService momentService;
+
 
     private void userInfoSetter(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -44,9 +55,11 @@ public class UserController {
     }
 
     @Autowired
-    public UserController(UserService userService, HardwareService hardwareService) {
+    public UserController(UserService userService, HardwareService hardwareService
+            , MomentService momentService) {
         this.userService = userService;
         this.hardwareService = hardwareService;
+        this.momentService = momentService;
     }
 
 
@@ -61,6 +74,43 @@ public class UserController {
         List<String[]> resolvedRecommendsList = hardwareService.getResolvedRecommendsList();
         model.addAttribute("RecommendsList", resolvedRecommendsList);
         return "user/Home";
+    }
+
+    @GetMapping("/KunMoment*")
+    public String moment(Model model) {
+        userInfoSetter(model);
+        List<MomentWithPhoto> moments = momentService.getMoments();
+        model.addAttribute("MomentList", moments);
+        return "user/KunMoment";
+    }
+
+    @ResponseBody
+    @PostMapping("/UploadKunMomentMetaData")
+    public String uploadKunMomentMetaData(@RequestParam("text") String text) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Object principal = authentication.getPrincipal();
+        MyUserDetails userDetails = (MyUserDetails) principal;
+        int idx = momentService.addMoment(userDetails.getUsername(), userDetails.id(), text);
+        return String.valueOf(idx);
+    }
+
+    @ResponseBody
+    @PostMapping("/UploadKunMomentPhoto")
+    public String uploadKunMomentPhoto(@RequestParam("file") MultipartFile file,
+                                       @RequestParam("id") int momentID) {
+        try {
+            if (!file.isEmpty()) {
+                // Get bytes from the file
+                byte[] bytes = file.getBytes();
+                momentService.addPhoto(momentID, bytes);
+            } else {
+                return "Failed to upload image. File is empty.";
+            }
+        } catch (Exception e) {
+//            e.printStackTrace();
+            return "Failed to upload image. Error: " + e.getMessage();
+        }
+        return "ok";
     }
 
     @GetMapping("/Login*")

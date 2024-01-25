@@ -1,6 +1,8 @@
 -- CREATE DATABASE KunMall;
-USE KunMall;
-# drop table Users;
+USE
+    KunMall;
+#
+drop table Users;
 CREATE TABLE Users
 (
     id       INT PRIMARY KEY AUTO_INCREMENT,
@@ -8,6 +10,9 @@ CREATE TABLE Users
     isAdmin  BOOLEAN DEFAULT FALSE,
     passwd   VARCHAR(80) NOT NULL
 );
+
+INSERT INTO Users(id, username, isadmin, passwd)
+VALUES (1, 'admin', true, '$2a$10$eEr40FHB9zXb4OtH9kzZnu1yRCC6Dg0axUin.eNGeIV0KFN5zYwKu');
 
 CREATE TABLE Orders
 (
@@ -60,8 +65,10 @@ CREATE TABLE Memory
 
 CREATE TABLE Service
 (
-    userID   INT PRIMARY KEY,#REFERENCES Users (id),
-    userName VARCHAR(30),#REFERENCES Users (userName),
+    userID   INT PRIMARY KEY,
+    #REFERENCES Users (id),
+    userName VARCHAR(30),
+    #REFERENCES Users (userName),
     content  TEXT,
     status   INT2,
     lastChat TIMESTAMP
@@ -77,16 +84,16 @@ CREATE TABLE Recommends
     MemoryID INT NOT NULL REFERENCES Memory (id),
     comment  VARCHAR(70)
 );
-
+# DROP TABLE Comment
 CREATE TABLE Comment
 (
     id        INT PRIMARY KEY AUTO_INCREMENT,
     user_id   INT         NOT NULL,
     user_name VARCHAR(30) NOT NULL,
     moment_id INT         NOT NULL,
-    text      TEXT
+    content   TEXT
 );
-
+# drop table Photo
 CREATE TABLE Photo
 (
     id        INT PRIMARY KEY AUTO_INCREMENT,
@@ -94,12 +101,16 @@ CREATE TABLE Photo
     photo     MEDIUMBLOB
 );
 
+# drop table Moment;
 CREATE TABLE Moment
 (
-    id        INT PRIMARY KEY AUTO_INCREMENT,
-    user_id   INT NOT NULL,
-    user_name VARCHAR(30),
-    like_num  INT DEFAULT (0)
+    id          INT PRIMARY KEY AUTO_INCREMENT,
+    user_id     INT NOT NULL,
+    user_name   VARCHAR(30),
+    like_num    INT DEFAULT 0,
+    comment_num INT DEFAULT 0,
+    content     TEXT,
+    time_posted BIGINT
 );
 
 CREATE TABLE MomentLike

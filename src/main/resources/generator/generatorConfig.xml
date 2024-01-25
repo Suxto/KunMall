@@ -12,7 +12,7 @@
 
         <!-- 配置数据库连接信息 -->
         <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
-                        connectionURL="jdbc:mysql://47.120.6.121:3306/KunMall"
+                        connectionURL="jdbc:mysql://8.138.105.43:3307/KunMall"
                         userId="KunMallAdmin"
                         password="1234">
         </jdbcConnection>
@@ -45,7 +45,10 @@
         <table tableName="Orders" domainObjectName="Orders"/>
         <table tableName="Recommends" domainObjectName="Recommends"/>
         <table tableName="Service" domainObjectName="Service"/>
-        <!-- 可以配置多个表 -->
+        <table tableName="Comment" domainObjectName="Comment"/>
+        <table tableName="Moment" domainObjectName="Moment"/>
+        <table tableName="MomentLike" domainObjectName="MomentLike"/>
+        <table tableName="Photo" domainObjectName="Photo"/>
 
     </context>
 </generatorConfiguration>

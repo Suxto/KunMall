@@ -2,103 +2,103 @@
 <html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="UTF-8">
-    <title>结账-爱坤电脑城-为ikun提供最好的服务</title>
-    <!-- 新 Bootstrap5 核心 CSS 文件 -->
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css">
+  <meta charset="UTF-8">
+  <title>结账-爱坤电脑城-为ikun提供最好的服务</title>
 
-    <!--  popper.min.js 用于弹窗、提示、下拉菜单 -->
-    <script src="https://cdn.staticfile.org/popper.js/2.9.3/umd/popper.min.js"></script>
+  <!-- Bootstrap5.3.2 css -->
+  <link rel="stylesheet" href="../../static/plugin/bootstrap/bootstrap.min.css">
+  <!-- Bootstrap5.3.2 js -->
+  <script src="../../static/plugin/bootstrap/bootstrap.min.js"></script>
+  <!-- Popper.js  -->
+  <script src="../../static/plugin/bootstrap/popper.min.js"></script>
 
-    <!-- 最新的 Bootstrap5 核心 JavaScript 文件 -->
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.min.js"></script>
-    <!--导航栏样式-->
-    <link rel="stylesheet" type="text/css" href="../../static/css/Navigation.css">
-    <!--结账页样式-->
-    <link rel="stylesheet" type="text/css" href="../../static/css/Checkout.css">
-    <!--图标-->
-    <link rel="icon" type="favicon.ico" href="../../static/img/ikunLOGO.png">
-    <script src="../../static/js/Checkout.js"></script>
+  <!--导航栏样式-->
+  <link rel="stylesheet" type="text/css" href="../../static/css/Navigation.css">
+  <!--结账页样式-->
+  <link rel="stylesheet" type="text/css" href="../../static/css/Checkout.css">
+  <!--图标-->
+  <link rel="icon" type="favicon.ico" href="../../static/img/ikunLOGO.png">
+  <script src="../../static/js/Checkout.js"></script>
 </head>
 
 <body>
 <!--导航栏-->
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark navbar-top">
-    <!-- Brand/logo -->
-    <a class="navbar-brand" href="#">
-        <img src="../../static/img/ikunLOGO.png" width="55">
-    </a>
-    <!-- Links -->
-    <div class="collapse navbar-collapse" id="mynavbar">
-        <div class="container mt-3">
-            <h2 style="color: silver;">结账</h2>
-        </div>
-        <ul class="navbar-nav me-right">
-            <li class="nav-item">
-                <a class="nav-link" onclick="history.go(-1)">返回</a>
-            </li>
-        </ul>
+  <!-- Brand/logo -->
+  <a class="navbar-brand" href="#">
+    <img src="../../static/img/ikunLOGO.png" width="55" alt="logo">
+  </a>
+  <!-- Links -->
+  <div class="collapse navbar-collapse" id="mynavbar">
+    <div class="container mt-3">
+      <h2 style="color: silver;">结账</h2>
     </div>
+    <ul class="navbar-nav me-right">
+      <li class="nav-item">
+        <a class="nav-link" onclick="history.go(-1)">返回</a>
+      </li>
+    </ul>
+  </div>
 </nav>
 <!---------------------------------------------->
 <div class="container mt-3">
-    <h2>价格明细</h2>
-    <table class="table table-hover">
-        <thead>
-        <tr>
-            <th>商品类型</th>
-            <th>商品名称</th>
-            <th>商品价格</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>CPU</td>
-            <td th:text="${CPUName}" id="cpuName"></td>
-            <td th:text="${CPUPrice}"></td>
-        </tr>
-        <tr>
-            <td>显卡</td>
-            <td th:text="${GPUName}" id="gpuName"></td>
-            <td th:text="${GPUPrice}"></td>
-        </tr>
-        <tr>
-            <td>内存</td>
-            <td th:text="${MemoryName}" id="memoryName"></td>
-            <td th:text="${MemoryPrice}"></td>
-        </tr>
-        <tr>
-            <td>硬盘</td>
-            <td th:text="${DriveName}" id="driveName"></td>
-            <td th:text="${DrivePrice}"></td>
-        </tr>
-        </tbody>
-    </table>
+  <h2>价格明细</h2>
+  <table class="table table-hover">
+    <thead>
+    <tr>
+      <th>商品类型</th>
+      <th>商品名称</th>
+      <th>商品价格</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>CPU</td>
+      <td th:text="${CPUName}" id="cpuName"></td>
+      <td th:text="${CPUPrice}"></td>
+    </tr>
+    <tr>
+      <td>显卡</td>
+      <td th:text="${GPUName}" id="gpuName"></td>
+      <td th:text="${GPUPrice}"></td>
+    </tr>
+    <tr>
+      <td>内存</td>
+      <td th:text="${MemoryName}" id="memoryName"></td>
+      <td th:text="${MemoryPrice}"></td>
+    </tr>
+    <tr>
+      <td>硬盘</td>
+      <td th:text="${DriveName}" id="driveName"></td>
+      <td th:text="${DrivePrice}"></td>
+    </tr>
+    </tbody>
+  </table>
 </div>
 
 <!----------------------------------------------->
 <div class="container mt-3">
-    <h2>收货人信息：</h2>
-    <form>
-        <div class="mb-3 mt-3">
-            <h4>地址:</h4>
-            <input type="text" class="form-control form-control-lg" placeholder="请输入地址" name="address"
-                   id="address">
-        </div>
-        <div class="mb-3 mt-3">
-            <h4>支付方式:</h4>
-            <input type="text" class="form-control form-control-lg" placeholder="请选择支付方式">
-        </div>
-        <div class="mb-3 mt-3">
-            <h4>备注:</h4>
-            <label for="comment"></label>
-            <textarea class="form-control remark" rows="5" id="comment" name="text"></textarea>
-        </div>
-        <h4 class="money">合计:<span th:text="${sum}" id="money"></span></h4>
+  <h2>收货人信息：</h2>
+  <form>
+    <div class="mb-3 mt-3">
+      <h4>地址:</h4>
+      <input type="text" class="form-control form-control-lg" placeholder="请输入地址" name="address"
+             id="address">
+    </div>
+    <div class="mb-3 mt-3">
+      <h4>支付方式:</h4>
+      <input type="text" class="form-control form-control-lg" placeholder="请选择支付方式">
+    </div>
+    <div class="mb-3 mt-3">
+      <h4>备注:</h4>
+      <label for="comment"></label>
+      <textarea class="form-control remark" rows="5" id="comment" name="text"></textarea>
+    </div>
+    <h4 class="money">合计:<span th:text="${sum}" id="money"></span></h4>
 
-    </form>
-    <button onclick="submit()" class="btn btn-primary btn-lg">支付
-    </button>
+  </form>
+  <button onclick="submit()" class="btn btn-primary btn-lg">支付
+  </button>
 </div>
 
 </body>
@@ -106,15 +106,15 @@
 </html>
 <!-- 隐藏的表单元素 -->
 <form id="hiddenForm" action="/SubmitOrder" method="post">
-    <input type="hidden" name="CPUName" id="hidden_cpuName">
-    <input type="hidden" name="GPUName" id="hidden_gpuName">
-    <input type="hidden" name="MemoryName" id="hidden_memoryName">
-    <input type="hidden" name="DriveName" id="hidden_driveName">
-    <input type="hidden" name="sum" id="hidden_sum">
-    <input type="hidden" name="address" id="hidden_address">
-    <input type="hidden" name="comment" id="hidden_comment">
-    <!--    <input type="hidden" name="common" id="hidden_comment">-->
-    <button type="submit" class="btn btn-primary" style="display: none" id="sb">注册</button>
+  <input type="hidden" name="CPUName" id="hidden_cpuName">
+  <input type="hidden" name="GPUName" id="hidden_gpuName">
+  <input type="hidden" name="MemoryName" id="hidden_memoryName">
+  <input type="hidden" name="DriveName" id="hidden_driveName">
+  <input type="hidden" name="sum" id="hidden_sum">
+  <input type="hidden" name="address" id="hidden_address">
+  <input type="hidden" name="comment" id="hidden_comment">
+  <!--    <input type="hidden" name="common" id="hidden_comment">-->
+  <button type="submit" class="btn btn-primary" style="display: none" id="sb">注册</button>
 </form>
 
 

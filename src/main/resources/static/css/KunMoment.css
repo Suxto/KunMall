@@ -55,3 +55,19 @@
 .button-area {
     margin: 5px 20px -10px 0;
 }
+
+.btn-add {
+    /*width: 40px;*/
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    /*font-size: large;*/
+    border-radius: 20px;
+    /*left: 0;*/
+    z-index: 1030;
+    scale: 130%;
+}
+
+.modal-style {
+    max-width:50%;
+}
