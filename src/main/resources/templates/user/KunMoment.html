@@ -12,10 +12,10 @@
   <script src="../../static/plugin/bootstrap/popper.min.js"></script>
   <!-- jQuery-->
   <script src="../../static/plugin/jquery/jquery-3.7.1.min.js"></script>
+<!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>-->
   <!--  dropzone-->
   <link rel="stylesheet" href="../../static/plugin/dropzone/dropzone.min.css">
   <script src="../../static/plugin/dropzone/dropzone.min.js"></script>
-
   <script src="../../static/js/KunMoment.js"></script>
 
   <!--导航栏样式-->
@@ -54,47 +54,96 @@
         <!--              </div>-->
         <!--            </div>-->
         <!--          </div>-->
-        <div class="row">
-          <div class="col-8" th:if="${!item.getPhotos().isEmpty()}">
-            <div th:id="'momentPic'+${item.getId()}" class="carousel carousel-dark slide">
-              <div class="carousel-indicators">
-                <div th:each="pic, itemStat: ${item.getPhotos()}">
-                  <button type="button" th:data-bs-target="'#'+'momentPic'+${item.getId()}"
-                          th:data-bs-slide-to="${itemStat.index}"
-                          class="active"
-                          aria-current="true" th:aria-label="'Slide ' + ${itemStat.index}"></button>
-                </div>
-              </div>
-              <div id="carouselExample" class="carousel-inner">
-                <div th:each="pic, itemStat: ${item.getPhotos()}"
-                     th:class="'carousel-item ' + ${itemStat.index == 0 ? 'active' : ''}">
-                  <img th:src="'data:image/jpg;base64,' + ${pic}" class="d-block w-100 photo-inside" alt="...">
-                </div>
-              </div>
-              <!--    swap btn   ------------------------------------------------->
-              <button class="carousel-control-prev" type="button"
-                      th:data-bs-target="'#'+'momentPic'+${item.getId()}"
-                      data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-              </button>
-              <button class="carousel-control-next" type="button"
-                      th:data-bs-target="'#'+'momentPic'+${item.getId()}"
-                      data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-              </button>
-            </div>
+        <!--        <div class="row">-->
+        <!--          <div class="col-8" th:if="${!item.getPhotos().isEmpty()}">-->
+        <!--            <div th:id="'momentPic'+${item.getId()}" class="carousel carousel-dark slide">-->
+        <!--              <div class="carousel-indicators">-->
+        <!--                <div th:each="pic, itemStat: ${item.getPhotos()}">-->
+        <!--                  <button type="button" th:data-bs-target="'#'+'momentPic'+${item.getId()}"-->
+        <!--                          th:data-bs-slide-to="${itemStat.index}"-->
+        <!--                          class="active"-->
+        <!--                          aria-current="true" th:aria-label="'Slide ' + ${itemStat.index}"></button>-->
+        <!--                </div>-->
+        <!--              </div>-->
+        <!--              <div id="carouselExample" class="carousel-inner">-->
+        <!--                <div th:each="pic, itemStat: ${item.getPhotos()}"-->
+        <!--                     th:class="'carousel-item ' + ${itemStat.index == 0 ? 'active' : ''}">-->
+        <!--                  <img th:src="'data:image/jpg;base64,' + ${pic}" class="d-block w-100 photo-inside" alt="...">-->
+        <!--                </div>-->
+        <!--              </div>-->
+        <!--              &lt;!&ndash;    swap btn   -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
+        <!--              <button class="carousel-control-prev" type="button"-->
+        <!--                      th:data-bs-target="'#'+'momentPic'+${item.getId()}"-->
+        <!--                      data-bs-slide="prev">-->
+        <!--                <span class="carousel-control-prev-icon" aria-hidden="true"></span>-->
+        <!--                <span class="visually-hidden">Previous</span>-->
+        <!--              </button>-->
+        <!--              <button class="carousel-control-next" type="button"-->
+        <!--                      th:data-bs-target="'#'+'momentPic'+${item.getId()}"-->
+        <!--                      data-bs-slide="next">-->
+        <!--                <span class="carousel-control-next-icon" aria-hidden="true"></span>-->
+        <!--                <span class="visually-hidden">Next</span>-->
+        <!--              </button>-->
+        <!--            </div>-->
+        <!--          </div>-->
+        <!--          <div th:class="${item.getPhotos().isEmpty()?'col-12':'col-4'}">-->
+        <!--            <div class="moment-content" >-->
+        <!--              <span th:text="${item.getContent()}"></span>-->
+        <!--            </div>-->
+        <!--          </div>-->
+        <!--        </div>-->
+        <div class="ms-2">
+          <div class="moment-text" th:id="'momentText'+${item.getId()}">
+            <span th:text="${item.getContent()}" ></span>
           </div>
-          <div th:class="${item.getPhotos().isEmpty()?'col-12':'col-4'}">
-            <div class="moment-content" >
+          <button class="btn btn-link" th:id="'toggleButton'+${item.getId()}"
+                  th:onclick="'toggle_text(\''+${item.getId()}+'\')'">
+            展开
+          </button>
+          <script th:inline="javascript">
+              id = /*[[${item.getId()}]]*/ '';
+              judge(id)
+          </script>
+          <div id="expandContent" class="collapse">
+            <div class="moment-content">
               <span th:text="${item.getContent()}"></span>
             </div>
           </div>
+
         </div>
-
-
+        <div th:if="${!item.getPhotos().isEmpty()}">
+          <div th:id="'momentPic'+${item.getId()}" class="carousel carousel-dark slide">
+            <div class="carousel-indicators">
+              <div th:each="pic, itemStat: ${item.getPhotos()}">
+                <button type="button" th:data-bs-target="'#'+'momentPic'+${item.getId()}"
+                        th:data-bs-slide-to="${itemStat.index}"
+                        class="active"
+                        aria-current="true" th:aria-label="'Slide ' + ${itemStat.index}"></button>
+              </div>
+            </div>
+            <div id="carouselExample" class="carousel-inner">
+              <div th:each="pic, itemStat: ${item.getPhotos()}"
+                   th:class="'carousel-item ' + ${itemStat.index == 0 ? 'active' : ''}">
+                <img th:src="'data:image/jpg;base64,' + ${pic}" class="d-block w-100 photo-inside" alt="...">
+              </div>
+            </div>
+            <!--    swap btn   ------------------------------------------------->
+            <button class="carousel-control-prev" type="button"
+                    th:data-bs-target="'#'+'momentPic'+${item.getId()}"
+                    data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button"
+                    th:data-bs-target="'#'+'momentPic'+${item.getId()}"
+                    data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
       </div>
+
 
       <div class="comment-section">
         <div class="button-area">
@@ -114,13 +163,15 @@
         <div class="collapse" th:id="'commonArea'+${item.getId()}">
           <div class="comment-form">
             <div class="mb-3">
-              <label for="commentInput" class="form-label" style="font-weight: bold">评论：</label>
+              <label class="form-label" style="font-weight: bold">评论：</label>
               <div class="d-flex align-items-start">
-                <label for="commentInput"></label>
-                <textarea id="commentInput" class="form-control" rows="3"
+
+                <textarea th:id="'commentInput'+${item.getId()}" class="form-control" rows="3"
                           style="border-radius: 10px;margin: 0 10px 0 0"
                           placeholder="在此评论"></textarea>
-                <button type="submit" class="btn btn-primary comment-btn">发表评论
+
+                <button type="submit" class="btn btn-primary comment-btn"
+                        th:onclick="'comment(\''+${item.getId()}+'\')'">发表评论
                 </button>
               </div>
             </div>

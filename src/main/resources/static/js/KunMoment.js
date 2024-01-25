@@ -45,4 +45,58 @@ Dropzone.options.myDropzone = {
     }
 };
 
+function toggle_text(id) {
+    let div_id = "#momentText" + id;
+    let btn_id = "#toggleButton" + id;
+    let contentDiv = $(div_id);
+    let toggleButton = $(btn_id);
+    let object_height = parseFloat(contentDiv.css("line-height")) * 3
+    // console.log(div_id, '--', btn_id);
+    let currentMaxHeight = parseFloat(contentDiv.css("max-height").replace("px", ""));
+
+    // if (contentDiv.css("max-height").replace("px", "") <= object_height) {
+    //     contentDiv.stop().animate({'max-height': '1000em'}, 500);
+    //     toggleButton.text('收起');
+    // } else {
+    //     contentDiv.stop().animate({'max-height': object_height}, 500);
+    //     toggleButton.text('展开');
+    // }
+    if (currentMaxHeight <= object_height) {
+        contentDiv.stop().animate({'max-height': '100em'}, {
+            duration: 800,
+            complete: function () {
+                toggleButton.text('收起');
+            }
+        });
+    } else {
+        contentDiv.stop().animate({'max-height': object_height + 'px'}, {
+            duration: 800,
+            complete: function () {
+                toggleButton.text('收起');
+            }
+        });
+    }
+}
+
+
+function judge(id) {
+    let div_id = "#momentText" + id;
+    let btn_id = "#toggleButton" + id;
+    let contentDiv = $(div_id);
+    let toggleButton = $(btn_id);
+    let object_height = parseFloat(contentDiv.css("line-height")) * 3
+    let line_height = contentDiv.outerHeight();
+    contentDiv.css("max-height", object_height + "px")
+    // console.log(id, '-------', line_num)
+    if (line_height <= object_height) toggleButton.hide();
+}
+
+function comment(id) {
+    let div_id = "#momentText" + id;
+    let btn_id = "#toggleButton" + id;
+    let contentDiv = $(div_id);
+    let toggleButton = $(btn_id);
+    let line_num = contentDiv.scrollHeight;
+    console.log(id, '-------', line_num)
+}
 

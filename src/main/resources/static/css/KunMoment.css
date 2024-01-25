@@ -12,7 +12,7 @@
 
 .post-body {
     padding: 10px;
-    height: 435px;
+    /*height: 435px;*/
 }
 
 .comment-section {
@@ -71,9 +71,10 @@
     max-width: 50%;
 }
 
-.moment-content {
+.moment-text {
     font-size: larger;
-    height: 400px;
-    overflow-y: auto;
+    /*height: 400px;*/
+    /*overflow-y: auto;*/
     word-wrap: break-word;
+    overflow: hidden;
 }
