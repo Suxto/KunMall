@@ -12,7 +12,7 @@
   <script src="../../static/plugin/bootstrap/popper.min.js"></script>
   <!-- jQuery-->
   <script src="../../static/plugin/jquery/jquery-3.7.1.min.js"></script>
-<!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>-->
+  <!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>-->
   <!--  dropzone-->
   <link rel="stylesheet" href="../../static/plugin/dropzone/dropzone.min.css">
   <script src="../../static/plugin/dropzone/dropzone.min.js"></script>
@@ -94,7 +94,7 @@
         <!--        </div>-->
         <div class="ms-2">
           <div class="moment-text" th:id="'momentText'+${item.getId()}">
-            <span th:text="${item.getContent()}" ></span>
+            <span th:text="${item.getContent()}"></span>
           </div>
           <button class="btn btn-link" th:id="'toggleButton'+${item.getId()}"
                   th:onclick="'toggle_text(\''+${item.getId()}+'\')'">
@@ -148,15 +148,16 @@
       <div class="comment-section">
         <div class="button-area">
           <p class="d-inline-flex ">
-            <a class="btn btn-danger" role="button">
-              点赞(<span th:text="${item.getLikeNum()}"></span>)
+            <a class="btn btn-danger" role="button" th:onclick="'like('+${item.getId()}+')'">
+              点赞(<span th:text="${item.getLikeNum()}" th:id="'likeNun'+${item.getId()}"></span>)
             </a>
           </p>
 
           <p class="d-inline-flex ">
             <a class="btn btn-primary" data-bs-toggle="collapse" th:href="'#commonArea'+${item.getId()}" role="button"
-               aria-expanded="false" th:aria-controls="'commonArea'+${item.getId()}">
-              评论(<span th:text="${item.getCommentNum()}"></span>)
+               aria-expanded="false" th:aria-controls="'commonArea'+${item.getId()}"
+               th:onclick="'toggle_comment('+${item.getId()}+')'" th:id="'commentToggleBtn'+${item.getId()}">
+              评论(<span th:text="${item.getCommentNum()}" th:id="'commentNun'+${item.getId()}"></span>)
             </a>
           </p>
         </div>
@@ -176,16 +177,9 @@
               </div>
             </div>
           </div>
+          <div th:id="'comments'+${item.getId()}">
 
-          <div class="card card-body comment">
-            <span class="comment-user-name">Suxton:</span>
-            Some placeholder content for the collapse component. This panel is hidden by default but revealed
-            when the user activates the relevant trigger.
-          </div>
-          <div class="card card-body comment">
-            <span class="comment-user-name">Sux:</span>
-            Some placeholder content for the collapse component. This panel is hidden by default but revealed
-            when the user activates the relevant trigger.
+
           </div>
         </div>
       </div>
@@ -239,3 +233,14 @@
 <!--            <div class="carousel-item">-->
 <!--              <img src="	https://www.runoob.com/images/box-model.gif" class="d-block w-100 photo-inside" alt="...">-->
 <!--            </div>-->
+
+<!--<div class="card card-body comment">-->
+<!--  <span class="comment-user-name">Suxton:</span>-->
+<!--  Some placeholder content for the collapse component. This panel is hidden by default but revealed-->
+<!--  when the user activates the relevant trigger.-->
+<!--</div>-->
+<!--<div class="card card-body comment">-->
+<!--  <span class="comment-user-name">Sux:</span>-->
+<!--  Some placeholder content for the collapse component. This panel is hidden by default but revealed-->
+<!--  when the user activates the relevant trigger.-->
+<!--</div>-->

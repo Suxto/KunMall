@@ -1,5 +1,6 @@
 package com.suxton.kunmall.controller;
 
+import com.suxton.kunmall.pojo.Comment;
 import com.suxton.kunmall.pojo.Moment;
 import com.suxton.kunmall.pojo.MomentWithPhoto;
 import com.suxton.kunmall.pojo.Orders;
@@ -110,6 +111,23 @@ public class UserController {
 //            e.printStackTrace();
             return "Failed to upload image. Error: " + e.getMessage();
         }
+        return "ok";
+    }
+
+    @ResponseBody
+    @GetMapping("/getComments")
+    public List<Comment> getComments(@RequestParam("moment_id") int id) {
+        return momentService.getCommentList(id);
+    }
+
+    @ResponseBody
+    @PostMapping("/addComment")
+    public String addComment(@RequestParam("moment_id") int momentID,
+                             @RequestParam("content") String content) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Object principal = authentication.getPrincipal();
+        MyUserDetails userDetails = (MyUserDetails) principal;
+        momentService.addComment(userDetails.id(), userDetails.getUsername(), momentID, content);
         return "ok";
     }
 
