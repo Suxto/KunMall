@@ -131,6 +131,15 @@ public class UserController {
         return "ok";
     }
 
+    @ResponseBody
+    @PostMapping("/likeMoment")
+    public int likeMoment(@RequestParam("moment_id") int momentID) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Object principal = authentication.getPrincipal();
+        MyUserDetails userDetails = (MyUserDetails) principal;
+        return momentService.like(userDetails.id(), momentID);
+    }
+
     @GetMapping("/Login*")
     public String loginForm() {
         return "user/Login";

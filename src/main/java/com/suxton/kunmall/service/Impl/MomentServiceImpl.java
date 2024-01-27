@@ -1,6 +1,7 @@
 package com.suxton.kunmall.service.Impl;
 
 import com.suxton.kunmall.dao.CommentMapper;
+import com.suxton.kunmall.dao.MomentLikeMapper;
 import com.suxton.kunmall.dao.MomentMapper;
 import com.suxton.kunmall.dao.PhotoMapper;
 import com.suxton.kunmall.pojo.*;
@@ -21,6 +22,9 @@ public class MomentServiceImpl implements MomentService {
 
     @Resource
     private CommentMapper commentMapper;
+
+    @Resource
+    private MomentLikeMapper momentLikeMapper;
 
     @Override
     public List<MomentWithPhoto> getMoments() {
@@ -71,7 +75,7 @@ public class MomentServiceImpl implements MomentService {
     public List<Comment> getCommentList(int id) {
         CommentExample commentExample = new CommentExample();
         commentExample.or().andMomentIdEqualTo(id);
-        return commentMapper.selectByExampleWithBLOBs(commentExample).stream().toList();
+        return commentMapper.selectByExampleWithBLOBs(commentExample);
     }
 
     @Override
@@ -87,5 +91,29 @@ public class MomentServiceImpl implements MomentService {
         Moment moment = momentMapper.selectByExample(momentExample).get(0);
         moment.setCommentNum(moment.getCommentNum() + 1);
         momentMapper.updateByPrimaryKey(moment);
+    }
+
+    @Override
+    public int like(int userID, int momentID) {
+        MomentLikeExample momentLikeExample = new MomentLikeExample();
+        momentLikeExample.or().andMomentIdEqualTo(momentID).andUserIdEqualTo(userID);
+        List<MomentLike> momentLikeList = momentLikeMapper.selectByExample(momentLikeExample);
+        Moment moment = momentMapper.selectByPrimaryKey(momentID);
+        if (momentLikeList.isEmpty()) {
+            MomentLike momentLike = new MomentLike();
+            momentLike.setMomentId(momentID);
+            momentLike.setUserId(userID);
+            momentLikeMapper.insert(momentLike);
+
+            moment.setLikeNum(moment.getLikeNum() + 1);
+            momentMapper.updateByPrimaryKey(moment);
+            return 1;
+        } else {
+            momentLikeMapper.deleteByExample(momentLikeExample);
+
+            momentMapper.updateByPrimaryKey(moment);
+            moment.setLikeNum(moment.getLikeNum() - 1);
+            return 0;
+        }
     }
 }

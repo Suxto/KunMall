@@ -149,7 +149,7 @@
         <div class="button-area">
           <p class="d-inline-flex ">
             <a class="btn btn-danger" role="button" th:onclick="'like('+${item.getId()}+')'">
-              点赞(<span th:text="${item.getLikeNum()}" th:id="'likeNun'+${item.getId()}"></span>)
+              点赞(<span th:text="${item.getLikeNum()}" th:id="'likeNum'+${item.getId()}"></span>)
             </a>
           </p>
 
@@ -222,6 +222,16 @@
   </div>
 </div>
 
+<!-- 点赞状态toast -->
+<div id="likeStatusToast" class="toast custom-toast fade hide" role="alert" aria-live="assertive" aria-atomic="true">
+<!--  <div class="toast-header">-->
+<!--    <strong class="me-auto">点赞状态</strong>-->
+<!--    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>-->
+<!--  </div>-->
+  <div class="toast-body">
+    <!-- 这里显示点赞状态的文字 -->
+  </div>
+</div>
 
 </body>
 </html>

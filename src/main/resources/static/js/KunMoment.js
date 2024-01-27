@@ -133,5 +133,45 @@ function refresh(id) {
 }
 
 function like(id) {
+    let like_num_text = $('#likeNum' + id);
+    let like_num = parseInt(like_num_text.text());
+    console.log(like_num)
+    // showLikeToast('点赞成功');
+    $.post("/likeMoment", {moment_id: id}, function (data) {
+        console.log(data)
+        if (data === 1) {
+            like_num++
+            like_num_text.text(like_num)
+            showLikeToast('点赞成功');
+        } else {
+            like_num--
+            like_num_text.text(like_num)
+            showLikeToast('已赞过，现取消点赞')
+        }
+    });
+}
+
+function showLikeToast(message) {
+    // 创建一个toast元素
+    let likeStatusToast = $('#likeStatusToast');
+    let toastBody = likeStatusToast.find('.toast-body');
+
+    // 设置toast的文字
+    toastBody.text(message);
+    likeStatusToast.removeClass('toast-fade-out');
+    // 添加动画类，实现淡入效果
+    likeStatusToast.addClass('toast-fade-in');
+
+    // 显示toast
+    likeStatusToast.toast('show');
+
+    setTimeout(function () {
+        likeStatusToast.removeClass('toast-fade-in').addClass('toast-fade-out');
+    }, 300);
+
+    // 隐藏toast后移除动画类
+    likeStatusToast.on('hidden.bs.toast', function () {
+        likeStatusToast.removeClass('toast-fade-out');
+    });
 
 }
