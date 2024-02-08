@@ -168,4 +168,12 @@ public class AdminController {
         model.addAttribute("List", userService.getServiceList());
         return "/admin/AdminHelp";
     }
+
+    @GetMapping("/Admin/RecommendationEditor*")
+    public String RecommendationEditor(Model model) {
+        List<String[]> resolvedRecommendsList = hardwareService.getResolvedRecommendsList();
+        model.addAttribute("RecommendsList", resolvedRecommendsList);
+        return "/admin/RecommendationEditor";
+    }
+
 }

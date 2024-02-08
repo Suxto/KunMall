@@ -2,156 +2,158 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>管理员界面-仓库管理</title>
-    <link rel="stylesheet" type="text/css" href="../../static/css/Navigation.css">
-    <link rel="stylesheet" type="text/css" href="../../static/css/Admin.css">
-    <link rel="icon" type="favicon.ico" href="../../static/img/ikunLOGO.png">
-    <!-- 新 Bootstrap5 核心 CSS 文件 -->
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css">
-
-    <!--  popper.min.js 用于弹窗、提示、下拉菜单 -->
-    <script src="https://cdn.staticfile.org/popper.js/2.9.3/umd/popper.min.js"></script>
-
-    <!-- 最新的 Bootstrap5 核心 JavaScript 文件 -->
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.min.js"></script>
-    <script src="../../static/js/Store.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>管理员界面-仓库管理</title>
+  <link rel="stylesheet" type="text/css" href="../../static/css/Navigation.css">
+  <link rel="stylesheet" type="text/css" href="../../static/css/Admin.css">
+  <link rel="icon" type="favicon.ico" href="../../static/img/ikunLOGO.png">
+  <!-- Bootstrap5.3.2 css -->
+  <link rel="stylesheet" href="../../static/plugin/bootstrap/bootstrap.min.css">
+  <!-- Bootstrap5.3.2 js -->
+  <script src="../../static/plugin/bootstrap/bootstrap.min.js"></script>
+  <!--  popper.js  -->
+  <script src="../../static/plugin/bootstrap/popper.min.js"></script>
+  <!--  jQuery-->
+  <script src="../../static/plugin/jquery/jquery-3.7.1.min.js"></script>
+  <script src="../../static/js/Store.js"></script>
 </head>
 
 <body>
 <div th:replace="~{admin/NavBar :: navbar}"></div>
 
 <div class="top">
-    <div class="left-top  mt-3">
-        <h2>CPU:<span th:text="${CPUList.size()}"></span>个
-            <button class="btn btn-primary" onclick="showForm('CPU')">添加</button>
-        </h2>
-        <table class="Module table table-hover">
-            <thead>
-            <tr>
-                <th>名称</th>
-                <th>价格</th>
-                <th>剩余量</th>
-                <th>操作</th>
-            </tr>
-            </thead>
-            <tbody id="tbody_CPU">
-            <tr th:each="item:${CPUList}">
-                <td th:text="${item.getName()}"></td>
-                <td><input class="input" type="number" readonly th:value="${item.getMoney()}">元</td>
-                <td><input class="input" type="number" readonly th:value="${item.getAmount()}">件</td>
-                <td>
-                    <button type="button" th:id="'CPU_' + ${item.getId()}"
-                            th:onclick="'Clicked(\'CPU_' + ${item.getId()} + '\')'" class="btn btn-primary">编辑
-                    </button>
-                    <button type="button" class="btn btn-danger"
-                            th:onclick="'Remove(\'CPU\', ' + ${item.getId()} + ')'">
-                        删除
-                    </button>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="right-top  mt-3">
-        <h2>显卡:<span th:text="${GPUList.size()}"></span>个
-            <button class="btn btn-primary" onclick="showForm('GPU')">添加</button>
-        </h2>
-        <table class="Module table table-hover">
-            <thead>
-            <tr>
-                <th>名称</th>
-                <th>价格</th>
-                <th>剩余量</th>
-                <th>操作</th>
-            </tr>
-            </thead>
-            <tbody id="tbody_GPU">
-            <tr th:each="item:${GPUList}">
-                <td th:text="${item.getName()}"></td>
-                <td><input class="input" type="number" readonly th:value="${item.getMoney()}">元</td>
-                <td><input class="input" type="number" readonly th:value="${item.getAmount()}">件</td>
-                <td>
-                    <button type="button" th:id="'GPU_' + ${item.getId()}"
-                            th:onclick="'Clicked(\'GPU_' + ${item.getId()} + '\')'" class="btn btn-primary">编辑
-                    </button>
-                    <button type="button" class="btn btn-danger"
-                            th:onclick="'Remove(\'GPU\', ' + ${item.getId()} + ')'">
-                        删除
-                    </button>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
+  <div class="left-top  mt-3">
+    <h2>CPU:<span th:text="${CPUList.size()}"></span>个
+      <button class="btn btn-primary" onclick="showForm('CPU')">添加</button>
+    </h2>
+    <table class="Module table table-hover">
+      <thead>
+      <tr>
+        <th>名称</th>
+        <th>价格</th>
+        <th>剩余量</th>
+        <th>操作</th>
+      </tr>
+      </thead>
+      <tbody id="tbody_CPU">
+      <tr th:each="item:${CPUList}">
+        <td th:text="${item.getName()}"></td>
+        <td><input class="input" type="number" readonly th:value="${item.getMoney()}">元</td>
+        <td><input class="input" type="number" readonly th:value="${item.getAmount()}">件</td>
+        <td>
+          <button type="button" th:id="'CPU_' + ${item.getId()}"
+                  th:onclick="'Clicked(\'CPU_' + ${item.getId()} + '\')'" class="btn btn-primary">编辑
+          </button>
+          <button type="button" class="btn btn-danger"
+                  th:onclick="'Remove(\'CPU\', ' + ${item.getId()} + ')'">
+            删除
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="right-top  mt-3">
+    <h2>显卡:<span th:text="${GPUList.size()}"></span>个
+      <button class="btn btn-primary" onclick="showForm('GPU')">添加</button>
+    </h2>
+    <table class="Module table table-hover">
+      <thead>
+      <tr>
+        <th>名称</th>
+        <th>价格</th>
+        <th>剩余量</th>
+        <th>操作</th>
+      </tr>
+      </thead>
+      <tbody id="tbody_GPU">
+      <tr th:each="item:${GPUList}">
+        <td th:text="${item.getName()}"></td>
+        <td><input class="input" type="number" readonly th:value="${item.getMoney()}">元</td>
+        <td><input class="input" type="number" readonly th:value="${item.getAmount()}">件</td>
+        <td>
+          <button type="button" th:id="'GPU_' + ${item.getId()}"
+                  th:onclick="'Clicked(\'GPU_' + ${item.getId()} + '\')'" class="btn btn-primary">编辑
+          </button>
+          <button type="button" class="btn btn-danger"
+                  th:onclick="'Remove(\'GPU\', ' + ${item.getId()} + ')'">
+            删除
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
 <div class="bottom">
-    <div class="left-bottom  mt-3">
-        <h2>内存:<span th:text="${MemoryList.size()}"></span>
-            <button class="btn btn-primary" onclick="showForm('Memory')">添加</button>
-        </h2>
-        <table class="Module table table-hover">
-            <thead>
-            <tr>
-                <th>名称</th>
-                <th>价格</th>
-                <th>剩余量</th>
-                <th>操作</th>
-            </tr>
-            </thead>
-            <tbody id="tbody_Memory">
-            <tr th:each="item:${MemoryList}">
-                <td th:text="${item.getName()}"></td>
-                <td><input class="input" type="number" readonly th:value="${item.getMoney()}">元</td>
-                <td><input class="input" type="number" readonly th:value="${item.getAmount()}">件</td>
-                <td>
-                    <button type="button" th:id="'Memory_' + ${item.getId()}"
-                            th:onclick="'Clicked(\'Memory_' + ${item.getId()} + '\')'" class="btn btn-primary">
-                        编辑
-                    </button>
-                    <button type="button" class="btn btn-danger"
-                            th:onclick="'Remove(\'Memory\', ' + ${item.getId()} + ')'">
-                        删除
-                    </button>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="right-bottom  mt-3">
-        <h2>硬盘:<span th:text="${DriveList.size()}"></span>个
-            <button class="btn btn-primary" onclick="showForm('Drive')">添加</button>
-        </h2>
-        <table class="Module table table-hover">
-            <thead>
-            <tr>
-                <th>名称</th>
-                <th>价格</th>
-                <th>剩余量</th>
-                <th>操作</th>
-            </tr>
-            </thead>
-            <tbody id="tbody_Drive">
-            <tr th:each="item:${DriveList}">
-                <td th:text="${item.getName()}"></td>
-                <td><input class="input" type="number" readonly th:value="${item.getMoney()}">元</td>
-                <td><input class="input" type="number" readonly th:value="${item.getAmount()}">件</td>
-                <td>
-                    <button type="button" th:id="'Drive_' + ${item.getId()}"
-                            th:onclick="'Clicked(\'Drive_' + ${item.getId()} + '\')'" class="btn btn-primary">编辑
-                    </button>
-                    <button type="button" class="btn btn-danger"
-                            th:onclick="'Remove(\'Drive\', ' + ${item.getId()} + ')'">
-                        删除
-                    </button>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
+  <div class="left-bottom  mt-3">
+    <h2>内存:<span th:text="${MemoryList.size()}"></span>
+      <button class="btn btn-primary" onclick="showForm('Memory')">添加</button>
+    </h2>
+    <table class="Module table table-hover">
+      <thead>
+      <tr>
+        <th>名称</th>
+        <th>价格</th>
+        <th>剩余量</th>
+        <th>操作</th>
+      </tr>
+      </thead>
+      <tbody id="tbody_Memory">
+      <tr th:each="item:${MemoryList}">
+        <td th:text="${item.getName()}"></td>
+        <td><input class="input" type="number" readonly th:value="${item.getMoney()}">元</td>
+        <td><input class="input" type="number" readonly th:value="${item.getAmount()}">件</td>
+        <td>
+          <button type="button" th:id="'Memory_' + ${item.getId()}"
+                  th:onclick="'Clicked(\'Memory_' + ${item.getId()} + '\')'" class="btn btn-primary">
+            编辑
+          </button>
+          <button type="button" class="btn btn-danger"
+                  th:onclick="'Remove(\'Memory\', ' + ${item.getId()} + ')'">
+            删除
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="right-bottom  mt-3">
+    <h2>硬盘:<span th:text="${DriveList.size()}"></span>个
+      <button class="btn btn-primary" onclick="showForm('Drive')">添加</button>
+    </h2>
+    <table class="Module table table-hover">
+      <thead>
+      <tr>
+        <th>名称</th>
+        <th>价格</th>
+        <th>剩余量</th>
+        <th>操作</th>
+      </tr>
+      </thead>
+      <tbody id="tbody_Drive">
+      <tr th:each="item:${DriveList}">
+        <td th:text="${item.getName()}"></td>
+        <td><input class="input" type="number" readonly th:value="${item.getMoney()}">元</td>
+        <td><input class="input" type="number" readonly th:value="${item.getAmount()}">件</td>
+        <td>
+          <button type="button" th:id="'Drive_' + ${item.getId()}"
+                  th:onclick="'Clicked(\'Drive_' + ${item.getId()} + '\')'" class="btn btn-primary">编辑
+          </button>
+          <button type="button" class="btn btn-danger"
+                  th:onclick="'Remove(\'Drive\', ' + ${item.getId()} + ')'">
+            删除
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div id="StatusToast" class="toast custom-toast fade hide" role="alert" aria-live="assertive" aria-atomic="true">
+  <div class="toast-body">
+  </div>
 </div>
 </body>
 

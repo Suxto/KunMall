@@ -2,24 +2,23 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>管理员界面-订单处理</title>
-    <link rel="stylesheet" type="text/css" href="../../static/css/Navigation.css">
-    <link rel="icon" type="favicon.ico" href="../../static/img/ikunLOGO.png">
-    <!-- 新 Bootstrap5 核心 CSS 文件 -->
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css">
-
-    <!--订单页样式-->
-    <link rel="stylesheet" type="text/css" href="../../static/css/Order.css">
-    <!--  popper.min.js 用于弹窗、提示、下拉菜单 -->
-    <script src="https://cdn.staticfile.org/popper.js/2.9.3/umd/popper.min.js"></script>
-
-    <!-- 最新的 Bootstrap5 核心 JavaScript 文件 -->
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.min.js"></script>
-    <script src="../../static/js/OrderDeal.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <meta charset="UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>管理员界面-订单处理</title>
+  <link rel="stylesheet" type="text/css" href="../../static/css/Navigation.css">
+  <link rel="icon" type="favicon.ico" href="../../static/img/ikunLOGO.png">
+  <!-- Bootstrap5.3.2 css -->
+  <link rel="stylesheet" href="../../static/plugin/bootstrap/bootstrap.min.css">
+  <!-- Bootstrap5.3.2 js -->
+  <script src="../../static/plugin/bootstrap/bootstrap.min.js"></script>
+  <!-- popper.js  -->
+  <script src="../../static/plugin/bootstrap/popper.min.js"></script>
+  <!-- jQuery-->
+  <script src="../../static/plugin/jquery/jquery-3.7.1.min.js"></script>
+  <!--订单页样式-->
+  <link rel="stylesheet" type="text/css" href="../../static/css/Order.css">
+  <script src="../../static/js/OrderDeal.js"></script>
 </head>
 
 <body>
@@ -27,38 +26,38 @@
 <!--------------------------------------------------------------->
 <h1>订单详情</h1>
 <div class="order-border" th:each="item:${orders}">
-    <table class="order">
-        <tr>
-            <td>详情：</td>
-            <td colspan="2">
-                <ul>
-                    <li>CPU: <span th:text="${item.getCpuname()}"></span></li>
-                    <li>GPU: <span th:text="${item.getGpuname()}"></span></li>
-                    <li>内存: <span th:text="${item.getMemoryname()}"></span></li>
-                    <li>硬盘: <span th:text="${item.getDrivename()}"></span></li>
-                </ul>
-            </td>
-        </tr>
-        <tr>
-            <td>状态：</td>
-            <td>
-                <select class="status" name="status" th:id="'status_' + ${item.getId()}"
-                        th:onchange="'changeStatus('+${item.getId()}+')'">
-                    <option value="未发货" th:selected="${item.getStatus().equals('未发货')}">未发货</option>
-                    <option value="已发货" th:selected="${item.getStatus().equals('已发货')}">已发货</option>
-                    <option value="已完成" th:selected="${item.getStatus().equals('已完成')}">已完成</option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td>时间：</td>
-            <td th:text="${item.getOrdertime()}" colspan="2"></td>
-        </tr>
-        <tr>
-            <td>金额：</td>
-            <td th:text="${item.getMoney()}" colspan="2"></td>
-        </tr>
-    </table>
+  <table class="order">
+    <tr>
+      <td>详情：</td>
+      <td colspan="2">
+        <ul>
+          <li>CPU: <span th:text="${item.getCpuname()}"></span></li>
+          <li>GPU: <span th:text="${item.getGpuname()}"></span></li>
+          <li>内存: <span th:text="${item.getMemoryname()}"></span></li>
+          <li>硬盘: <span th:text="${item.getDrivename()}"></span></li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>状态：</td>
+      <td>
+        <select class="status" name="status" th:id="'status_' + ${item.getId()}"
+                th:onchange="'changeStatus('+${item.getId()}+')'">
+          <option value="未发货" th:selected="${item.getStatus().equals('未发货')}">未发货</option>
+          <option value="已发货" th:selected="${item.getStatus().equals('已发货')}">已发货</option>
+          <option value="已完成" th:selected="${item.getStatus().equals('已完成')}">已完成</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td>时间：</td>
+      <td th:text="${item.getOrdertime()}" colspan="2"></td>
+    </tr>
+    <tr>
+      <td>金额：</td>
+      <td th:text="${item.getMoney()}" colspan="2"></td>
+    </tr>
+  </table>
 </div>
 
 </body>

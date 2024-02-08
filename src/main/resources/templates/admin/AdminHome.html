@@ -2,22 +2,21 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>管理员界面-营业查询</title>
-    <link rel="stylesheet" type="text/css" href="../../static/css/Navigation.css">
-    <link rel="stylesheet" type="text/css" href="../../static/css/Admin.css">
-    <link rel="icon" type="favicon.ico" href="../../static/img/ikunLOGO.png">
-    <!-- 新 Bootstrap5 核心 CSS 文件 -->
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css">
-
-    <!--  popper.min.js 用于弹窗、提示、下拉菜单 -->
-    <script src="https://cdn.staticfile.org/popper.js/2.9.3/umd/popper.min.js"></script>
-
-    <!-- 最新的 Bootstrap5 核心 JavaScript 文件 -->
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.min.js"></script>
-    <script src="../../static/js/AdminHome.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>管理员界面-营业查询</title>
+  <link rel="stylesheet" type="text/css" href="../../static/css/Navigation.css">
+  <link rel="stylesheet" type="text/css" href="../../static/css/Admin.css">
+  <link rel="icon" type="favicon.ico" href="../../static/img/ikunLOGO.png">
+  <!-- Bootstrap5.3.2 css -->
+  <link rel="stylesheet" href="../../static/plugin/bootstrap/bootstrap.min.css">
+  <!-- Bootstrap5.3.2 js -->
+  <script src="../../static/plugin/bootstrap/bootstrap.min.js"></script>
+  <!--  popper.js  -->
+  <script src="../../static/plugin/bootstrap/popper.min.js"></script>
+  <!--  jQuery-->
+  <script src="../../static/plugin/jquery/jquery-3.7.1.min.js"></script>
+  <script src="../../static/js/AdminHome.js"></script>
 </head>
 
 <body>
@@ -25,95 +24,95 @@
 
 <!-------------------------------------------------------------------->
 <div class="left-top  mt-3">
-    <h2>消费用户: <span th:text="${userConsumed.size()}"></span></h2>
-    <table class="Module table table-hover">
-        <thead>
-        <tr>
-            <th>用户名</th>
-            <th>订单数</th>
-            <th>消费总金额</th>
-            <th>最近消费时间</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="item : ${userConsumed}">
-            <td th:text="${item.getUserName()}"></td>
-            <td th:text="${item.getConsumeTime()}"></td>
-            <td th:text="${item.getMoney()}"></td>
-            <td th:text="${item.getLatestOrder()}"></td>
-        </tr>
-        </tbody>
-    </table>
+  <h2>消费用户: <span th:text="${userConsumed.size()}"></span></h2>
+  <table class="Module table table-hover">
+    <thead>
+    <tr>
+      <th>用户名</th>
+      <th>订单数</th>
+      <th>消费总金额</th>
+      <th>最近消费时间</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="item : ${userConsumed}">
+      <td th:text="${item.getUserName()}"></td>
+      <td th:text="${item.getConsumeTime()}"></td>
+      <td th:text="${item.getMoney()}"></td>
+      <td th:text="${item.getLatestOrder()}"></td>
+    </tr>
+    </tbody>
+  </table>
 </div>
 <div class="right-top  mt-3">
-    <h2>全部用户: <span th:text="${allUsers.size()}"></span></h2>
-    <table class="Module table table-hover">
-        <thead>
-        <tr>
-            <th>用户ID</th>
-            <th>用户名</th>
-            <th>权限</th>
-            <th>操作</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="item:${allUsers}">
-            <td th:text="${item.getId()}"></td>
-            <td th:text="${item.getUsername()}"></td>
-            <td>
-                <span th:text="${item.getIsadmin() ? 'Admin' : 'User'}"></span>
-            </td>
-            <td>
-                <a class="btn btn-primary" th:onclick="'changeRole(' + ${item.getId()} + ')'">
-                    改变权限
-                </a>
-                <a class="btn btn-primary" th:onclick="'changePassword(' + ${item.getId()} + ')'">
-                    更改密码
-                </a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+  <h2>全部用户: <span th:text="${allUsers.size()}"></span></h2>
+  <table class="Module table table-hover">
+    <thead>
+    <tr>
+      <th>用户ID</th>
+      <th>用户名</th>
+      <th>权限</th>
+      <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="item:${allUsers}">
+      <td th:text="${item.getId()}"></td>
+      <td th:text="${item.getUsername()}"></td>
+      <td>
+        <span th:text="${item.getIsadmin() ? 'Admin' : 'User'}"></span>
+      </td>
+      <td>
+        <a class="btn btn-primary" th:onclick="'changeRole(' + ${item.getId()} + ')'">
+          改变权限
+        </a>
+        <a class="btn btn-primary" th:onclick="'changePassword(' + ${item.getId()} + ')'">
+          更改密码
+        </a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
 </div>
 <div class="left-bottom  mt-3">
-    <h2>未完成订单: <span th:text="${unhandledOrder.size()}"></span></h2>
-    <table class="Module table table-hover">
-        <thead>
-        <tr>
-            <th>订单号</th>
-            <th>用户ID</th>
-            <th>时间</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="item:${unhandledOrder}">
-            <td th:text="${item.getId()}"></td>
-            <td th:text="${item.getUserid()}"></td>
-            <td th:text="${item.getOrdertime()}"></td>
-        </tr>
-        </tbody>
-    </table>
+  <h2>未完成订单: <span th:text="${unhandledOrder.size()}"></span></h2>
+  <table class="Module table table-hover">
+    <thead>
+    <tr>
+      <th>订单号</th>
+      <th>用户ID</th>
+      <th>时间</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="item:${unhandledOrder}">
+      <td th:text="${item.getId()}"></td>
+      <td th:text="${item.getUserid()}"></td>
+      <td th:text="${item.getOrdertime()}"></td>
+    </tr>
+    </tbody>
+  </table>
 </div>
 <div class="right-bottom mt-3">
-    <h2>全部订单: <span th:text="${allOrder.size()}"></span></h2>
-    <table class="Module table table-hover">
-        <thead>
-        <tr>
-            <th>订单号</th>
-            <th>用户ID</th>
-            <th>状态</th>
-            <th>时间</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="item:${allOrder}">
-            <td th:text="${item.getId()}"></td>
-            <td th:text="${item.getUserid()}"></td>
-            <td th:text="${item.getStatus()}"></td>
-            <td th:text="${item.getOrdertime()}"></td>
-        </tr>
-        </tbody>
-    </table>
+  <h2>全部订单: <span th:text="${allOrder.size()}"></span></h2>
+  <table class="Module table table-hover">
+    <thead>
+    <tr>
+      <th>订单号</th>
+      <th>用户ID</th>
+      <th>状态</th>
+      <th>时间</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="item:${allOrder}">
+      <td th:text="${item.getId()}"></td>
+      <td th:text="${item.getUserid()}"></td>
+      <td th:text="${item.getStatus()}"></td>
+      <td th:text="${item.getOrdertime()}"></td>
+    </tr>
+    </tbody>
+  </table>
 </div>
 
 </body>

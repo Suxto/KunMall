@@ -1,30 +1,29 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>管理员界面-客服回复</title>
-    <link rel="stylesheet" type="text/css" href="../../static/css/Navigation.css">
-    <link rel="stylesheet" type="text/css" href="../../static/css/Help.css">
-    <link rel="icon" type="favicon.ico" href="../../static/img/ikunLOGO.png">
-    <!-- 新 Bootstrap5 核心 CSS 文件 -->
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css">
-
-    <!--  popper.min.js 用于弹窗、提示、下拉菜单 -->
-    <script src="https://cdn.staticfile.org/popper.js/2.9.3/umd/popper.min.js"></script>
-
-    <!-- 最新的 Bootstrap5 核心 JavaScript 文件 -->
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="../../static/js/Help.js"></script>
-    <script>
-        window.addEventListener('DOMContentLoaded', function () {
-            setTimeout(function () {
-                var messages = document.getElementById('messages');
-                messages.scrollTop = messages.scrollHeight;
-            }, 0);
-        });
-    </script>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>管理员界面-客服回复</title>
+  <link rel="stylesheet" type="text/css" href="../../static/css/Navigation.css">
+  <link rel="stylesheet" type="text/css" href="../../static/css/Help.css">
+  <link rel="icon" type="favicon.ico" href="../../static/img/ikunLOGO.png">
+  <!-- Bootstrap5.3.2 css -->
+  <link rel="stylesheet" href="../../static/plugin/bootstrap/bootstrap.min.css">
+  <!-- Bootstrap5.3.2 js -->
+  <script src="../../static/plugin/bootstrap/bootstrap.min.js"></script>
+  <!--  popper.js  -->
+  <script src="../../static/plugin/bootstrap/popper.min.js"></script>
+  <!--  jQuery-->
+  <script src="../../static/plugin/jquery/jquery-3.7.1.min.js"></script>
+  <script src="../../static/js/Help.js"></script>
+  <script>
+      window.addEventListener('DOMContentLoaded', function () {
+          setTimeout(function () {
+              var messages = document.getElementById('messages');
+              messages.scrollTop = messages.scrollHeight;
+          }, 0);
+      });
+  </script>
 </head>
 <body>
 <!--导航栏-->
@@ -32,24 +31,24 @@
 <!--------------------------------------------------------------->
 <h1>回复</h1>
 <div class="dialog">
-    <div class="header">
-        <div class="info">
-            <div class="name">用户名:<span th:text="${username}"></span></div>
-        </div>
-        <div class="actions">
-            <div class="btn close"></div>
-        </div>
+  <div class="header">
+    <div class="info">
+      <div class="name">用户名:<span th:text="${username}"></span></div>
     </div>
-    <div class="messages" id="messages">
-        <div class="message" th:text="${text}" style="white-space: pre-wrap;">
-        </div>
+    <div class="actions">
+      <div class="btn close"></div>
     </div>
-    <div class="input-box">
-        <input id="talk" type="text" placeholder="请输入消息">
-        <button class="btn btn-success" th:onclick="'AdminPush('+${id}+')'">发送</button>
-        <button class="btn btn-primary" onclick="Refresh()">刷新
-        </button>
+  </div>
+  <div class="messages" id="messages">
+    <div class="message" th:text="${text}" style="white-space: pre-wrap;">
     </div>
+  </div>
+  <div class="input-box">
+    <input id="talk" type="text" placeholder="请输入消息">
+    <button class="btn btn-success" th:onclick="'AdminPush('+${id}+')'">发送</button>
+    <button class="btn btn-primary" onclick="Refresh()">刷新
+    </button>
+  </div>
 </div>
 </body>
 </html>

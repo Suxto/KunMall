@@ -39,7 +39,7 @@ public class HardwareServiceImpl implements HardwareService {
     public List<String[]> getResolvedRecommendsList() {
         List<String[]> recommendsResolved = new ArrayList<>();
         getAllRecommends().forEach(recommend -> {
-            String[] strings = new String[6];
+            String[] strings = new String[7];
             Integer cpuid = recommend.getCpuid();
             Integer gpuid = recommend.getGpuid();
             Integer driveid = recommend.getDriveid();
@@ -59,6 +59,7 @@ public class HardwareServiceImpl implements HardwareService {
             sum = sum.add(drive.getMoney());
             strings[4] = sum.toString();
             strings[5] = recommend.getComment();
+            strings[6] = recommend.getId().toString();
             recommendsResolved.add(strings);
         });
         return recommendsResolved;
