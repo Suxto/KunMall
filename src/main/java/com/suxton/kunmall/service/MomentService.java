@@ -17,4 +17,6 @@ public interface MomentService {
     void addComment(int user_id, String userName, int moment_id, String content);
 
     int like(int userID, int momentID);
+
+    void removeMoment(int id);
 }

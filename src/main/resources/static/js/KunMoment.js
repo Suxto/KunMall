@@ -1,5 +1,5 @@
 let moment_idx = -1;
-
+let moment_del = -1
 Dropzone.options.myDropzone = {
     maxFiles: 9, // 最大上传文件数量
     maxFilesize: 5,
@@ -175,3 +175,31 @@ function showLikeToast(message) {
     });
 
 }
+
+function queryRemove(id) {
+    moment_del = id
+    $('#confirmationModal').modal('show');
+}
+
+
+function removeMomentSel() {
+    if (moment_del === -1) {
+        return
+    }
+    $.post("/Admin/RemoveMoment", {moment_id: moment_del}, function (data) {
+        // console.log(data, data === 'ok')
+        if (data === 'ok') {
+            $('#confirmationModal').modal('hide');
+            showLikeToast("已删除")
+            let id = 'moment' + moment_del.toString();
+            console.log(id);
+            // $('#' + id).empty();
+            $('#' + id).remove();
+        } else {
+            showLikeToast("删除失败")
+        }
+        moment_del = -1
+    });
+
+}
+

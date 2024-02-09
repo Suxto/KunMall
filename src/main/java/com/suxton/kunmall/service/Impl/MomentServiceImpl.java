@@ -116,4 +116,17 @@ public class MomentServiceImpl implements MomentService {
             return 0;
         }
     }
+
+    @Override
+    public void removeMoment(int id) {
+        momentMapper.deleteByPrimaryKey(id);
+
+        MomentLikeExample momentLikeExample = new MomentLikeExample();
+        momentLikeExample.or().andMomentIdEqualTo(id);
+        momentLikeMapper.deleteByExample(momentLikeExample);
+
+        CommentExample commentExample = new CommentExample();
+        commentExample.or().andMomentIdEqualTo(id);
+        commentMapper.deleteByExample(commentExample);
+    }
 }

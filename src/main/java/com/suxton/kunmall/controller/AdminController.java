@@ -2,6 +2,7 @@ package com.suxton.kunmall.controller;
 
 import com.suxton.kunmall.pojo.UserConsumed;
 import com.suxton.kunmall.service.HardwareService;
+import com.suxton.kunmall.service.MomentService;
 import com.suxton.kunmall.service.OrderService;
 import com.suxton.kunmall.service.UserService;
 import com.suxton.kunmall.utils.MyUserDetails;
@@ -25,14 +26,16 @@ public class AdminController {
     private final UserService userService;
     private final HardwareService hardwareService;
     private final OrderService orderService;
+    private final MomentService momentService;
     private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 
     @Autowired
     public AdminController(UserService userService, HardwareService hardwareService,
-                           OrderService orderService) {
+                           OrderService orderService, MomentService momentService) {
         this.userService = userService;
         this.hardwareService = hardwareService;
         this.orderService = orderService;
+        this.momentService = momentService;
     }
 
     private void userInfoSetter(Model model) {
@@ -170,10 +173,16 @@ public class AdminController {
     }
 
     @GetMapping("/Admin/RecommendationEditor*")
-    public String RecommendationEditor(Model model) {
+    public String recommendationEditor(Model model) {
         List<String[]> resolvedRecommendsList = hardwareService.getResolvedRecommendsList();
         model.addAttribute("RecommendsList", resolvedRecommendsList);
         return "/admin/RecommendationEditor";
     }
 
+    @ResponseBody
+    @PostMapping("/Admin/RemoveMoment*")
+    public String removeMoment(@RequestParam("moment_id") int momentID) {
+        momentService.removeMoment(momentID);
+        return "ok";
+    }
 }
