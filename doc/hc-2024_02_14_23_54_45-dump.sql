@@ -64,7 +64,7 @@ CREATE TABLE `Comment` (
 
 LOCK TABLES `Comment` WRITE;
 /*!40000 ALTER TABLE `Comment` DISABLE KEYS */;
-INSERT INTO `Comment` VALUES (1,2,'Suxton',9,'我测'),(2,2,'Suxton',9,'一条评论'),(3,2,'Suxton',9,'另一条评论'),(4,2,'Suxton',9,'还有一条评论'),(5,2,'Suxton',9,'2333'),(6,2,'Suxton',7,'123'),(7,2,'Suxton',6,'abc'),(8,2,'Suxton',8,'好家伙'),(9,2,'Suxton',9,'1223');
+INSERT INTO `Comment` VALUES (7,2,'Suxton',6,'abc'),(8,2,'Suxton',8,'好家伙');
 /*!40000 ALTER TABLE `Comment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -162,7 +162,7 @@ CREATE TABLE `Moment` (
   `content` text,
   `time_posted` bigint DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -171,7 +171,7 @@ CREATE TABLE `Moment` (
 
 LOCK TABLES `Moment` WRITE;
 /*!40000 ALTER TABLE `Moment` DISABLE KEYS */;
-INSERT INTO `Moment` VALUES (4,2,'Suxton',0,0,'2333',1706174447439),(5,2,'Suxton',1,0,'sdadasdasd',1706174531609),(6,2,'Suxton',0,1,'2333',1706174878959),(7,2,'Suxton',0,1,'2333332',1706175054712),(8,2,'Suxton',0,1,'我测我测我测我测我测我测我测我测我测我测我测\n我测我测我测我测我测我测我测我测我测我测我测\n我测我测我测我测我测我测我测我测我测我测我测\n我测我测我测我测我测我测我测我测我测我测我测\n我测我测我测我测我测我测我测我测我测我测我测\n我测我测我测我测我测我测我测我测我测我测我测\n我测我测我测我测我测我测我测我测我测我测我测\n我测我测我测我测我测我测我测我测我测我测我测\n我测我测我测我测我测我测我测我测我测我测我测\n我测我测我测我测我测我测我测我测我测我测我测\n我测我测我测我测我测我测我测我测我测我测我测\n我测我测我测我测我测我测我测我测我测我测我测\n我测我测我测我测我测我测我测我测我测我测我测\n我测我测我测我测我测我测我测我测我测我测我测\n我测我测我测我测我测我测我测我测我测我测我测\n我测我测我测我测我测我测我测我测我测我测我测\n我测我测我测我测我测我测我测我测我测我测我测\n我测我测我测我测我测我测我测我测我测我测我测\n我测我测我测我测我测我测我测我测我测我测我测\n我测我测我测我测我测我测我测我测我测我测我测\n我测我测我测我测我测我测我测我测我测我测我测\n我测我测我测我测我测我测我测我测我测我测我测\n我测我测我测我测我测我测我测我测我测我测我测\n我测我测我测我测我测我测我测我测我测我测我测\n我测我测我测我测我测我测我测我测我测我测我测\n我测我测我测我测我测我测我测我测我测我测我测\n我测我测我测我测我测我测我测我测我测我测我测\n我测我测我测我测我测我测我测我测我测我测我测\n我测我测我测我测我测我测我测我测我测我测我测\n我测我测我测我测我测我测我测我测我测我测我测\n我测我测我测我测我测我测我测我测我测我测我测\n我测我测我测我测我测我测我测我测我测我测我测',1706180364043),(9,2,'Suxton',2,6,'421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324421434234324324',1706180647693);
+INSERT INTO `Moment` VALUES (5,2,'Suxton',1,0,'sdadasdasd',1706174531609),(6,2,'Suxton',0,1,'2333',1706174878959),(8,2,'Suxton',0,1,'我测我测我测我测我测我测我测我测我测我测我测\n我测我测我测我测我测我测我测我测我测我测我测\n我测我测我测我测我测我测我测我测我测我测我测\n我测我测我测我测我测我测我测我测我测我测我测\n我测我测我测我测我测我测我测我测我测我测我测\n我测我测我测我测我测我测我测我测我测我测我测\n我测我测我测我测我测我测我测我测我测我测我测\n我测我测我测我测我测我测我测我测我测我测我测\n我测我测我测我测我测我测我测我测我测我测我测\n我测我测我测我测我测我测我测我测我测我测我测\n我测我测我测我测我测我测我测我测我测我测我测\n我测我测我测我测我测我测我测我测我测我测我测\n我测我测我测我测我测我测我测我测我测我测我测\n我测我测我测我测我测我测我测我测我测我测我测\n我测我测我测我测我测我测我测我测我测我测我测\n我测我测我测我测我测我测我测我测我测我测我测\n我测我测我测我测我测我测我测我测我测我测我测\n我测我测我测我测我测我测我测我测我测我测我测\n我测我测我测我测我测我测我测我测我测我测我测\n我测我测我测我测我测我测我测我测我测我测我测\n我测我测我测我测我测我测我测我测我测我测我测\n我测我测我测我测我测我测我测我测我测我测我测\n我测我测我测我测我测我测我测我测我测我测我测\n我测我测我测我测我测我测我测我测我测我测我测\n我测我测我测我测我测我测我测我测我测我测我测\n我测我测我测我测我测我测我测我测我测我测我测\n我测我测我测我测我测我测我测我测我测我测我测\n我测我测我测我测我测我测我测我测我测我测我测\n我测我测我测我测我测我测我测我测我测我测我测\n我测我测我测我测我测我测我测我测我测我测我测\n我测我测我测我测我测我测我测我测我测我测我测\n我测我测我测我测我测我测我测我测我测我测我测',1706180364043);
 /*!40000 ALTER TABLE `Moment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -217,7 +217,7 @@ CREATE TABLE `Orders` (
   `status` varchar(10) DEFAULT NULL,
   `comment` varchar(70) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -226,6 +226,7 @@ CREATE TABLE `Orders` (
 
 LOCK TABLES `Orders` WRITE;
 /*!40000 ALTER TABLE `Orders` DISABLE KEYS */;
+INSERT INTO `Orders` VALUES (1,4,'i9-13900','RTX4050Ti','SN550-500G','DDR4-16G','',5400.00,'2024-02-10 00:49:38','未发货','');
 /*!40000 ALTER TABLE `Orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -308,6 +309,7 @@ CREATE TABLE `Service` (
 
 LOCK TABLES `Service` WRITE;
 /*!40000 ALTER TABLE `Service` DISABLE KEYS */;
+INSERT INTO `Service` VALUES (4,'acmlf','acmlf: 1',2,'2024-02-09 16:50:05');
 /*!40000 ALTER TABLE `Service` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -324,7 +326,7 @@ CREATE TABLE `Users` (
   `isAdmin` tinyint(1) DEFAULT '0',
   `passwd` varchar(80) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -333,7 +335,7 @@ CREATE TABLE `Users` (
 
 LOCK TABLES `Users` WRITE;
 /*!40000 ALTER TABLE `Users` DISABLE KEYS */;
-INSERT INTO `Users` VALUES (1,'admin',1,'$2a$10$eEr40FHB9zXb4OtH9kzZnu1yRCC6Dg0axUin.eNGeIV0KFN5zYwKu'),(2,'Suxton',0,'$2a$10$UnUWS4fp8XqJMymU55ggcOK4hp92r9qopcxyY3rkJ4u3Lo6EHfnFK');
+INSERT INTO `Users` VALUES (1,'admin',1,'1234'),(2,'Suxton',0,'$2a$10$UnUWS4fp8XqJMymU55ggcOK4hp92r9qopcxyY3rkJ4u3Lo6EHfnFK'),(4,'acmlf',1,'$2a$10$4p1mIAicZRV2gHRngU4npOgmZ6Wf3oeVnPg762CmKtrwfGKdzI42G');
 /*!40000 ALTER TABLE `Users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -346,4 +348,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-02-08 12:06:52
+-- Dump completed on 2024-02-14 23:54:54
