@@ -31,14 +31,28 @@
 ## 系统设计
 
 - 系统架构：采用MVC（Model-View-Controller）架构，前端采用`HTML, CSS, JavaScript ` 实现，后端采用 `Java` 语言的 `spring boot` 搭建。
-- 系统模块：用户管理模块、商品管理模块、购物车管理模块、订单管理模块等。
-- 数据库设计：使用关系型数据库，设计用户表、商品表、订单表等，并建立各表之间的关联关系。
+
+    ![image-20240210155102173](README/image-20240210155102173.png)
+
+- 系统模块：分为两个大的模块：
+
+    - 用户模块：坤友圈、定制机型模块、客服模块、登录注册模块
+
+    - 管理员模块：用户管理模块、商品管理模块、订单管理模块、坤友圈管理模块
+
+        将上面的模块整合进了四个service类中：
+
+        ![image-20240210162148558](README/image-20240210162148558.png)
+
+- 数据库设计：使用关系型数据库，设计用户表、商品表、订单表等，并建立各表之间的关联关系。下面是ER图。
+
+    ![image-20240210162820923](README/image-20240210162820923.png)
 
 ## 系统实现
 
-- 使用的技术：前端使用HTML/CSS/JavaScript，后端使用Python的Django框架。
-- 编程语言：HTML、CSS、JavaScript、Python。
-- 开发环境：Sublime Text、PyCharm、MySQL Workbench等。
+- 使用的技术：前端使用HTML/CSS/JavaScript传统三大件，使用了bootstrap 5的样式美化网页，使用jQuery简化前端代码。后端使用基于Java的spring boot框架，同时使用`thymeleaf`来从模板构建网页，将前后端的逻辑分离。
+- 编程语言：HTML、CSS、JavaScript、Java。
+- 开发环境：`JetBrain intelliJ IDEA Ultimate`、`DBeaver`、`Chrome v121`。
 
 ## 系统测试
 
