@@ -191,7 +191,7 @@ public class AdminController {
     public String recommendationAdd(@RequestParam(defaultValue = "0", value = "recommend") String num,Model model) {
         userInfoSetter(model);
 
-        List<String[]> resolvedRecommendsList = hardwareService.getResolvedRecommendsList();
+//        List<String[]> resolvedRecommendsList = hardwareService.getResolvedRecommendsList();
         String comment = "请在此添加说明...";
         model.addAttribute("comment", comment);
 
@@ -215,14 +215,14 @@ public class AdminController {
     @GetMapping("/Admin/RecommendationEdit*")
     public String recommendationEdit(@RequestParam(defaultValue = "0", value = "recommend") String num, Model model) {
         userInfoSetter(model);
-        log.info("num: " + num);
+//        log.info("num: " + num);
         List<String[]> resolvedRecommendsList = hardwareService.getResolvedRecommendsList();
         String comment = resolvedRecommendsList.stream()
                 .filter(item -> Integer.parseInt(item[6]) == Integer.parseInt(num))
                 .findFirst()
                 .map(item -> item[5])
                 .orElse("请在此添加说明...");
-        log.info(comment);
+//        log.info(comment);
         model.addAttribute("comment", comment);
 
         List<String[]> cpuInfoList = hardwareService.getCPUInfoList();
@@ -246,7 +246,7 @@ public class AdminController {
     @GetMapping("/Admin/RecommendationDelete*")
     public String deleteRecommendation(@RequestParam("recommend") Integer recommendId) {
         recommendsMapper.deleteByPrimaryKey(recommendId);
-        log.info("recommendId: " + recommendId);
+//        log.info("recommendId: " + recommendId);
         return "redirect:/Admin/RecommendationEditor";
     }
 
@@ -274,13 +274,13 @@ public class AdminController {
                                  @RequestParam("driveID") int driveID,
                                  @RequestParam("comment") String comment,
                                  @RequestParam("recommendID") String recommendID1){
-        log.info("cpuID: " + cpuID);
-        log.info("gpuID: " + gpuID);
-        log.info("memoryID: " + memoryID);
-        log.info("driveID: " + driveID);
-        log.info("comment: " + comment);
-        log.info("recommendID: " + recommendID1);
-        Integer recommendID = Integer.parseInt(recommendID1);
+//        log.info("cpuID: " + cpuID);
+//        log.info("gpuID: " + gpuID);
+//        log.info("memoryID: " + memoryID);
+//        log.info("driveID: " + driveID);
+//        log.info("comment: " + comment);
+//        log.info("recommendID: " + recommendID1);
+        int recommendID = Integer.parseInt(recommendID1);
         if (recommendID != -1) {
             Recommends recommends = new Recommends();
             recommends.setId(recommendID);
