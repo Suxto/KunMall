@@ -188,7 +188,8 @@ public class AdminController {
     }
 
     @GetMapping("/Admin/RecommendationAdd*")
-    public String recommendationAdd(@RequestParam(defaultValue = "0", value = "recommend") String num,Model model) {
+    public String recommendationAdd(@RequestParam(defaultValue = "0", value = "recommend") String num,
+                                    Model model) {
         userInfoSetter(model);
 
 //        List<String[]> resolvedRecommendsList = hardwareService.getResolvedRecommendsList();
@@ -213,7 +214,8 @@ public class AdminController {
     }
 
     @GetMapping("/Admin/RecommendationEdit*")
-    public String recommendationEdit(@RequestParam(defaultValue = "0", value = "recommend") String num, Model model) {
+    public String recommendationEdit(@RequestParam(defaultValue = "0", value = "recommend") String num,
+                                     Model model) {
         userInfoSetter(model);
 //        log.info("num: " + num);
         List<String[]> resolvedRecommendsList = hardwareService.getResolvedRecommendsList();
@@ -273,7 +275,7 @@ public class AdminController {
                                  @RequestParam("memoryID") int memoryID,
                                  @RequestParam("driveID") int driveID,
                                  @RequestParam("comment") String comment,
-                                 @RequestParam("recommendID") String recommendID1){
+                                 @RequestParam("recommendID") String recommendID1) {
 //        log.info("cpuID: " + cpuID);
 //        log.info("gpuID: " + gpuID);
 //        log.info("memoryID: " + memoryID);
