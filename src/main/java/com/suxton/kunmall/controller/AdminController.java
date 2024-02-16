@@ -1,11 +1,14 @@
 package com.suxton.kunmall.controller;
 
+import com.suxton.kunmall.dao.RecommendsMapper;
+import com.suxton.kunmall.pojo.Recommends;
 import com.suxton.kunmall.pojo.UserConsumed;
 import com.suxton.kunmall.service.HardwareService;
 import com.suxton.kunmall.service.MomentService;
 import com.suxton.kunmall.service.OrderService;
 import com.suxton.kunmall.service.UserService;
 import com.suxton.kunmall.utils.MyUserDetails;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,24 +21,29 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.HashMap;
 import java.util.List;
 
 
 @Controller
+@Slf4j
 public class AdminController {
     private final UserService userService;
     private final HardwareService hardwareService;
     private final OrderService orderService;
     private final MomentService momentService;
+    private final RecommendsMapper recommendsMapper;
     private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 
     @Autowired
     public AdminController(UserService userService, HardwareService hardwareService,
-                           OrderService orderService, MomentService momentService) {
+                           OrderService orderService, MomentService momentService,
+                           RecommendsMapper recommendsMapper) {
         this.userService = userService;
         this.hardwareService = hardwareService;
         this.orderService = orderService;
         this.momentService = momentService;
+        this.recommendsMapper = recommendsMapper;
     }
 
     private void userInfoSetter(Model model) {
@@ -177,6 +185,62 @@ public class AdminController {
         List<String[]> resolvedRecommendsList = hardwareService.getResolvedRecommendsList();
         model.addAttribute("RecommendsList", resolvedRecommendsList);
         return "/admin/RecommendationEditor";
+    }
+
+
+    public Integer recommendID = -1;
+
+    @GetMapping("/RecommendationEdit*")
+    public String recommendationEdit(@RequestParam(defaultValue = "0", value = "recommend") String num, Model model) {
+        userInfoSetter(model);
+
+        List<String[]> resolvedRecommendsList = hardwareService.getResolvedRecommendsList();
+        String comment = resolvedRecommendsList.get(Integer.parseInt(num)-1)[5];
+        log.info(comment);
+        model.addAttribute("comment", comment);
+
+        List<String[]> cpuInfoList = hardwareService.getCPUInfoList();
+        model.addAttribute("CPUList", cpuInfoList);
+        List<String[]> gpuInfoList = hardwareService.getGPUInfoList();
+        model.addAttribute("GPUList", gpuInfoList);
+        List<String[]> memoryInfoList = hardwareService.getMemoryInfoList();
+        model.addAttribute("MemoryList", memoryInfoList);
+        List<String[]> driveInfoList = hardwareService.getDriveInfoList();
+        model.addAttribute("DriveList", driveInfoList);
+
+        HashMap<String, Integer> details;
+        if (!"0".equals(num)) {
+            details = hardwareService.getRecommendDetail(Integer.parseInt(num));
+            recommendID = Integer.parseInt(num);
+        } else details = new HashMap<>();
+        model.addAttribute("details", details);
+        return "/admin/RecommendationEdit";
+    }
+
+    @GetMapping("/SubmitCommends*")
+    public String submitCommends(@RequestParam("cpuID") int cpuID,
+                                 @RequestParam("gpuID") int gpuID,
+                                 @RequestParam("memoryID") int memoryID,
+                                 @RequestParam("driveID") int driveID,
+                                 @RequestParam("comment") String comment) {
+        log.info("cpuID: " + cpuID);
+        log.info("gpuID: " + gpuID);
+        log.info("memoryID: " + memoryID);
+        log.info("driveID: " + driveID);
+        log.info("comment: " + comment);
+        if (recommendID != -1) {
+            Recommends recommends = new Recommends();
+            recommends.setId(recommendID);
+            recommends.setCpuid(cpuID);
+            recommends.setGpuid(gpuID);
+            recommends.setMemoryid(memoryID);
+            recommends.setDriveid(driveID);
+            recommends.setComment(comment);
+            // 调用RecommendsMapper的updateByPrimaryKeySelective方法来更新数据库中的记录
+            recommendsMapper.updateByPrimaryKeySelective(recommends);
+        }
+        // 重定向到推荐编辑页面
+        return "redirect:/Admin/RecommendationEditor";
     }
 
     @ResponseBody

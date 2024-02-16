@@ -3,57 +3,55 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-  <meta charset="UTF-8">
-  <title>管理员界面-推荐配置编辑</title>
+    <meta charset="UTF-8">
+    <title>管理员界面-推荐配置编辑</title>
 
-  <!-- Bootstrap5.3.2 css -->
-  <link rel="stylesheet" href="../../static/plugin/bootstrap/bootstrap.min.css">
-  <!-- Bootstrap5.3.2 js -->
-  <script src="../../static/plugin/bootstrap/bootstrap.min.js"></script>
-  <!--  popper.js  -->
-  <script src="../../static/plugin/bootstrap/popper.min.js"></script>
+    <!-- Bootstrap5.3.2 css -->
+    <link rel="stylesheet" href="../../static/plugin/bootstrap/bootstrap.min.css">
+    <!-- Bootstrap5.3.2 js -->
+    <script src="../../static/plugin/bootstrap/bootstrap.min.js"></script>
+    <!--  popper.js  -->
+    <script src="../../static/plugin/bootstrap/popper.min.js"></script>
 
-  <script src="../../static/js/RecommendationEditor.js"></script>
-  <!--导航栏样式-->
-  <link rel="stylesheet" type="text/css" href="../../static/css/Navigation.css">
-  <!--首页样式-->
-  <link rel="stylesheet" type="text/css" href="../../static/css/Home.css">
-  <!--图标-->
-  <link rel="icon" type="favicon.ico" href="../../static/img/ikunLOGO.png">
+    <script src="../../static/js/RecommendationEditor.js"></script>
+    <!--导航栏样式-->
+    <link rel="stylesheet" type="text/css" href="../../static/css/Navigation.css">
+    <!--首页样式-->
+    <link rel="stylesheet" type="text/css" href="../../static/css/Home.css">
+    <!--图标-->
+    <link rel="icon" type="favicon.ico" href="../../static/img/ikunLOGO.png">
 </head>
 
 <body>
 <div th:replace="~{admin/NavBar :: navbar}"></div>
 
 <div class="picture container-fluid mt-3">
-  <h1><strong>推荐配置编辑</strong></h1>
+    <h1><strong>推荐配置编辑</strong></h1>
 </div>
 
 <div th:each="item: ${RecommendsList}">
-  <div class="intro container mt-3">
-    <h2>推荐配置&nbsp; <span th:text="${itemStat.index + 1}"></span></h2>
-    <div class="card">
-      <div class="card-body">
-        <h5>CPU：<span th:text="${item[0]}"></span></h5>
-        <h5>显卡：<span th:text="${item[1]}"></span></h5>
-        <h5>内存：<span th:text="${item[2]}"></span></h5>
-        <h5>硬盘：<span th:text="${item[3]}"></span></h5>
-      </div>
-      <div class="card-footer">
-        <h4 style="display: inline-block;">
-          价格：<span style="color:gold;" th:text="${item[4]}"></span>
-        </h4>
-        <a class="btn btn-primary"
-           type="button" style="display: inline-block;position:absolute;right: 10px">更新
-        </a>
-        <a class="btn btn-danger"
-           type="button" style="display: inline-block;position:absolute;right: 10px">删除
-        </a>
+    <div class="intro container mt-3">
+        <h2>推荐配置 <span th:text="${itemStat.index + 1}"></span></h2>
+        <div class="card">
+            <div class="card-body">
+                <h5>CPU：<span th:text="${item[0]}"></span></h5>
+                <h5>显卡：<span th:text="${item[1]}"></span></h5>
+                <h5>内存：<span th:text="${item[2]}"></span></h5>
+                <h5>硬盘：<span th:text="${item[3]}"></span></h5>
+            </div>
+            <div class="card-footer">
+                <h4 style="display: inline-block;">价格：<span style="color:gold;" th:text="${item[4]}"></span>
 
-      </div>
-      <div class="card-footer"><h5 th:text="${item[5]}"></h5></div>
+                </h4>
+                <a class="btn btn-primary"
+                   th:href="@{/RecommendationEdit(recommend=${itemStat.index + 1})}"
+                   type="button" style="display: inline-block;position:absolute;right: 10px">编辑
+                </a>
+
+            </div>
+            <div class="card-footer"><h5 th:text="${item[5]}"></h5></div>
+        </div>
     </div>
-  </div>
 </div>
 
 </body>
