@@ -1,0 +1,222 @@
+<!--定制-->
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>定制-爱坤电脑城-为ikun提供最好的服务</title>
+    <<!-- Bootstrap5.3.2 css -->
+    <link rel="stylesheet" href="../../static/plugin/bootstrap/bootstrap.min.css">
+    <!-- Bootstrap5.3.2 js -->
+    <script src="../../static/plugin/bootstrap/bootstrap.min.js"></script>
+    <!-- Popper.js  -->
+    <script src="../../static/plugin/bootstrap/popper.min.js"></script>
+    <!--  jQuery-->
+    <script src="../../static/plugin/jquery/jquery-3.7.1.min.js"></script>
+    <!--导航栏样式-->
+    <link rel="stylesheet" type="text/css" href="../../static/css/Navigation.css">
+    <!--定制页样式-->
+    <link rel="stylesheet" type="text/css" href="../../static/css/RecommendationEdit.css">
+    <!--图标-->
+    <link rel="icon" type="favicon.ico" href="../../static/img/ikunLOGO.png">
+    <!--JS-->
+    <script src="../../static/js/RecommendationAdd.js"></script>
+<body>
+<div th:replace="~{user/NavBar :: navbar}"></div>
+
+<div class="container mt-3">
+    <h2>添加推荐配置</h2>
+    <div>
+        <div class="card">
+            <div class="card-header">
+                <a class="btn" data-bs-toggle="collapse" href="#collapseOne">
+                    CPU
+                </a>
+            </div>
+            <div id="collapseOne" class="collapse" data-bs-parent="#accordion">
+                <form class="select-form" onclick="Select()">
+                    <div th:each="item : ${CPUList}">
+                        <div class="form-check">
+                            <!--/*@thymesVar id="get" type="java.lang.Integer"*/-->
+                            <input type="radio" class="form-check-input" id="cpus" name="optradio-cpu"
+                                   th:checked="${itemStat.index + 1} == ${details.get('CPUSel')}"
+                                   th:value="${itemStat.index + 1}">
+                            <label class="form-check-label" for="cpus">
+                                <table class="Module table ">
+                                    <tr>
+                                        <td id="cpu" th:text="${item[0]}"></td>
+                                        <td id="cpuValue" th:text="${item[1]}"></td>
+                                    </tr>
+                                </table>
+                            </label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <a class="collapsed btn" data-bs-toggle="collapse" href="#collapseTwo">
+                    显卡
+                </a>
+            </div>
+            <div id="collapseTwo" class="collapse" data-bs-parent="#accordion">
+                <form class="select-form" onclick="Select()">
+                    <div th:each="item:${GPUList}">
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" id="gpus" name="optradio-gpu"
+                                   th:checked="${itemStat.index + 1} == ${details.get('GPUSel')}"
+                                   th:value="${itemStat.index + 1}">
+                            <label class="form-check-label" for="gpus">
+                                <table class="Module table ">
+                                    <tr>
+                                        <td id="gpu" th:text="${item[0]}"></td>
+                                        <td id="gpuValue" th:text="${item[1]}"></td>
+                                    </tr>
+                                </table>
+                            </label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+        <div class="card">
+            <div class="card-header">
+                <a class="collapsed btn" data-bs-toggle="collapse" href="#collapseThree">
+                    内存
+                </a>
+            </div>
+            <div id="collapseThree" class="collapse" data-bs-parent="#accordion">
+                <form class="select-form" onclick="Select()">
+                    <div th:each="item:${MemoryList}">
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" id="memorys" name="optradio-memory"
+                                   th:checked="${itemStat.index + 1} == ${details.get('MemorySel')}"
+                                   th:value="${itemStat.index + 1}">
+                            <label class="form-check-label" for="memorys">
+                                <table class="Module table ">
+                                    <tr>
+                                        <td id="memory" th:text="${item[0]}"/>
+                                        <td id="memoryValue" th:text="${item[1]}"/>
+                                    </tr>
+                                </table>
+                            </label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <a class="collapsed btn" data-bs-toggle="collapse" href="#collapseFour">
+                    硬盘
+                </a>
+            </div>
+            <div id="collapseFour" class="collapse" data-bs-parent="#accordion">
+                <form class="select-form" onclick="Select()">
+                    <div th:each="item:${DriveList}">
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" id="disks" name="optradio-disk"
+                                   th:checked="${itemStat.index + 1} == ${details.get('DriveSel')}"
+                                   th:value="${itemStat.index + 1}">
+                            <label class="form-check-label" for="disks">
+                                <table class="Module table ">
+                                    <tr>
+                                        <td id="disk" th:text="${item[0]}"/>
+                                        <td id="disksValue" th:text="${item[1]}"/>
+                                    </tr>
+                                </table>
+                            </label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="container mt-3">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="form-group">
+                <label for="description">描述:</label>
+                <textarea class="form-control" id="description" name="description"
+                          rows="3" style="width: 100%;" th:utext="${comment}">
+
+                </textarea>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!---------------------------------------------------------------------->
+<div class="container-fluid mt-3" onload="Select()">
+
+    <div class="row">
+        <div class="col p-4">
+            <form id="form1" action="https://localhost:8080" method="post">
+                <table class="Module table ">
+                    <tr>
+                        <td id="cpu-select"><input class="input" type="text" name="cpu" readonly></td>
+                    </tr>
+                    <tr>
+                        <td id="cpuValue-select"><input class="input" type="text" name="cpuValue" readonly></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <div class="col p-4 ">
+            <form id="form2" method="post">
+                <table class="Module table ">
+                    <tr>
+                        <td id="gpu-select"><input class="input" type="text" name="gpu" readonly></td>
+                    </tr>
+                    <tr>
+                        <td id="gpuValue-select"><input class="input" type="text" name="gpuValue" readonly></td>
+                    </tr>
+                </table>
+            </form>
+
+        </div>
+        <div class="col p-4 ">
+            <form id="form3" method="post">
+                <table class="Module table ">
+                    <tr>
+                        <td id="memory-select"><input class="input" type="text" name="memory" readonly></td>
+                    </tr>
+                    <tr>
+                        <td id="memoryValue-select"><input class="input" type="text" name="memoryValue" readonly></td>
+                    </tr>
+                </table>
+            </form>
+
+            <div class="col p-4 ">
+                <form id="form4" th:action="@{/SubmitCommends}" method="get">
+                    <table class="Module table ">
+                        <tr>
+                            <td id="disk-select"><input class="input" type="text" name="disk" readonly></td>
+                        </tr>
+                        <tr>
+                            <td id="diskValue-select"><input class="input" type="text" name="diskValue" readonly></td>
+                        </tr>
+                    </table>
+
+                    <input type="hidden" id="descriptionHidden" name="description">
+
+                    <h4 class="sum">合计:<label>
+                        <input class="input" type="number" name="SumMoney" id="SumMoney" readonly style="border: none"
+                               value="0">
+                    </label></h4></form>
+                <button type="button" onclick="Submit()" class="buy btn btn-primary" id="save-button"
+                        data-checkout-url="@{/AddRecommendation}">
+                    添加
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
