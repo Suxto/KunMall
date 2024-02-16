@@ -95,6 +95,7 @@ function SumMoney() {
 
 function Submit() {
     let comment = document.getElementById('description').value;
+    let recommendID = document.getElementById('recommendID').value;
     // window.location.href = '/Admin/SubmitCommends?'
     //     + 'cpuID=' + cpuID
     //     + '&gpuID=' + gpuID
@@ -107,6 +108,7 @@ function Submit() {
         memoryID: memoryID,
         driveID: driveID,
         comment: comment,
+        recommendID: recommendID
     }, function (data) {
         location.href = '/Admin/RecommendationEditor'
     })

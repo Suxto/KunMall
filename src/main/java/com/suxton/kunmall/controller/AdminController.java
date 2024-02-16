@@ -206,17 +206,11 @@ public class AdminController {
         model.addAttribute("DriveList", driveInfoList);
 
         HashMap<String, Integer> details;
-        if (!"0".equals(num)) {
-            details = hardwareService.getRecommendDetail(Integer.parseInt(num));
-            recommendID = Integer.parseInt(num);
-        } else details = new HashMap<>();
+        details = new HashMap<>();
         model.addAttribute("details", details);
 
         return "/admin/RecommendationAdd";
     }
-
-
-    public Integer recommendID = -1;
 
     @GetMapping("/Admin/RecommendationEdit*")
     public String recommendationEdit(@RequestParam(defaultValue = "0", value = "recommend") String num, Model model) {
@@ -243,7 +237,7 @@ public class AdminController {
         HashMap<String, Integer> details;
         if (!"0".equals(num)) {
             details = hardwareService.getRecommendDetail(Integer.parseInt(num));
-            recommendID = Integer.parseInt(num);
+            model.addAttribute("recommendID", num);
         } else details = new HashMap<>();
         model.addAttribute("details", details);
         return "/admin/RecommendationEdit";
@@ -278,12 +272,15 @@ public class AdminController {
                                  @RequestParam("gpuID") int gpuID,
                                  @RequestParam("memoryID") int memoryID,
                                  @RequestParam("driveID") int driveID,
-                                 @RequestParam("comment") String comment) {
+                                 @RequestParam("comment") String comment,
+                                 @RequestParam("recommendID") String recommendID1){
         log.info("cpuID: " + cpuID);
         log.info("gpuID: " + gpuID);
         log.info("memoryID: " + memoryID);
         log.info("driveID: " + driveID);
         log.info("comment: " + comment);
+        log.info("recommendID: " + recommendID1);
+        Integer recommendID = Integer.parseInt(recommendID1);
         if (recommendID != -1) {
             Recommends recommends = new Recommends();
             recommends.setId(recommendID);
