@@ -14,10 +14,11 @@
     <script src="../../static/plugin/bootstrap/popper.min.js"></script>
 
     <script src="../../static/js/RecommendationEditor.js"></script>
+
     <!--导航栏样式-->
     <link rel="stylesheet" type="text/css" href="../../static/css/Navigation.css">
     <!--首页样式-->
-    <link rel="stylesheet" type="text/css" href="../../static/css/Home.css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/RecommendationEditor.css">
     <!--图标-->
     <link rel="icon" type="favicon.ico" href="../../static/img/ikunLOGO.png">
 </head>
@@ -44,8 +45,13 @@
 
                 </h4>
                 <a class="btn btn-primary"
-                   th:href="@{/Admin/RecommendationEdit(recommend=${itemStat.index + 1})}"
+                   th:href="@{/Admin/RecommendationEdit(recommend=${item[6]})}"
                    type="button" style="display: inline-block;position:absolute;right: 10px">编辑
+                </a>
+
+                <a class="btn btn-danger"
+                   th:href="@{/Admin/RecommendationDelete(recommend=${item[6]})}"
+                   type="button" style="display: inline-block;position:absolute;right: 70px">删除
                 </a>
 
             </div>
@@ -53,6 +59,10 @@
         </div>
     </div>
 </div>
+
+<a href="RecommendationAdd?recommend=0" class="btn btn-primary m-4 align-items-end btn-add">
+    +
+</a>
 
 </body>
 

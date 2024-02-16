@@ -187,15 +187,47 @@ public class AdminController {
         return "/admin/RecommendationEditor";
     }
 
+    @GetMapping("/Admin/RecommendationAdd*")
+    public String recommendationAdd(@RequestParam(defaultValue = "0", value = "recommend") String num,Model model) {
+        userInfoSetter(model);
+
+        List<String[]> resolvedRecommendsList = hardwareService.getResolvedRecommendsList();
+        String comment = "请在此添加说明...";
+        model.addAttribute("comment", comment);
+
+        List<String[]> cpuInfoList = hardwareService.getCPUInfoList();
+        model.addAttribute("CPUList", cpuInfoList);
+        log.info(cpuInfoList.toString());
+        List<String[]> gpuInfoList = hardwareService.getGPUInfoList();
+        model.addAttribute("GPUList", gpuInfoList);
+        List<String[]> memoryInfoList = hardwareService.getMemoryInfoList();
+        model.addAttribute("MemoryList", memoryInfoList);
+        List<String[]> driveInfoList = hardwareService.getDriveInfoList();
+        model.addAttribute("DriveList", driveInfoList);
+
+        HashMap<String, Integer> details;
+        if (!"0".equals(num)) {
+            details = hardwareService.getRecommendDetail(Integer.parseInt(num));
+            recommendID = Integer.parseInt(num);
+        } else details = new HashMap<>();
+        model.addAttribute("details", details);
+
+        return "/admin/RecommendationAdd";
+    }
+
 
     public Integer recommendID = -1;
 
     @GetMapping("/Admin/RecommendationEdit*")
     public String recommendationEdit(@RequestParam(defaultValue = "0", value = "recommend") String num, Model model) {
         userInfoSetter(model);
-
+        log.info("num: " + num);
         List<String[]> resolvedRecommendsList = hardwareService.getResolvedRecommendsList();
-        String comment = resolvedRecommendsList.get(Integer.parseInt(num)-1)[5];
+        String comment = resolvedRecommendsList.stream()
+                .filter(item -> Integer.parseInt(item[6]) == Integer.parseInt(num))
+                .findFirst()
+                .map(item -> item[5])
+                .orElse("请在此添加说明...");
         log.info(comment);
         model.addAttribute("comment", comment);
 
@@ -217,6 +249,30 @@ public class AdminController {
         return "/admin/RecommendationEdit";
     }
 
+    @GetMapping("/Admin/RecommendationDelete*")
+    public String deleteRecommendation(@RequestParam("recommend") Integer recommendId) {
+        recommendsMapper.deleteByPrimaryKey(recommendId);
+        log.info("recommendId: " + recommendId);
+        return "redirect:/Admin/RecommendationEditor";
+    }
+
+    @PostMapping("/Admin/AddRecommendation")
+    public String addCommends(@RequestParam("cpuID") int cpuID,
+                              @RequestParam("gpuID") int gpuID,
+                              @RequestParam("memoryID") int memoryID,
+                              @RequestParam("driveID") int driveID,
+                              @RequestParam("comment") String comment) {
+        Recommends recommends = new Recommends();
+        recommends.setCpuid(cpuID);
+        recommends.setGpuid(gpuID);
+        recommends.setMemoryid(memoryID);
+        recommends.setDriveid(driveID);
+        recommends.setComment(comment);
+        recommendsMapper.insert(recommends);
+        return "redirect:/Admin/RecommendationEditor";
+    }
+
+
     @PostMapping("/Admin/SubmitRecommendation")
     public String submitCommends(@RequestParam("cpuID") int cpuID,
                                  @RequestParam("gpuID") int gpuID,
@@ -236,10 +292,8 @@ public class AdminController {
             recommends.setMemoryid(memoryID);
             recommends.setDriveid(driveID);
             recommends.setComment(comment);
-            // 调用RecommendsMapper的updateByPrimaryKeySelective方法来更新数据库中的记录
             recommendsMapper.updateByPrimaryKeySelective(recommends);
         }
-        // 重定向到推荐编辑页面
         return "redirect:/Admin/RecommendationEditor";
     }
 
