@@ -94,11 +94,21 @@ function SumMoney() {
 
 
 function Submit() {
-    var comment = document.getElementById('description').value;
-    window.location.href = '/SubmitCommends?'
-        + 'cpuID=' + cpuID
-        + '&gpuID=' + gpuID
-        + '&memoryID=' + memoryID
-        + '&driveID=' + driveID
-        + '&comment=' + comment;
+    let comment = document.getElementById('description').value;
+    // window.location.href = '/Admin/SubmitCommends?'
+    //     + 'cpuID=' + cpuID
+    //     + '&gpuID=' + gpuID
+    //     + '&memoryID=' + memoryID
+    //     + '&driveID=' + driveID
+    //     + '&comment=' + comment;
+    $.post('/Admin/SubmitRecommendation', {
+        cpuID: cpuID,
+        gpuID: gpuID,
+        memoryID: memoryID,
+        driveID: driveID,
+        comment: comment,
+    }, function (data) {
+        location.href = '/Admin/RecommendationEditor'
+    })
+
 }

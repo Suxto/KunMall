@@ -1,34 +1,38 @@
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark navbar-top" th:fragment="navbar">
-    <a class="navbar-brand" href="#">
-        <img src="../../static/img/ikunLOGO.png" width="55">
-    </a>
+  <a class="navbar-brand" href="#">
+    <img src="../../static/img/ikunLOGO.png" width="55">
+  </a>
 
-    <!-- Links -->
-    <div class="collapse navbar-collapse" id="mynavbar">
-        <ul class="navbar-nav me-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="AdminHome.html">营业查询</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="Store.html">仓库管理</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="OrderDeal.html">订单处理</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="AdminHelp.html">客服回复</a>
-            </li>
-        </ul>
-        <ul class="navbar-nav me-right">
-            <li class="nav-item">
-                <a class="nav-link" th:text="${username}"></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/logout}">登出</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/Home}">用户主页</a>
-            </li>
-        </ul>
-    </div>
+  <!-- Links -->
+  <div class="collapse navbar-collapse" id="mynavbar">
+    <ul class="navbar-nav me-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="AdminHome.html">营业查询</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="RecommendationEditor.html">推荐配置管理</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="Store.html">仓库管理</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="OrderDeal.html">订单处理</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="AdminHelp.html">客服回复</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav me-right">
+      <li class="nav-item">
+        <a class="nav-link" th:text="${username}"></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/logout}">登出</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/Home}">用户主页</a>
+      </li>
+    </ul>
+  </div>
 </nav>

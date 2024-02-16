@@ -190,7 +190,7 @@ public class AdminController {
 
     public Integer recommendID = -1;
 
-    @GetMapping("/RecommendationEdit*")
+    @GetMapping("/Admin/RecommendationEdit*")
     public String recommendationEdit(@RequestParam(defaultValue = "0", value = "recommend") String num, Model model) {
         userInfoSetter(model);
 
@@ -217,7 +217,7 @@ public class AdminController {
         return "/admin/RecommendationEdit";
     }
 
-    @GetMapping("/SubmitCommends*")
+    @PostMapping("/Admin/SubmitRecommendation")
     public String submitCommends(@RequestParam("cpuID") int cpuID,
                                  @RequestParam("gpuID") int gpuID,
                                  @RequestParam("memoryID") int memoryID,
