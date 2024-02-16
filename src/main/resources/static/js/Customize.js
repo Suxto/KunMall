@@ -23,7 +23,7 @@ function Select() {
     SumMoney();
 }
 
-var cpuName, gpuName, memoryName, driveName;
+let cpuName, gpuName, memoryName, driveName;
 
 function Import(selectedRadio, type) {
     let table = selectedRadio.parentNode.querySelector('table');
@@ -66,7 +66,7 @@ function Import(selectedRadio, type) {
     }
 }
 
-var c, g, m, d, sum;
+let c, g, m, d, sum;
 
 function SumMoney() {
     const cpuValue = document.getElementById('cpuValue-select');
@@ -74,10 +74,12 @@ function SumMoney() {
     const memoryValue = document.getElementById('memoryValue-select');
     const diskValue = document.getElementById('diskValue-select');
     sum = 0;
+    // console.log(cpuValue, gpuValue, memoryValue, diskValue);
     c = parseFloat(cpuValue.textContent.split("：").at(1));
     g = parseFloat(gpuValue.textContent.split("：").at(1))
     m = parseFloat(memoryValue.textContent.split("：").at(1))
     d = parseFloat(diskValue.textContent.split("：").at(1))
+    // console.log(c, g, m, d);
     if (c) sum += c;
     if (g) sum += g;
     if (m) sum += m;
@@ -89,7 +91,8 @@ function SumMoney() {
 
 
 function Submit() {
-    if (c > 0 && g > 0 && m > 0 && d > 0) {
+    console.log(c, g, m, d)
+    if (!isNaN(c) && !isNaN(g) && !isNaN(m) && !isNaN(d)) {
         window.location.href = '/Checkout?'
             + 'CPUName=' + encodeURIComponent(cpuName) + '&CPUPrice=' + encodeURIComponent(c)
             + '&GPUName=' + encodeURIComponent(gpuName) + '&GPUPrice=' + encodeURIComponent(g)

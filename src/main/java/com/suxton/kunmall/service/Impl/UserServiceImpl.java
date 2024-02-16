@@ -128,7 +128,7 @@ public class UserServiceImpl implements UserService {
             service.setStatus(type);
 //            logger.warn(service.getStatus() + "");
             service.setLastchat(new Date());
-            serviceMapper.updateByPrimaryKey(service);
+            serviceMapper.updateByPrimaryKeyWithBLOBs(service);
         }
     }
 
