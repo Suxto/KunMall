@@ -21,6 +21,7 @@ class KunMallApplicationTests {
 //        userService.createUser("Suxton", "1234");
 //        hardwareService.addCPU("i5-1500", 1500, 20);
 
+
         userService.addHelpText(1, "21312341", (short) 1, null);
     }
 

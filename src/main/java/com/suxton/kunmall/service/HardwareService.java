@@ -54,4 +54,5 @@ public interface HardwareService {
     void addMemory(String name, double price, int amount);
 
     void addDrive(String name, double price, int amount);
+
 }
