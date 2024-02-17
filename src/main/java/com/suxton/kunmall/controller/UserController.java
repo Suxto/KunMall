@@ -185,7 +185,7 @@ public class UserController {
         model.addAttribute("DriveList", driveInfoList);
         HashMap<String, Integer> details;
         if (0 != num) {
-            System.out.println(num);
+//            System.out.println(num);
             details = hardwareService.getRecommendDetail(num);
         } else details = new HashMap<>();
         model.addAttribute("details", details);
