@@ -173,7 +173,7 @@ public class UserController {
     }
 
     @GetMapping("/Customize*")
-    public String customize(@RequestParam(defaultValue = "0", value = "recommend") String num, Model model) {
+    public String customize(@RequestParam(defaultValue = "0", value = "recommend") int num, Model model) {
         userInfoSetter(model);
         List<String[]> cpuInfoList = hardwareService.getCPUInfoList();
         model.addAttribute("CPUList", cpuInfoList);
@@ -184,8 +184,9 @@ public class UserController {
         List<String[]> driveInfoList = hardwareService.getDriveInfoList();
         model.addAttribute("DriveList", driveInfoList);
         HashMap<String, Integer> details;
-        if (!"0".equals(num)) {
-            details = hardwareService.getRecommendDetail(Integer.parseInt(num));
+        if (0 != num) {
+            System.out.println(num);
+            details = hardwareService.getRecommendDetail(num);
         } else details = new HashMap<>();
         model.addAttribute("details", details);
         return "user/Customize";
