@@ -1,47 +1,48 @@
 <!--导航栏-->
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark navbar-top" th:fragment="navbar">
-    <!-- Brand/logo -->
-    <a class="navbar-brand" href="#">
-        <img src="../../static/img/ikunLOGO.png" width="55">
-    </a>
-    <!-- Links -->
-    <div class="collapse navbar-collapse" id="mynavbar">
-        <ul class="navbar-nav me-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="Home.html">首页</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="Customize.html">定制</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="KunMoment.html">Kun友圈</a>
-            </li>
-        </ul>
-        <ul class="navbar-nav me-right">
-            <li class="nav-item">
-                <a class="nav-link" href="Help.html">客服
-                    <!--                    <span style="position: absolute;top: 20px;right: 395px; display: inline-block;width: 8px;height:-->
-                    <!--                    8px;border-radius: 50%;background-color: red;margin-left: 5px;" th:if="${unread}"></span>-->
-                    <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle"
-                          th:if="${unread}">
+  <!-- Brand/logo -->
+  <a class="navbar-brand" href="#">
+    <img src="../../static/img/ikunLOGO.png" width="55">
+  </a>
+  <!-- Links -->
+  <div class="collapse navbar-collapse" id="mynavbar">
+    <ul class="navbar-nav me-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="Home.html">首页</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="Customize.html">定制</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="KunMoment.html">Kun友圈</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav me-right">
+      <li class="nav-item">
+        <a class="nav-link" href="Help.html">客服
+          <!--                    <span style="position: absolute;top: 20px;right: 300px; display: inline-block;width: 8px;height:-->
+          <!--                                        8px;border-radius: 50%;background-color: red;margin-left: 5px;" th:if="${unread}"></span>-->
+          <span
+              class="position-absolute translate-middle p-1 bg-danger border border-light rounded-circle"
+              th:if="${unread}">
                     </span>
-                </a>
-            </li>
-            <li class="nav-item" th:if="${username==null}">
-                <a class="nav-link" href="Login.html">登录</a>
-            </li>
-            <li class="nav-item" th:if="${username!=null}">
-                <a class="nav-link" th:text="${username}"></a>
-            </li>
-            <li class="nav-item" th:if="${username!=null}">
-                <a class="nav-link" th:href="@{/Order}">订单</a>
-            </li>
-            <li class="nav-item" th:if="${username!=null}">
-                <a class="nav-link" th:href="@{/logout}">登出</a>
-            </li>
-            <li class="nav-item" th:if="${admin}">
-                <a class="nav-link" th:href="@{/Admin/AdminHome}">后台管理</a>
-            </li>
-        </ul>
-    </div>
+        </a>
+      </li>
+      <li class="nav-item" th:if="${username==null}">
+        <a class="nav-link" href="Login.html">登录</a>
+      </li>
+      <li class="nav-item" th:if="${username!=null}">
+        <a class="nav-link" th:text="${username}"></a>
+      </li>
+      <li class="nav-item" th:if="${username!=null}">
+        <a class="nav-link" th:href="@{/Order}">订单</a>
+      </li>
+      <li class="nav-item" th:if="${username!=null}">
+        <a class="nav-link" th:href="@{/logout}">登出</a>
+      </li>
+      <li class="nav-item" th:if="${admin}">
+        <a class="nav-link" th:href="@{/Admin/AdminHome}">后台管理</a>
+      </li>
+    </ul>
+  </div>
 </nav>
