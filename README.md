@@ -54,6 +54,508 @@
 - 编程语言：HTML、CSS、JavaScript、Java。
 - 开发环境：`JetBrain intelliJ IDEA Ultimate`、`DBeaver`、`Chrome v121`。
 
+
+
+### 配置SpringSecurity安全过滤器
+
+```java
+import ...
+
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig {
+    final UserDetailsServiceImpl userDetailsService;
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    public SecurityConfig(UserDetailsServiceImpl serDetailsService) {
+        this.userDetailsService = userDetailsService;
+    }
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
+        httpSecurity.csrf(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/Admin/**").hasRole("admin")
+                        .requestMatchers(HttpMethod.OPTIONS).permitAll()
+                        .requestMatchers("/", "/Home*").permitAll()
+                        .requestMatchers("/Login*").permitAll()
+                        .requestMatchers("/Register*").permitAll()
+                        .requestMatchers("/static/**").permitAll()
+                        .requestMatchers("/favicon.ico").permitAll()
+                        .anyRequest().authenticated()
+                ).formLogin(formLogin -> formLogin
+                        .loginProcessingUrl("/login")
+                        .loginPage("/Login")
+                        .permitAll()
+                        .usernameParameter("username")
+                        .passwordParameter("password")
+                        .successHandler((request, response, authentication) ->
+                                response.sendRedirect("/"))
+                        .failureHandler((request, response, authentication) ->
+                                response.sendRedirect("/Login?error"))
+                ).logout(LogoutConfigurer::permitAll)
+                .userDetailsService(userDetailsService);
+        return httpSecurity.build();
+    }
+}
+```
+
+### 用户功能Mapper映射文件
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.suxton.kunmall.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.suxton.kunmall.pojo.User">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="userName" jdbcType="VARCHAR" property="username" />
+    <result column="isAdmin" jdbcType="BIT" property="isadmin" />
+    <result column="passwd" jdbcType="VARCHAR" property="passwd" />
+  </resultMap>
+  <sql id="Example_Where_Clause">    
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, userName, isAdmin, passwd
+  </sql>
+  <select id="selectByExample" parameterType="com.suxton.kunmall.pojo.UserExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Users
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from Users
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from Users
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.suxton.kunmall.pojo.UserExample">
+    delete from Users
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.suxton.kunmall.pojo.User">
+    insert into Users (id, userName, isAdmin, 
+      passwd)
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{isadmin,jdbcType=BIT}, 
+      #{passwd,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.suxton.kunmall.pojo.User">
+    insert into Users
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="username != null">
+        userName,
+      </if>
+      <if test="isadmin != null">
+        isAdmin,
+      </if>
+      <if test="passwd != null">
+        passwd,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="isadmin != null">
+        #{isadmin,jdbcType=BIT},
+      </if>
+      <if test="passwd != null">
+        #{passwd,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.suxton.kunmall.pojo.UserExample" resultType="java.lang.Long">
+    select count(*) from Users
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update Users
+    <set>
+      <if test="row.id != null">
+        id = #{row.id,jdbcType=INTEGER},
+      </if>
+      <if test="row.username != null">
+        userName = #{row.username,jdbcType=VARCHAR},
+      </if>
+      <if test="row.isadmin != null">
+        isAdmin = #{row.isadmin,jdbcType=BIT},
+      </if>
+      <if test="row.passwd != null">
+        passwd = #{row.passwd,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update Users
+    set id = #{row.id,jdbcType=INTEGER},
+      userName = #{row.username,jdbcType=VARCHAR},
+      isAdmin = #{row.isadmin,jdbcType=BIT},
+      passwd = #{row.passwd,jdbcType=VARCHAR}
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.suxton.kunmall.pojo.User">
+    update Users
+    <set>
+      <if test="username != null">
+        userName = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="isadmin != null">
+        isAdmin = #{isadmin,jdbcType=BIT},
+      </if>
+      <if test="passwd != null">
+        passwd = #{passwd,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.suxton.kunmall.pojo.User">
+    update Users
+    set userName = #{username,jdbcType=VARCHAR},
+      isAdmin = #{isadmin,jdbcType=BIT},
+      passwd = #{passwd,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
+```
+
+### 响应商品显示功能请求JAVA代码
+
+```java
+import ...
+
+@Controller
+public class UserController {
+    private final UserService userService;
+    private final HardwareService hardwareService;
+    private final MomentService momentService;
+
+    private void userInfoSetter(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Object principal = authentication.getPrincipal();
+        if (!(principal instanceof String)) {
+            MyUserDetails userDetails = (MyUserDetails) principal;
+            String username = userDetails.getUsername();
+            model.addAttribute("username", username);
+            if (userDetails.isAdmin()) {
+                model.addAttribute("admin", true);
+            } else model.addAttribute("admin", false);
+            model.addAttribute("unread", userService.isUnread(userDetails.id()));
+        }
+
+    }
+
+    @Autowired
+    public UserController(UserService userService, HardwareService hardwareService
+            , MomentService momentService) {
+        this.userService = userService;
+        this.hardwareService = hardwareService;
+        this.momentService = momentService;
+    }
+    
+    @GetMapping("/Customize*")
+    public String customize(@RequestParam(defaultValue = "0", value = "recommend") int num, Model model) {
+        userInfoSetter(model);
+        List<String[]> cpuInfoList = hardwareService.getCPUInfoList();
+        model.addAttribute("CPUList", cpuInfoList);
+        List<String[]> gpuInfoList = hardwareService.getGPUInfoList();
+        model.addAttribute("GPUList", gpuInfoList);
+        List<String[]> memoryInfoList = hardwareService.getMemoryInfoList();
+        model.addAttribute("MemoryList", memoryInfoList);
+        List<String[]> driveInfoList = hardwareService.getDriveInfoList();
+        model.addAttribute("DriveList", driveInfoList);
+        HashMap<String, Integer> details;
+        if (0 != num) {
+            details = hardwareService.getRecommendDetail(num);
+        } else details = new HashMap<>();
+        model.addAttribute("details", details);
+        return "user/Customize";
+    }
+}
+```
+
+
+
+### Kun友圈发帖JS代码
+
+```javascript
+let moment_idx = -1;
+let moment_del = -1
+Dropzone.options.myDropzone = {
+    maxFiles: 9, // 最大上传文件数量
+    maxFilesize: 5,
+    addRemoveLinks: true,
+    acceptedFiles: ".jpg,.jpeg",
+    dictRemoveFile: "删除",
+    dictDefaultMessage: "拖放图片到这里或点击上传",
+    thumbnailWidth: 120,
+    thumbnailHeight: 120,
+    parallelUploads: 9,
+    autoProcessQueue: false,
+    params: {id: moment_idx},
+
+    dictMaxFilesExceeded: "最多只能上传" + 9 + "个文件！",
+    dictResponseError: '文件上传失败!',
+    dictInvalidFileType: "文件类型只能是*.jpg,*.gif,*.png,*.jpeg",
+    dictFallbackMessage: "浏览器不受支持",
+    dictFileTooBig: "文件过大上传文件最大支持.",
+    dictRemoveLinks: "删除",
+    dictCancelUpload: "取消",
+    init: function () {
+        let submitButton = document.querySelector("#submit-button");
+        let that = this;
+        submitButton.addEventListener("click", function () {
+            $.post("/UploadKunMomentMetaData", {
+                text: $('#postText').val()
+            }, function (data) {
+                console.log(data)
+                moment_idx = data
+            }).done(
+                function () {
+                    that.options.params = {"id": moment_idx};
+                    that.processQueue();
+                    setTimeout(function () {
+                        location.reload();
+                    }, 300);
+                }
+            )
+        });
+    }
+};
+
+function toggle_text(id) {
+    let div_id = "#momentText" + id;
+    let btn_id = "#toggleButton" + id;
+    let contentDiv = $(div_id);
+    let toggleButton = $(btn_id);
+    let object_height = parseFloat(contentDiv.css("line-height")) * 3
+    let currentMaxHeight = parseFloat(contentDiv.css("max-height").replace("px", ""));
+    
+    if (currentMaxHeight <= object_height) {
+        contentDiv.stop().animate({'max-height': '100em'}, {
+            duration: 800,
+            complete: function () {
+                toggleButton.text('收起');
+            }
+        });
+    } else {
+        contentDiv.stop().animate({'max-height': object_height + 'px'}, {
+            duration: 800,
+            complete: function () {
+                toggleButton.text('展开');
+            }
+        });
+    }
+}
+
+
+function judge(id) {
+    let div_id = "#momentText" + id;
+    let btn_id = "#toggleButton" + id;
+    let contentDiv = $(div_id);
+    let toggleButton = $(btn_id);
+    let object_height = parseFloat(contentDiv.css("line-height")) * 3
+    let line_height = contentDiv.outerHeight();
+    contentDiv.css("max-height", object_height + "px")
+    if (line_height <= object_height) toggleButton.hide();
+}
+
+function comment(id) {
+    let text_id = "#commentInput" + id;
+    let text_area = $(text_id)
+    let text = text_area.val();
+    $.post("addComment", {moment_id: id, content: text}, function (result) {
+        console.log(result);
+    })
+    text_area.val("");
+    setTimeout(function () {
+        refresh(id);
+    }, 300);
+    let comment_num = $('#commentNun' + id);
+    let num = parseInt(comment_num.text());
+    comment_num.text(num + 1);
+}
+
+function toggle_comment(id) {
+    let btn_id = '#commentToggleBtn' + id;
+    let toggle_btn = $(btn_id);
+    let status = toggle_btn.attr('aria-expanded') === 'true';
+    if (status) {
+        refresh(id)
+    }
+}
+
+function refresh(id) {
+    let comment_area_div = $('#comments' + id);
+    $.getJSON("/getComments", {moment_id: id}, function (data) {
+        comment_area_div.empty();
+        $.each(data, function (index, comment) {
+            let commentHtml = '<div class="card card-body comment"><span class="comment-user-name">' +
+                comment.userName + '</span>' + comment.content + '</div>';
+            comment_area_div.append(commentHtml);
+        });
+    })
+}
+
+function like(id) {
+    let like_num_text = $('#likeNum' + id);
+    let like_num = parseInt(like_num_text.text());
+    console.log(like_num)
+    $.post("/likeMoment", {moment_id: id}, function (data) {
+        console.log(data)
+        if (data === 1) {
+            like_num++
+            like_num_text.text(like_num)
+            showLikeToast('点赞成功');
+        } else {
+            like_num--
+            like_num_text.text(like_num)
+            showLikeToast('已赞过，现取消点赞')
+        }
+    });
+}
+
+function showLikeToast(message) {
+    // 创建一个toast元素
+    let likeStatusToast = $('#likeStatusToast');
+    let toastBody = likeStatusToast.find('.toast-body');
+
+    // 设置toast的文字
+    toastBody.text(message);
+    likeStatusToast.removeClass('toast-fade-out');
+    // 添加动画类，实现淡入效果
+    likeStatusToast.addClass('toast-fade-in');
+
+    // 显示toast
+    likeStatusToast.toast('show');
+
+    setTimeout(function () {
+        likeStatusToast.removeClass('toast-fade-in').addClass('toast-fade-out');
+    }, 300);
+
+    // 隐藏toast后移除动画类
+    likeStatusToast.on('hidden.bs.toast', function () {
+        likeStatusToast.removeClass('toast-fade-out');
+    });
+
+}
+
+function queryRemove(id) {
+    moment_del = id
+    $('#confirmationModal').modal('show');
+}
+
+
+function removeMomentSel() {
+    if (moment_del === -1) {
+        return
+    }
+    $.post("/Admin/RemoveMoment", {moment_id: moment_del}, function (data) {
+        if (data === 'ok') {
+            $('#confirmationModal').modal('hide');
+            showLikeToast("已删除")
+            let id = 'moment' + moment_del.toString();
+            console.log(id);
+            $('#' + id).remove();
+        } else {
+            showLikeToast("删除失败")
+        }
+        moment_del = -1
+    });
+
+}
+```
+
+
+
+
+
 ## 系统测试
 
 - 测试用例：编写各功能模块的测试用例，包括正常情况下的操作流程以及异常情况下的处理。
